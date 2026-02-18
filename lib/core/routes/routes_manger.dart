@@ -9,7 +9,7 @@ import 'package:school_lms/features/onbourding/onbourding_one.dart';
 import 'package:school_lms/features/onbourding/onbourding_three.dart';
 import 'package:school_lms/features/onbourding/onbourding_two.dart';
 
-class RoutesManger {
+abstract class RoutesManger {
   static const String onbourdingOne = '/onbourdingone';
   static const String onbourdingTwo = '/onbourdingtwo';
   static const String onbourdingThree = '/onbourdingthree';
