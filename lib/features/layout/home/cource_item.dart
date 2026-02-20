@@ -15,7 +15,11 @@ class CourceItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        
+        Navigator.pushNamed(
+          context,
+          RoutesManger.courceDietails,
+          arguments: cource
+        );
       },
       child: Column(
         children: [

@@ -39,7 +39,7 @@ abstract class RoutesManger {
       case mainLayout :
         return CupertinoPageRoute(builder: (context) => Mainlayout());
       case courceDietails :
-        return CupertinoPageRoute(builder: (context) => CourceDeitailsScreen());
+        return CupertinoPageRoute(builder: (context) => CourceDeitailsScreen(),settings: settings,);
     }
   }
 }
