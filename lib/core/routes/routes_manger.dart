@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:school_lms/features/auth/login/login_screen.dart';
 import 'package:school_lms/features/auth/login_or_register/login_or_register_screen.dart';
 import 'package:school_lms/features/auth/register/register_screen.dart';
-import 'package:school_lms/features/layout/cources/cource_dietails/cource_dietails.dart';
+import 'package:school_lms/features/layout/home/cource_deitails/cource_deitails_screen.dart';
 import 'package:school_lms/features/layout/mainlayout.dart';
 import 'package:school_lms/features/onbourding/onbourding_four.dart';
 import 'package:school_lms/features/onbourding/onbourding_one.dart';
@@ -39,7 +39,7 @@ abstract class RoutesManger {
       case mainLayout :
         return CupertinoPageRoute(builder: (context) => Mainlayout());
       case courceDietails :
-        return CupertinoPageRoute(builder: (context) => CourceDietails());
+        return CupertinoPageRoute(builder: (context) => CourceDeitailsScreen());
     }
   }
 }

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:school_lms/core/colors/colors_manger.dart';
 import 'package:school_lms/core/routes/routes_manger.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -16,12 +19,12 @@ class _LoginScreenState extends State<LoginScreen> {
       backgroundColor: Colors.grey.shade100,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: EdgeInsets.symmetric(horizontal: 20.w),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 10),
+                SizedBox(height: 10.h),
 
                 /// Back Button
                 IconButton(
@@ -29,154 +32,118 @@ class _LoginScreenState extends State<LoginScreen> {
                   icon: const Icon(Icons.arrow_back),
                 ),
 
-                const SizedBox(height: 10),
+                SizedBox(height: 10.h),
 
                 /// Title
-                const Center(
+                Center(
                   child: Column(
                     children: [
                       Text(
                         "Sign in",
-                        style: TextStyle(
-                          fontSize: 26,
-                          fontWeight: FontWeight.bold,
+                        style: GoogleFonts.plusJakartaSans(
+                          color: ColorsManger.black,
+                          fontSize: 26.sp,
+                          fontWeight: FontWeight.w900,
                         ),
                       ),
-                      SizedBox(height: 6),
+                      SizedBox(height: 6.h),
                       Text(
                         "Please Sign in with your account",
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 14,
-                        ),
+                        style: TextStyle(color: Colors.grey, fontSize: 14.sp),
                       ),
                     ],
                   ),
                 ),
 
-                const SizedBox(height: 40),
+                SizedBox(height: 40.h),
 
                 /// Email
-                const Text("Email Here"),
-                const SizedBox(height: 6),
+                const Text("Email"),
+                SizedBox(height: 6.h),
                 _buildTextField(),
 
-                const SizedBox(height: 20),
+                SizedBox(height: 20.h),
 
                 /// Password
                 const Text("Password"),
-                const SizedBox(height: 6),
+                SizedBox(height: 6.h),
                 _buildPasswordField(),
 
-                const SizedBox(height: 10),
+                SizedBox(height: 10.h),
 
                 /// Forgot Password
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: TextButton(
-                    onPressed: () {},
-                    child: const Text(
-                      "Forgot Password?",
-                      style: TextStyle(color: Colors.grey),
-                    ),
-                  ),
-                ),
-
-                const SizedBox(height: 20),
+                SizedBox(height: 20.h),
 
                 /// Sign In Button
                 SizedBox(
                   width: double.infinity,
-                  height: 55,
+                  height: 55.h,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF123C8F),
+                      backgroundColor: ColorsManger.blue,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(10.r),
                       ),
                     ),
                     onPressed: () {
                       Navigator.pushNamed(context, RoutesManger.mainLayout);
                     },
-                    child: const Text(
+                    child: Text(
                       "SIGN IN",
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 1,
+                      style: GoogleFonts.plusJakartaSans(
+                        color: ColorsManger.white,
+                        fontSize: 20.sp,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   ),
                 ),
 
-                const SizedBox(height: 30),
+                SizedBox(height: 30.h),
 
                 /// Divider
                 Row(
                   children: [
                     const Expanded(child: Divider()),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      padding: EdgeInsets.symmetric(horizontal: 10.w),
                       child: Text(
                         "Or Sign in with",
-                        style: TextStyle(color: Colors.grey.shade600),
+                        style: GoogleFonts.plusJakartaSans(
+                          color: Colors.grey.shade600,
+                        ),
                       ),
                     ),
                     const Expanded(child: Divider()),
                   ],
                 ),
 
-                const SizedBox(height: 20),
-
-                /// Facebook Button
-                SizedBox(
-                  width: double.infinity,
-                  height: 55,
-                  child: ElevatedButton.icon(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF1877F2),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
-                    onPressed: () {},
-                    icon: const Icon(Icons.facebook),
-                    label: const Text(
-                      "Sign In with Facebook",
-                      style: TextStyle(fontSize: 15),
-                    ),
-                  ),
-                ),
-
-                const SizedBox(height: 15),
+                SizedBox(height: 20.h),
 
                 /// Google Button
                 SizedBox(
                   width: double.infinity,
-                  height: 55,
+                  height: 55.h,
                   child: OutlinedButton.icon(
                     style: OutlinedButton.styleFrom(
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(10.r),
                       ),
                       side: BorderSide(color: Colors.grey.shade300),
                     ),
                     onPressed: () {},
                     icon: Image.network(
                       "https://cdn-icons-png.flaticon.com/512/300/300221.png",
-                      height: 20,
+                      height: 20.h,
                     ),
-                    label: const Text(
+                    label: Text(
                       "Sign In with Google",
-                      style: TextStyle(
-                        fontSize: 15,
-                        color: Colors.black,
-                      ),
+                      style: TextStyle(fontSize: 15.sp, color: Colors.black),
                     ),
                   ),
                 ),
 
-                const SizedBox(height: 25),
+                SizedBox(height: 25.h),
 
                 /// Sign Up
                 Center(
@@ -185,12 +152,15 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: [
                       const Text("Didn't have an account? "),
                       GestureDetector(
-                        onTap: () {},
-                        child: const Text(
+                        onTap: () {
+                          Navigator.pushNamed(context, RoutesManger.register);
+                        },
+                        child: Text(
                           "Sign up Here",
-                          style: TextStyle(
-                            color: Color(0xFF123C8F),
-                            fontWeight: FontWeight.bold,
+                          style: GoogleFonts.plusJakartaSans(
+                            color: ColorsManger.blue,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 17.sp,
                           ),
                         ),
                       ),
@@ -198,7 +168,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
 
-                const SizedBox(height: 30),
+                SizedBox(height: 30.h),
               ],
             ),
           ),
@@ -207,16 +177,35 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-   Widget _buildTextField() {
+  Widget _buildTextField() {
     return TextField(
+      cursorColor: const Color.fromARGB(255, 122, 122, 122),
       decoration: InputDecoration(
+        hint: Text(
+          'example@email.com',
+          style: TextStyle(
+            color: Color.fromARGB(255, 198, 198, 198),
+            fontSize: 12.sp,
+            fontWeight: FontWeight.w400,
+          ),
+        ),
         filled: true,
-        fillColor: Colors.white,
-        contentPadding:
-            const EdgeInsets.symmetric(horizontal: 15, vertical: 18),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide.none,
+        fillColor: ColorsManger.white,
+
+        contentPadding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 10.h),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10.r),
+          borderSide: BorderSide(
+            color: const Color.fromARGB(255, 198, 198, 198),
+            width: 1.w,
+          ),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10.r),
+          borderSide: BorderSide(
+            color: const Color.fromARGB(255, 122, 122, 122),
+            width: 1.w,
+          ),
         ),
       ),
     );
@@ -225,20 +214,37 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget _buildPasswordField() {
     return TextField(
       obscureText: _obscurePassword,
+      cursorColor: const Color.fromARGB(255, 122, 122, 122),
       decoration: InputDecoration(
+        hint: Text(
+          'Password',
+          style: TextStyle(
+            color: Color.fromARGB(255, 198, 198, 198),
+            fontSize: 12.sp,
+            fontWeight: FontWeight.w400,
+          ),
+        ),
+
         filled: true,
-        fillColor: Colors.white,
-        contentPadding:
-            const EdgeInsets.symmetric(horizontal: 15, vertical: 18),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide.none,
+        fillColor: ColorsManger.white,
+        contentPadding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 10.h),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10.r),
+          borderSide: BorderSide(
+            color: const Color.fromARGB(255, 198, 198, 198),
+            width: 1.w,
+          ),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10.r),
+          borderSide: BorderSide(
+            color: const Color.fromARGB(255, 122, 122, 122),
+            width: 1.w,
+          ),
         ),
         suffixIcon: IconButton(
           icon: Icon(
-            _obscurePassword
-                ? Icons.visibility_off
-                : Icons.visibility,
+            _obscurePassword ? Icons.visibility_off : Icons.visibility,
           ),
           onPressed: () {
             setState(() {

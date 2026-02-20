@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:school_lms/core/colors/colors_manger.dart';
 import 'package:school_lms/core/routes/routes_manger.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -18,12 +20,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: EdgeInsets.symmetric(horizontal: 20.w),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 10),
+                SizedBox(height: 10.h),
 
                 /// Back Button
                 IconButton(
@@ -31,40 +33,40 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   icon: const Icon(Icons.arrow_back),
                 ),
 
-                const SizedBox(height: 10),
+                SizedBox(height: 10.h),
 
                 /// Title
-                const Center(
+                 Center(
                   child: Column(
                     children: [
                       Text(
                         "Sign Up",
                         style: TextStyle(
-                          fontSize: 28,
+                          fontSize: 28.sp,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(height: 6),
+                      SizedBox(height: 6.h),
                       Text(
                         "Create an account to begin your Learning Journey",
                         textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.grey, fontSize: 14),
+                        style: TextStyle(color: Colors.grey, fontSize: 14.sp),
                       ),
                     ],
                   ),
                 ),
 
-                const SizedBox(height: 30),
+                SizedBox(height: 30.h),
 
                 /// Full Name
                 _buildTextField("Full Name", "Your Name Here"),
 
-                const SizedBox(height: 20),
+                SizedBox(height: 20.h),
 
                 /// Email
                 _buildTextField("Email", "Your Email Here"),
 
-                const SizedBox(height: 20),
+                SizedBox(height: 20.h),
 
                 /// Password
                 _buildPasswordField(
@@ -77,7 +79,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   },
                 ),
 
-                const SizedBox(height: 20),
+                SizedBox(height: 20.h),
 
                 /// Confirm Password
                 _buildPasswordField(
@@ -90,41 +92,42 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   },
                 ),
 
-                const SizedBox(height: 30),
+                SizedBox(height: 30.h),
 
                 /// Sign Up Button
                 SizedBox(
                   width: double.infinity,
-                  height: 55,
+                  height: 55.h,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF123C8F),
+                      backgroundColor: ColorsManger.blue,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(10.r),
                       ),
                     ),
                     onPressed: () {
                       Navigator.pushNamed(context, RoutesManger.login);
                     },
-                    child: const Text(
+                    child:  Text(
                       "SIGN UP",
                       style: TextStyle(
-                        fontSize: 16,
+                        color: ColorsManger.white,
+                        fontSize: 16.sp,
                         fontWeight: FontWeight.bold,
-                        letterSpacing: 1,
+                        letterSpacing: 1.sp,
                       ),
                     ),
                   ),
                 ),
 
-                const SizedBox(height: 25),
+                SizedBox(height: 25.h),
 
                 /// Divider
                 Row(
                   children: [
                     const Expanded(child: Divider()),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      padding: EdgeInsets.symmetric(horizontal: 10.w),
                       child: Text(
                         "Or Sign Up with",
                         style: TextStyle(color: Colors.grey.shade600),
@@ -134,46 +137,52 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ],
                 ),
 
-                const SizedBox(height: 20),
+                SizedBox(height: 20.h),
 
                 /// Google Button
                 SizedBox(
                   width: double.infinity,
-                  height: 55,
+                  height: 55.h,
                   child: OutlinedButton.icon(
                     style: OutlinedButton.styleFrom(
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(12.r),
                       ),
                       side: BorderSide(color: Colors.grey.shade300),
                     ),
                     onPressed: () {},
                     icon: Image.network(
                       "https://cdn-icons-png.flaticon.com/512/300/300221.png",
-                      height: 20,
+                      height: 20.h,
                     ),
-                    label: const Text(
+                    label: Text(
                       "Sign Up with Google",
-                      style: TextStyle(fontSize: 15, color: Colors.black),
+                      style: TextStyle(fontSize: 15.sp, color: Colors.black),
                     ),
                   ),
                 ),
 
-                const SizedBox(height: 25),
+                SizedBox(height: 25.h),
 
                 /// Sign In
                 Center(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text("Already have an account? "),
+                      Text(
+                        "Already have an account? ",
+                        style: TextStyle(fontSize: 14.sp),
+                      ),
                       GestureDetector(
-                        onTap: () {},
-                        child: const Text(
+                        onTap: () {
+                          Navigator.pushNamed(context, RoutesManger.login);
+                        },
+                        child: Text(
                           "Sign in Here",
                           style: TextStyle(
-                            color: Color(0xFF123C8F),
+                            color: ColorsManger.blue,
                             fontWeight: FontWeight.bold,
+                            fontSize: 14.sp,
                           ),
                         ),
                       ),
@@ -181,7 +190,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                 ),
 
-                const SizedBox(height: 30),
+                SizedBox(height: 30.h),
               ],
             ),
           ),
@@ -194,20 +203,40 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label),
-        const SizedBox(height: 6),
+        Text(
+          label,
+          style: TextStyle(fontSize: 14.sp),
+        ),
+        SizedBox(height: 6.h),
         TextField(
+          cursorColor: const Color.fromARGB(255, 122, 122, 122),
           decoration: InputDecoration(
             hintText: hint,
+            hintStyle: TextStyle(
+              color: Color.fromARGB(255, 198, 198, 198),
+              fontSize: 12.sp,
+              fontWeight: FontWeight.w400,
+            ),
             filled: true,
             fillColor: Colors.white,
-            contentPadding: const EdgeInsets.symmetric(
-              horizontal: 15,
-              vertical: 18,
+
+            contentPadding: EdgeInsets.symmetric(
+              horizontal: 7.w,
+              vertical: 10.h,
             ),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide.none,
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10.r),
+              borderSide: BorderSide(
+                color: const Color.fromARGB(255, 198, 198, 198),
+                width: 1.w,
+              ),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10.r),
+              borderSide: BorderSide(
+                color: const Color.fromARGB(255, 122, 122, 122),
+                width: 1.w,
+              ),
             ),
           ),
         ),
@@ -223,20 +252,35 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label),
-        const SizedBox(height: 6),
+        Text(
+          label,
+          style: TextStyle(fontSize: 14.sp),
+        ),
+        SizedBox(height: 6.h),
         TextField(
+          cursorColor: const Color.fromARGB(255, 122, 122, 122),
           obscureText: obscure,
           decoration: InputDecoration(
             filled: true,
             fillColor: Colors.white,
-            contentPadding: const EdgeInsets.symmetric(
-              horizontal: 15,
-              vertical: 18,
+
+            contentPadding: EdgeInsets.symmetric(
+              horizontal: 7.w,
+              vertical: 10.h,
             ),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide.none,
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10.r),
+              borderSide: BorderSide(
+                color: const Color.fromARGB(255, 198, 198, 198),
+                width: 1.w,
+              ),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10.r),
+              borderSide: BorderSide(
+                color: const Color.fromARGB(255, 122, 122, 122),
+                width: 1.w,
+              ),
             ),
             suffixIcon: IconButton(
               icon: Icon(obscure ? Icons.visibility_off : Icons.visibility),
