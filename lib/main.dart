@@ -20,7 +20,7 @@ class SchoolLms extends StatelessWidget {
       builder: (context, child) => MaterialApp(
         debugShowCheckedModeBanner: false,
         onGenerateRoute: RoutesManger.getRoute,
-        initialRoute: RoutesManger.onbourdingOne,
+        initialRoute: RoutesManger.mainLayout,
         locale: Locale('en'),
         theme: ThemeManger.light,
         darkTheme: ThemeManger.dark,
