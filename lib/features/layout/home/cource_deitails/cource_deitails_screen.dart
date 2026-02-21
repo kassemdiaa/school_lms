@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:school_lms/core/colors/colors_manger.dart';
 import 'package:school_lms/features/layout/home/cource_deitails/taps/lessons/lessons_tap.dart';
 import 'package:school_lms/features/layout/home/cource_deitails/taps/overview/overview_tap.dart';
-import 'package:school_lms/features/layout/home/cource_deitails/taps/review/review_tap.dart';
+import 'package:school_lms/features/layout/home/cource_deitails/taps/exmas/exams_tap.dart';
 import 'package:school_lms/models/cource_model.dart';
 
 class CourceDeitailsScreen extends StatefulWidget {
@@ -15,18 +15,21 @@ class CourceDeitailsScreen extends StatefulWidget {
 }
 
 class _CourceDeitailsScreenState extends State<CourceDeitailsScreen> {
+  // keep track of the currently selected tab –
+  // defining it here ensures it survives rebuilds
   int selectedIndex = 0;
-  List<Widget> taps =[
-    OverviewTap(),
-    LessonsTap(),
-    ReviewTap()
-  ];
 
   @override
   Widget build(BuildContext context) {
     final cource =
         ModalRoute.of(context)?.settings.arguments as CourceModel? ??
         CourceModel.cources[1];
+
+    List<Widget> taps =[
+      OverviewTap(cource: cource,),
+      LessonsTap(cource: cource,),
+      ExamsTap(cource: cource,)
+    ];
     return Scaffold(
       body: SizedBox(
         width: double.infinity,
@@ -106,7 +109,7 @@ class _CourceDeitailsScreenState extends State<CourceDeitailsScreen> {
                     
                     decoration: BoxDecoration(color: selectedIndex == 2 ? ColorsManger.blue : null,borderRadius: BorderRadius.only(bottomRight: Radius.circular(14.r))),
                     child: Text(
-                      'Reviews',
+                      'Exams',
                       style: GoogleFonts.plusJakartaSans(
                         color: selectedIndex == 2
                             ? ColorsManger.white
