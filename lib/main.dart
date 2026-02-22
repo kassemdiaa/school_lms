@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:school_lms/config/theme/dark_theme.dart';
+import 'package:school_lms/core/progress/progress_manager.dart';
 import 'package:school_lms/core/routes/routes_manger.dart';
 
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized(); // ← MUST be first
+  await ProgressManager.init();
   runApp(const SchoolLms());
 }
 

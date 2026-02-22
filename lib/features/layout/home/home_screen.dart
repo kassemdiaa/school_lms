@@ -6,9 +6,14 @@ import 'package:school_lms/core/colors/colors_manger.dart';
 import 'package:school_lms/features/layout/home/cource_item.dart';
 import 'package:school_lms/models/cource_model.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -78,7 +83,6 @@ class HomeScreen extends StatelessWidget {
                     ),
                     filled: true,
                     fillColor: ColorsManger.white,
-          
                     contentPadding: EdgeInsets.symmetric(
                       horizontal: 7.w,
                       vertical: 10.h,
@@ -115,7 +119,7 @@ class HomeScreen extends StatelessWidget {
                 SizedBox(height: 10.h),
                 GridView.builder(
                   shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     crossAxisSpacing: 11.w,
@@ -124,6 +128,8 @@ class HomeScreen extends StatelessWidget {
                   ),
                   itemBuilder: (context, index) => CourceItem(
                     cource: CourceModel.cources[index],
+                    // Notify HomeScreen to rebuild when returning from details
+                    onReturn: () => setState(() {}),
                   ),
                   itemCount: CourceModel.cources.length,
                 ),
