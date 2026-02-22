@@ -3,6 +3,7 @@ import 'package:school_lms/features/auth/login/login_screen.dart';
 import 'package:school_lms/features/auth/login_or_register/login_or_register_screen.dart';
 import 'package:school_lms/features/auth/register/register_screen.dart';
 import 'package:school_lms/features/layout/home/cource_deitails/cource_deitails_screen.dart';
+import 'package:school_lms/features/layout/home/cource_deitails/taps/exmas/exam_screen.dart';
 import 'package:school_lms/features/layout/mainlayout.dart';
 import 'package:school_lms/features/onbourding/onbourding_four.dart';
 import 'package:school_lms/features/onbourding/onbourding_one.dart';
@@ -19,6 +20,7 @@ abstract class RoutesManger {
   static const String loginOrRegister = '/loginorregister';
   static const String mainLayout = '/mainlayout';
   static const String courceDietails = '/courcedietails';
+  static const String examsScreen = '/examsscreen';
 
   static Route? getRoute(RouteSettings settings){
     switch (settings.name){
