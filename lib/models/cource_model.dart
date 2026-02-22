@@ -58,8 +58,8 @@ class CourceModel {
           ],
           id: 0,
           name: 'name',
-          videoPath: 'videoPath',
-          docPath: 'docPath',
+          videoPath: 'assets/vid.mp4',
+          docPath: 'assets/cv.pdf',
         ),
         ChapterModel(
           questions: [
@@ -96,8 +96,8 @@ class CourceModel {
           ],
           id: 1,
           name: 'name',
-          videoPath: 'videoPath',
-          docPath: 'docPath',
+          videoPath: 'assets/vid.mp4',
+          docPath: 'assets/cv.pdf',
         ),
         ChapterModel(
           questions: [
@@ -134,8 +134,8 @@ class CourceModel {
           ],
           id: 2,
           name: 'name',
-          videoPath: 'videoPath',
-          docPath: 'docPath',
+          videoPath: 'assets/vid.mp4',
+          docPath: 'assets/cv.pdf',
         ),
         ChapterModel(
           questions: [
@@ -172,8 +172,8 @@ class CourceModel {
           ],
           id: 3,
           name: 'name',
-          videoPath: 'videoPath',
-          docPath: 'docPath',
+          videoPath: 'assets/vid.mp4',
+          docPath: 'assets/cv.pdf',
         ),
       ],
       id: 0,
@@ -221,8 +221,8 @@ class CourceModel {
           ],
           id: 0,
           name: 'name',
-          videoPath: 'videoPath',
-          docPath: 'docPath',
+          videoPath: 'assets/vid.mp4',
+          docPath: 'assets/cv.pdf',
         ),
         ChapterModel(
           questions: [
@@ -259,8 +259,8 @@ class CourceModel {
           ],
           id: 1,
           name: 'name',
-          videoPath: 'videoPath',
-          docPath: 'docPath',
+          videoPath: 'assets/vid.mp4',
+          docPath: 'assets/cv.pdf',
         ),
         ChapterModel(
           questions: [
@@ -297,8 +297,8 @@ class CourceModel {
           ],
           id: 2,
           name: 'name',
-          videoPath: 'videoPath',
-          docPath: 'docPath',
+          videoPath: 'assets/vid.mp4',
+          docPath: 'assets/cv.pdf',
         ),
         ChapterModel(
           questions: [
@@ -335,8 +335,8 @@ class CourceModel {
           ],
           id: 3,
           name: 'name',
-          videoPath: 'videoPath',
-          docPath: 'docPath',
+          videoPath: 'assets/vid.mp4',
+          docPath: 'assets/cv.pdf',
         ),
       ],
       id: 1,
@@ -384,8 +384,8 @@ class CourceModel {
           ],
           id: 0,
           name: 'name',
-          videoPath: 'videoPath',
-          docPath: 'docPath',
+          videoPath: 'assets/vid.mp4',
+          docPath: 'assets/cv.pdf',
         ),
         ChapterModel(
           questions: [
@@ -422,8 +422,8 @@ class CourceModel {
           ],
           id: 1,
           name: 'name',
-          videoPath: 'videoPath',
-          docPath: 'docPath',
+          videoPath: 'assets/vid.mp4',
+          docPath: 'assets/cv.pdf',
         ),
         ChapterModel(
           questions: [
@@ -460,8 +460,8 @@ class CourceModel {
           ],
           id: 2,
           name: 'name',
-          videoPath: 'videoPath',
-          docPath: 'docPath',
+          videoPath: 'assets/vid.mp4',
+          docPath: 'assets/cv.pdf',
         ),
         ChapterModel(
           questions: [
@@ -498,8 +498,8 @@ class CourceModel {
           ],
           id: 3,
           name: 'name',
-          videoPath: 'videoPath',
-          docPath: 'docPath',
+          videoPath: 'assets/vid.mp4',
+          docPath: 'assets/cv.pdf',
         ),
       ],
       id: 2,
@@ -547,8 +547,8 @@ class CourceModel {
           ],
           id: 0,
           name: 'name',
-          videoPath: 'videoPath',
-          docPath: 'docPath',
+          videoPath: 'assets/vid.mp4',
+          docPath: 'assets/cv.pdf',
         ),
         ChapterModel(
           questions: [
@@ -585,8 +585,8 @@ class CourceModel {
           ],
           id: 1,
           name: 'name',
-          videoPath: 'videoPath',
-          docPath: 'docPath',
+          videoPath: 'assets/vid.mp4',
+          docPath: 'assets/cv.pdf',
         ),
         ChapterModel(
           questions: [
@@ -623,8 +623,8 @@ class CourceModel {
           ],
           id: 2,
           name: 'name',
-          videoPath: 'videoPath',
-          docPath: 'docPath',
+          videoPath: 'assets/vid.mp4',
+          docPath: 'assets/cv.pdf',
         ),
         ChapterModel(
           questions: [
@@ -661,8 +661,8 @@ class CourceModel {
           ],
           id: 3,
           name: 'name',
-          videoPath: 'videoPath',
-          docPath: 'docPath',
+          videoPath: 'assets/vid.mp4',
+          docPath: 'assets/cv.pdf',
         ),
       ],
       id: 3,
@@ -710,8 +710,8 @@ class CourceModel {
           ],
           id: 0,
           name: 'name',
-          videoPath: 'videoPath',
-          docPath: 'docPath',
+          videoPath: 'assets/vid.mp4',
+          docPath: 'assets/cv.pdf',
         ),
         ChapterModel(
           questions: [
@@ -748,8 +748,8 @@ class CourceModel {
           ],
           id: 1,
           name: 'name',
-          videoPath: 'videoPath',
-          docPath: 'docPath',
+          videoPath: 'assets/vid.mp4',
+          docPath: 'assets/cv.pdf',
         ),
         ChapterModel(
           questions: [
@@ -786,8 +786,8 @@ class CourceModel {
           ],
           id: 2,
           name: 'name',
-          videoPath: 'videoPath',
-          docPath: 'docPath',
+          videoPath: 'assets/vid.mp4',
+          docPath: 'assets/cv.pdf',
         ),
         ChapterModel(
           questions: [
@@ -824,8 +824,8 @@ class CourceModel {
           ],
           id: 3,
           name: 'name',
-          videoPath: 'videoPath',
-          docPath: 'docPath',
+          videoPath: 'assets/vid.mp4',
+          docPath: 'assets/cv.pdf',
         ),
       ],
       id: 4,
@@ -873,8 +873,8 @@ class CourceModel {
           ],
           id: 0,
           name: 'name',
-          videoPath: 'videoPath',
-          docPath: 'docPath',
+          videoPath: 'assets/vid.mp4',
+          docPath: 'assets/cv.pdf',
         ),
         ChapterModel(
           questions: [
@@ -911,8 +911,8 @@ class CourceModel {
           ],
           id: 1,
           name: 'name',
-          videoPath: 'videoPath',
-          docPath: 'docPath',
+          videoPath: 'assets/vid.mp4',
+          docPath: 'assets/cv.pdf',
         ),
         ChapterModel(
           questions: [
@@ -949,8 +949,8 @@ class CourceModel {
           ],
           id: 2,
           name: 'name',
-          videoPath: 'videoPath',
-          docPath: 'docPath',
+          videoPath: 'assets/vid.mp4',
+          docPath: 'assets/cv.pdf',
         ),
         ChapterModel(
           questions: [
@@ -987,8 +987,8 @@ class CourceModel {
           ],
           id: 3,
           name: 'name',
-          videoPath: 'videoPath',
-          docPath: 'docPath',
+          videoPath: 'assets/vid.mp4',
+          docPath: 'assets/cv.pdf',
         ),
       ],
       id: 5,
