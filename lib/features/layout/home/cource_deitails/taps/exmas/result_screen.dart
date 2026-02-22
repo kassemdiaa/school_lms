@@ -1,27 +1,50 @@
 import 'package:flutter/material.dart';
 import 'package:school_lms/models/question_model.dart';
+import 'package:school_lms/core/progress/progress_manager.dart'; // ← NEW
 import 'exam_screen.dart';
 
-class ResultScreen extends StatelessWidget {
+class ResultScreen extends StatefulWidget {
   final List<QuestionModel> questions;
   final Map<int, String> selectedAnswers;
+  final int courseId;   // ← NEW
+  final int chapterId;  // ← NEW
 
   const ResultScreen({
     super.key,
     required this.questions,
     required this.selectedAnswers,
+    required this.courseId,
+    required this.chapterId,
   });
 
-  int get _score => questions
+  @override
+  State<ResultScreen> createState() => _ResultScreenState();
+}
+
+class _ResultScreenState extends State<ResultScreen> {
+  int get _score => widget.questions
       .asMap()
       .entries
-      .where((e) => selectedAnswers[e.key] == e.value.answer)
+      .where((e) => widget.selectedAnswers[e.key] == e.value.answer)
       .length;
+
+  @override
+  void initState() {
+    super.initState();
+    final percentage = (_score / widget.questions.length * 100).round();
+    // Save progress only when student passes (> 50%)
+    if (percentage > 50) {
+      ProgressManager.markChapterPassed(widget.courseId, widget.chapterId)
+          .then((_) {
+        if (mounted) setState(() {});
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     final score = _score;
-    final total = questions.length;
+    final total = widget.questions.length;
     final percentage = (score / total * 100).round();
     final passed = percentage >= 60;
 
@@ -38,7 +61,7 @@ class ResultScreen extends StatelessWidget {
                 gradient: LinearGradient(
                   colors: passed
                       ? [const Color(0xFF4CAF50), Colors.white]
-                      : [const Color(0xFF2E1A1A),  Colors.white],
+                      : [const Color(0xFF2E1A1A), Colors.white],
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                 ),
@@ -48,7 +71,9 @@ class ResultScreen extends StatelessWidget {
                   Text(
                     'EXAM COMPLETE',
                     style: TextStyle(
-                      color: passed?const Color(0xFF4CAF50):const Color(0xFF2E1A1A),
+                      color: passed
+                          ? const Color(0xFF4CAF50)
+                          : const Color(0xFF2E1A1A),
                       fontSize: 12,
                       letterSpacing: 3,
                       fontWeight: FontWeight.w700,
@@ -95,8 +120,8 @@ class ResultScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 8),
                     decoration: BoxDecoration(
                       color: passed
                           ? const Color(0xFF4CAF50).withOpacity(0.15)
@@ -126,19 +151,19 @@ class ResultScreen extends StatelessWidget {
             // Answers List
             Expanded(
               child: ListView.separated(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-                itemCount: questions.length,
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 20, vertical: 16),
+                itemCount: widget.questions.length,
                 separatorBuilder: (_, __) => const SizedBox(height: 12),
                 itemBuilder: (context, i) {
-                  final q = questions[i];
-                  final selected = selectedAnswers[i];
+                  final q = widget.questions[i];
+                  final selected = widget.selectedAnswers[i];
                   final isCorrect = selected == q.answer;
 
                   return Container(
                     padding: const EdgeInsets.all(18),
                     decoration: BoxDecoration(
-                      color: Color.fromARGB(34, 0, 47, 150),
+                      color: const Color.fromARGB(34, 0, 47, 150),
                       borderRadius: BorderRadius.circular(18),
                       border: Border.all(
                         width: 2,
@@ -157,8 +182,10 @@ class ResultScreen extends StatelessWidget {
                                   horizontal: 10, vertical: 4),
                               decoration: BoxDecoration(
                                 color: isCorrect
-                                    ? const Color(0xFF4CAF50).withOpacity(0.15)
-                                    : const Color(0xFFFF5252).withOpacity(0.15),
+                                    ? const Color(0xFF4CAF50)
+                                        .withOpacity(0.15)
+                                    : const Color(0xFFFF5252)
+                                        .withOpacity(0.15),
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               child: Row(
@@ -227,13 +254,13 @@ class ResultScreen extends StatelessWidget {
               ),
             ),
 
-            // Retry Button
+            // Retry / Back button
             Padding(
               padding: const EdgeInsets.all(20),
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () => Navigator.pop(context), // go back to exam list
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0XFF003096),
+                  backgroundColor: const Color(0xFF003096),
                   foregroundColor: Colors.white,
                   minimumSize: const Size(double.infinity, 52),
                   shape: RoundedRectangleBorder(
@@ -242,8 +269,9 @@ class ResultScreen extends StatelessWidget {
                   elevation: 0,
                 ),
                 child: const Text(
-                  'Retry Exam',
-                  style: TextStyle(fontWeight: FontWeight.w700, fontSize: 16),
+                  'Continue',
+                  style:
+                      TextStyle(fontWeight: FontWeight.w700, fontSize: 16),
                 ),
               ),
             ),
@@ -254,6 +282,7 @@ class ResultScreen extends StatelessWidget {
   }
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
 class _AnswerRow extends StatelessWidget {
   final String label;
   final String value;

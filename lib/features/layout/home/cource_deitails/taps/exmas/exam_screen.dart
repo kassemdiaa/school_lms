@@ -1,21 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:school_lms/features/layout/home/cource_deitails/taps/exmas/result_screen.dart';
 import 'package:school_lms/models/chapter_model.dart';
-import 'package:school_lms/models/cource_model.dart';
 
 class ExamScreen extends StatefulWidget {
-  const ExamScreen({super.key,required this.chapter});
- final ChapterModel chapter;
+  const ExamScreen({super.key, required this.chapter, required this.courseId});
+  final ChapterModel chapter;
+  final int courseId; // ← NEW
+
   @override
   State<ExamScreen> createState() => _ExamScreenState();
 }
 
-class _ExamScreenState extends State<ExamScreen> with SingleTickerProviderStateMixin {
-   int _currentIndex = 0;
+class _ExamScreenState extends State<ExamScreen>
+    with SingleTickerProviderStateMixin {
+  int _currentIndex = 0;
   final Map<int, String> _selectedAnswers = {};
   late AnimationController _animController;
   late Animation<double> _fadeAnim;
   late Animation<Offset> _slideAnim;
+
   @override
   void initState() {
     super.initState();
@@ -58,6 +61,8 @@ class _ExamScreenState extends State<ExamScreen> with SingleTickerProviderStateM
         builder: (_) => ResultScreen(
           questions: widget.chapter.questions,
           selectedAnswers: _selectedAnswers,
+          courseId: widget.courseId,   // ← forward
+          chapterId: widget.chapter.id, // ← forward
         ),
       ),
     );
@@ -73,9 +78,7 @@ class _ExamScreenState extends State<ExamScreen> with SingleTickerProviderStateM
   Widget build(BuildContext context) {
     final question = widget.chapter.questions[_currentIndex];
     final progress = (_currentIndex + 1) / widget.chapter.questions.length;
-    final chapter =
-        ModalRoute.of(context)?.settings.arguments as ChapterModel? ??
-        CourceModel.cources[1].chapters[1];
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -88,12 +91,11 @@ class _ExamScreenState extends State<ExamScreen> with SingleTickerProviderStateM
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                 
                   Container(
                     padding:
                         const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
                     decoration: BoxDecoration(
-                      color: Color.fromARGB(34, 0, 47, 150),
+                      color: const Color.fromARGB(34, 0, 47, 150),
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Text(
@@ -115,8 +117,9 @@ class _ExamScreenState extends State<ExamScreen> with SingleTickerProviderStateM
                 child: LinearProgressIndicator(
                   value: progress,
                   minHeight: 6,
-                  backgroundColor: Color.fromARGB(34, 0, 47, 150),
-                  valueColor: const AlwaysStoppedAnimation(Color.fromARGB(255, 0, 47, 150)),
+                  backgroundColor: const Color.fromARGB(34, 0, 47, 150),
+                  valueColor: const AlwaysStoppedAnimation(
+                      Color.fromARGB(255, 0, 47, 150)),
                 ),
               ),
               const SizedBox(height: 36),
@@ -130,7 +133,7 @@ class _ExamScreenState extends State<ExamScreen> with SingleTickerProviderStateM
                     width: double.infinity,
                     padding: const EdgeInsets.all(28),
                     decoration: BoxDecoration(
-                      color: Color.fromARGB(34, 0, 47, 150),
+                      color: const Color.fromARGB(34, 0, 47, 150),
                       borderRadius: BorderRadius.circular(24),
                       border: Border.all(
                         color: const Color(0xFF6C63FF).withOpacity(0.2),
@@ -141,7 +144,7 @@ class _ExamScreenState extends State<ExamScreen> with SingleTickerProviderStateM
                       children: [
                         Text(
                           'Question ${_currentIndex + 1}',
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Color.fromARGB(255, 0, 47, 150),
                             fontSize: 12,
                             letterSpacing: 2,
@@ -217,7 +220,7 @@ class _ExamScreenState extends State<ExamScreen> with SingleTickerProviderStateM
                           ? _nextQuestion
                           : null,
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromARGB(255, 0, 47, 150),
+                        backgroundColor: const Color.fromARGB(255, 0, 47, 150),
                         foregroundColor: Colors.white,
                         disabledBackgroundColor: const Color(0xFF2E2D42),
                         padding: const EdgeInsets.symmetric(vertical: 16),
@@ -230,7 +233,8 @@ class _ExamScreenState extends State<ExamScreen> with SingleTickerProviderStateM
                         _currentIndex == widget.chapter.questions.length - 1
                             ? 'Submit Exam →'
                             : 'Next →',
-                        style: const TextStyle(fontWeight: FontWeight.w700),
+                        style:
+                            const TextStyle(fontWeight: FontWeight.w700),
                       ),
                     ),
                   ),
@@ -244,6 +248,7 @@ class _ExamScreenState extends State<ExamScreen> with SingleTickerProviderStateM
   }
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
 class _OptionTile extends StatelessWidget {
   final String label;
   final String text;
@@ -266,13 +271,13 @@ class _OptionTile extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
         decoration: BoxDecoration(
           color: isSelected
-              ?  Color.fromARGB(34, 0, 47, 150)
+              ? const Color.fromARGB(34, 0, 47, 150)
               : Colors.white,
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
             color: isSelected
-                ? Color.fromARGB(255, 0, 47, 150)
-                :  Colors.transparent,
+                ? const Color.fromARGB(255, 0, 47, 150)
+                : Colors.transparent,
             width: isSelected ? 2 : 1,
           ),
         ),
@@ -283,7 +288,7 @@ class _OptionTile extends StatelessWidget {
               width: 34,
               height: 34,
               decoration: BoxDecoration(
-                color: Color.fromARGB(255, 0, 47, 150),
+                color: const Color.fromARGB(255, 0, 47, 150),
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Center(
@@ -302,7 +307,9 @@ class _OptionTile extends StatelessWidget {
               child: Text(
                 text,
                 style: TextStyle(
-                  color:isSelected ? Color.fromARGB(255, 0, 47, 150):Colors.black,
+                  color: isSelected
+                      ? const Color.fromARGB(255, 0, 47, 150)
+                      : Colors.black,
                   fontSize: 15,
                   fontWeight:
                       isSelected ? FontWeight.w600 : FontWeight.normal,
