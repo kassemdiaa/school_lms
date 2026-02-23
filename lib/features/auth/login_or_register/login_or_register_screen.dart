@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:school_lms/core/assets_manegar/assets_manegar.dart';
 import 'package:school_lms/core/colors/colors_manger.dart';
 import 'package:school_lms/core/routes/routes_manger.dart';
 import 'package:school_lms/l10n/app_localizations.dart';
@@ -20,7 +21,7 @@ class LoginOrRegisterScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SvgPicture.asset('assets/loginorregister.svg', width: 346.w),
+            SvgPicture.asset(AssetsManegar.loginOrRegister, width: 346.w),
             SizedBox(height: 20.h),
             Text(
               'Join Cybex IT Group to Kick Start ',

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:school_lms/core/assets_manegar/assets_manegar.dart';
 import 'package:school_lms/core/colors/colors_manger.dart';
 import 'package:school_lms/models/chapter_model.dart';
 import 'package:school_lms/features/layout/home/cource_deitails/taps/lessons/video_player_screen.dart';
@@ -111,7 +112,7 @@ class _ChapterItemState extends State<ChapterItem> {
                             padding: EdgeInsets.symmetric(vertical: 4.h),
                             child: Row(
                               children: [
-                                Image.asset('assets/circledPlay.png',
+                                Image.asset(AssetsManegar.circledPlayIcon,
                                     width: 24.w,color: Theme.of(context).canvasColor,),
                                 SizedBox(width: 14.w),
                                 Expanded(
@@ -140,7 +141,7 @@ class _ChapterItemState extends State<ChapterItem> {
                             padding: EdgeInsets.symmetric(vertical: 4.h),
                             child: Row(
                               children: [
-                                Image.asset('assets/viewdetails.png',
+                                Image.asset(AssetsManegar.docIcon,
                                     width: 24.w,color: Theme.of(context).canvasColor,),
                                 SizedBox(width: 14.w),
                                 Expanded(

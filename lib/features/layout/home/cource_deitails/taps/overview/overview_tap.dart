@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:school_lms/core/assets_manegar/assets_manegar.dart';
 import 'package:school_lms/core/colors/colors_manger.dart';
 import 'package:school_lms/models/cource_model.dart';
 
@@ -65,7 +66,7 @@ class OverviewTap extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        Image.asset('assets/bookicon.png', width: 24.w,color: Theme.of(context).canvasColor,),
+                        Image.asset(AssetsManegar.bookIcon, width: 24.w,color: Theme.of(context).canvasColor,),
                         SizedBox(width: 8.w,),
                         Text(
                           '80+ Lectures',
@@ -80,7 +81,7 @@ class OverviewTap extends StatelessWidget {
                     SizedBox(height: 12.h,),
                     Row(
                       children: [
-                        Image.asset('assets/clockicon.png', width: 24.w,color: Theme.of(context).canvasColor,),
+                        Image.asset(AssetsManegar.clockIcon, width: 24.w,color: Theme.of(context).canvasColor,),
                         SizedBox(width: 8.w,),
                         Text(
                           '8 Weeks',
@@ -100,7 +101,7 @@ class OverviewTap extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        Image.asset('assets/certificateicon.png', width: 24.w,color: Theme.of(context).canvasColor,),
+                        Image.asset(AssetsManegar.certificateIcon, width: 24.w,color: Theme.of(context).canvasColor,),
                         SizedBox(width: 8.w,),
                         Text(
                           'Certificate',
@@ -115,7 +116,7 @@ class OverviewTap extends StatelessWidget {
                     SizedBox(height: 12.h,),
                     Row(
                       children: [
-                        Image.asset('assets/offoricon.png', width: 24.w,color: Theme.of(context).canvasColor,),
+                        Image.asset(AssetsManegar.offarIcon, width: 24.w,color: Theme.of(context).canvasColor,),
                         SizedBox(width: 8.w,),
                         Text(
                           '10% Off',

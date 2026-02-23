@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:school_lms/core/assets_manegar/assets_manegar.dart';
 import 'package:school_lms/core/colors/colors_manger.dart';
 import 'package:school_lms/features/layout/enroled_cources/enroled_cources_screen.dart';
 import 'package:school_lms/features/layout/home/home_screen.dart';
@@ -37,7 +38,7 @@ class _MainlayoutState extends State<Mainlayout> {
         items: [
           BottomNavigationBarItem(
             icon: Image.asset(
-              'assets/homelogo.png',
+              AssetsManegar.homeIcon,
               width: currentIndex == 0 ?40.w:30.w,
               color: currentIndex == 0 ? Theme.of(context).primaryColor : ColorsManger.gray,
             ),
@@ -45,7 +46,7 @@ class _MainlayoutState extends State<Mainlayout> {
           ),
           BottomNavigationBarItem(
             icon: Image.asset(
-              'assets/brainlogo.png',
+              AssetsManegar.barinIcon,
               width: currentIndex == 1 ?40.w:30.w,
               color: currentIndex == 1 ?Theme.of(context).primaryColor : ColorsManger.gray,
             ),
@@ -53,7 +54,7 @@ class _MainlayoutState extends State<Mainlayout> {
           ),
           BottomNavigationBarItem(
             icon: Image.asset(
-              'assets/profilelogo.png',
+              AssetsManegar.profileIcon,
               width: currentIndex == 2 ?40.w:30.w,
               color: currentIndex == 2 ? Theme.of(context).primaryColor : ColorsManger.gray,
             ),

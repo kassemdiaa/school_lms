@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:school_lms/core/assets_manegar/assets_manegar.dart';
 import 'package:school_lms/core/colors/colors_manger.dart';
 import 'package:school_lms/core/routes/routes_manger.dart';
 
@@ -18,7 +19,7 @@ class OnbourdingOne extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [SizedBox(height: 30.h,),
-            SvgPicture.asset('assets/onbourdingone.svg', width: 346.w),
+            SvgPicture.asset(AssetsManegar.onbourdingOne, width: 346.w),
             SizedBox(height: 20.h,),
             Text(
               'Welcome to Cybex IT Group',
