@@ -26,12 +26,12 @@ class _EnroledCourcesScreenState extends State<EnroledCourcesScreen> {
 
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
+        appBar: AppBar(backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           automaticallyImplyLeading: false,
           title: Text(
             l10n.contiuecources,
             style: GoogleFonts.plusJakartaSans(
-              color: ColorsManger.black,
+              color: Theme.of(context).primaryColorLight,
               fontSize: 20,
               fontWeight: FontWeight.w700,
             ),
@@ -83,7 +83,7 @@ class _EnrolledCourseCard extends StatelessWidget {
       },
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Theme.of(context).hoverColor,
           borderRadius: BorderRadius.circular(16.r),
           boxShadow: [
             BoxShadow(
@@ -123,7 +123,7 @@ class _EnrolledCourseCard extends StatelessWidget {
                       style: GoogleFonts.plusJakartaSans(
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w700,
-                        color: ColorsManger.black,
+                        color: Theme.of(context).primaryColorLight,
                       ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -147,7 +147,7 @@ class _EnrolledCourseCard extends StatelessWidget {
                             : 0,
                         minHeight: 6,
                         backgroundColor: ColorsManger.gray.withOpacity(0.25),
-                        valueColor: AlwaysStoppedAnimation(ColorsManger.blue),
+                        valueColor: AlwaysStoppedAnimation(Theme.of(context).canvasColor),
                       ),
                     ),
                     SizedBox(height: 6.h),
@@ -160,7 +160,7 @@ class _EnrolledCourseCard extends StatelessWidget {
                           '$percent% Done',
                           style: GoogleFonts.plusJakartaSans(
                             fontSize: 10.sp,
-                            color: ColorsManger.blue,
+                            color: Theme.of(context).canvasColor,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
@@ -175,7 +175,7 @@ class _EnrolledCourseCard extends StatelessWidget {
                             '$passedChapters / $totalChapters chapters',
                             style: GoogleFonts.plusJakartaSans(
                               fontSize: 9.sp,
-                              color: ColorsManger.blue,
+                              color: Theme.of(context).canvasColor,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
