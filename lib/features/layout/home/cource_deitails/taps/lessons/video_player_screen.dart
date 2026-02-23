@@ -95,9 +95,9 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                     // Video
                     _isInitialized
                         ? VideoPlayer(_controller)
-                        : const Center(
+                        :  Center(
                             child: CircularProgressIndicator(
-                                color: Color(0xFF002F96))),
+                                color: Theme.of(context).primaryColor)),
 
                     // Controls overlay
                     AnimatedOpacity(
@@ -169,11 +169,11 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                                     width: 58.w,
                                     height: 58.w,
                                     decoration: BoxDecoration(
-                                      color: const Color(0xFF002F96),
+                                      color: Theme.of(context).primaryColor,
                                       shape: BoxShape.circle,
                                       boxShadow: [
                                         BoxShadow(
-                                          color: const Color(0xFF002F96)
+                                          color: Theme.of(context).primaryColor
                                               .withOpacity(0.4),
                                           blurRadius: 16,
                                         )
@@ -223,11 +223,11 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                                                 RoundSliderOverlayShape(
                                                     overlayRadius: 12.r),
                                             activeTrackColor:
-                                                const Color(0xFF002F96),
+                                                Theme.of(context).primaryColor,
                                             inactiveTrackColor:
                                                 Colors.white24,
                                             thumbColor:
-                                                const Color(0xFF002F96),
+                                                Theme.of(context).primaryColor,
                                             trackHeight: 3,
                                           ),
                                           child: Slider(
@@ -284,7 +284,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
               Expanded(
                 child: Container(
                   width: double.infinity,
-                  color: Colors.white,
+                  color: Theme.of(context).scaffoldBackgroundColor,
                   padding: EdgeInsets.symmetric(
                       horizontal: 20.w, vertical: 16.h),
                   child: Column(
@@ -295,7 +295,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                         style: GoogleFonts.plusJakartaSans(
                           fontSize: 16.sp,
                           fontWeight: FontWeight.w700,
-                          color: Colors.black87,
+                          color: Theme.of(context).primaryColorLight,
                         ),
                       ),
                       SizedBox(height: 8.h),
@@ -304,7 +304,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                         'Use ⏪ ⏩ to skip 10 seconds.',
                         style: GoogleFonts.plusJakartaSans(
                           fontSize: 12.sp,
-                          color: Colors.black45,
+                          color: Theme.of(context).primaryColorLight,
                           height: 1.6,
                         ),
                       ),

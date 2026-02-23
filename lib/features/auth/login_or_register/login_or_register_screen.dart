@@ -13,6 +13,7 @@ class LoginOrRegisterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     return Scaffold(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SizedBox(
         width: double.infinity,
         child: Column(
@@ -46,7 +47,7 @@ class LoginOrRegisterScreen extends StatelessWidget {
                   onPressed: () =>
                       Navigator.pushNamed(context, RoutesManger.login),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: ColorsManger.blue,
+                    backgroundColor: Theme.of(context).primaryColor,
                     padding: EdgeInsets.symmetric(
                         horizontal: 48.w, vertical: 14.h),
                     shape: RoundedRectangleBorder(
@@ -78,7 +79,7 @@ class LoginOrRegisterScreen extends StatelessWidget {
                   child: Text(
                     l10n.signup,
                     style: GoogleFonts.plusJakartaSans(
-                      color: ColorsManger.blue,
+                      color: Theme.of(context).primaryColor,
                       fontSize: 20.sp,
                       fontWeight: FontWeight.w600,
                     ),

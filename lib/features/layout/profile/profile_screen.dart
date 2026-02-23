@@ -118,20 +118,19 @@ class _ProfileScreenState extends State<ProfileScreen>
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     return Scaffold(
-      backgroundColor: const Color(0xFFF2F4F8),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        backgroundColor: const Color(0xFFF2F4F8),
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black87),
-          onPressed: () => Navigator.maybePop(context),
+        automaticallyImplyLeading: false,
+        title: Center(
+          child: Text(l10n.profile,
+              style: GoogleFonts.plusJakartaSans(
+                color: Theme.of(context).primaryColorLight,
+                fontWeight: FontWeight.w700,
+                fontSize: 20.sp,
+              )),
         ),
-        title: Text(l10n.profile,
-            style: GoogleFonts.plusJakartaSans(
-              color: Colors.black87,
-              fontWeight: FontWeight.w700,
-              fontSize: 20.sp,
-            )),
       ),
       body: FadeTransition(
         opacity: _fadeAnim,
@@ -149,8 +148,8 @@ class _ProfileScreenState extends State<ProfileScreen>
                     alignment: Alignment.bottomRight,
                     children: [
                       Container(
-                        width: 90.w,
-                        height: 90.w,
+                        width: 120.w,
+                        height: 120.w,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           border: Border.all(color: Colors.white, width: 3),
@@ -379,7 +378,7 @@ class _EditSheet extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: onSave,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF002F96),
+                  backgroundColor: Theme.of(context).primaryColor,
                   foregroundColor: Colors.white,
                   padding: EdgeInsets.symmetric(vertical: 16.h),
                   shape: RoundedRectangleBorder(

@@ -83,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Text(
                 '${l10n.welcome}, ',
                 style: GoogleFonts.plusJakartaSans(
-                  color: ColorsManger.black,
+                  color: Theme.of(context).primaryColorLight,
                   fontSize: 20,
                   fontWeight: FontWeight.w600,
                 ),
@@ -91,7 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Text(
                 'Kassem',
                 style: GoogleFonts.plusJakartaSans(
-                  color: ColorsManger.blue,
+                  color: Theme.of(context).primaryColorDark,
                   fontSize: 20,
                   fontWeight: FontWeight.w600,
                 ),
@@ -200,7 +200,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ? l10n.cources
                           : '${_filtered.length} result${_filtered.length == 1 ? '' : 's'}',
                       style: GoogleFonts.plusJakartaSans(
-                        color: ColorsManger.black,
+                        color: Theme.of(context).primaryColorLight,
                         fontSize: 16.sp,
                         fontWeight: FontWeight.w700,
                       ),

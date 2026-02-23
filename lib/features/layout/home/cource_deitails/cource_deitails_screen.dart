@@ -31,6 +31,7 @@ class _CourceDeitailsScreenState extends State<CourceDeitailsScreen> {
     ];
 
     return Scaffold(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SizedBox(
         width: double.infinity,
         child: Column(
@@ -52,7 +53,7 @@ class _CourceDeitailsScreenState extends State<CourceDeitailsScreen> {
                       padding: EdgeInsets.symmetric(
                           horizontal: 20.w, vertical: 8.h),
                       decoration: BoxDecoration(
-                        color: selectedIndex == 0 ? ColorsManger.blue : null,
+                        color: selectedIndex == 0 ? Theme.of(context).primaryColor : null,
                         borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(14.r)),
                       ),
@@ -61,7 +62,7 @@ class _CourceDeitailsScreenState extends State<CourceDeitailsScreen> {
                         style: GoogleFonts.plusJakartaSans(
                           color: selectedIndex == 0
                               ? ColorsManger.white
-                              : ColorsManger.blue,
+                              : Theme.of(context).canvasColor,
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
                         ),
@@ -78,7 +79,7 @@ class _CourceDeitailsScreenState extends State<CourceDeitailsScreen> {
                       padding: EdgeInsets.symmetric(
                           horizontal: 20.w, vertical: 8.h),
                       decoration: BoxDecoration(
-                        color: selectedIndex == 1 ? ColorsManger.blue : null,
+                        color: selectedIndex == 1 ? Theme.of(context).primaryColor : null,
                         borderRadius: BorderRadius.only(
                           bottomLeft: Radius.circular(10.r),
                           bottomRight: Radius.circular(10.r),
@@ -89,7 +90,7 @@ class _CourceDeitailsScreenState extends State<CourceDeitailsScreen> {
                         style: GoogleFonts.plusJakartaSans(
                           color: selectedIndex == 1
                               ? ColorsManger.white
-                              : ColorsManger.blue,
+                              : Theme.of(context).canvasColor,
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
                         ),
@@ -106,7 +107,7 @@ class _CourceDeitailsScreenState extends State<CourceDeitailsScreen> {
                       padding: EdgeInsets.symmetric(
                           horizontal: 20.w, vertical: 8.h),
                       decoration: BoxDecoration(
-                        color: selectedIndex == 2 ? ColorsManger.blue : null,
+                        color: selectedIndex == 2 ?Theme.of(context).primaryColor : null,
                         borderRadius: BorderRadius.only(
                             bottomRight: Radius.circular(14.r)),
                       ),
@@ -115,7 +116,7 @@ class _CourceDeitailsScreenState extends State<CourceDeitailsScreen> {
                         style: GoogleFonts.plusJakartaSans(
                           color: selectedIndex == 2
                               ? ColorsManger.white
-                              : ColorsManger.blue,
+                              : Theme.of(context).canvasColor,
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
                         ),

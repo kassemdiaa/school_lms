@@ -51,11 +51,11 @@ class _CourceItemState extends State<CourceItem> {
             children: [
               Text(widget.cource.name,
                   style: GoogleFonts.plusJakartaSans(
-                    color: ColorsManger.black,
+                    color: Theme.of(context).primaryColorLight,
                     fontSize: 13.sp,
                     fontWeight: FontWeight.w600,
                   )),
-              Image.asset('assets/rate.png'),
+              
             ],
           ),
           Row(

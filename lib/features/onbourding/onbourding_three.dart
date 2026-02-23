@@ -10,7 +10,7 @@ class OnbourdingThree extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold(backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: Container(
         width: double.infinity,
         child: Column(
@@ -22,7 +22,7 @@ class OnbourdingThree extends StatelessWidget {
             Text(
               'Dive into a seamless learning',
               style: GoogleFonts.plusJakartaSans(
-                color: ColorsManger.black,
+                color:  Theme.of(context).primaryColorLight,
                 fontSize: 22.sp,
                 fontWeight: FontWeight.w600,
               ),
@@ -31,7 +31,7 @@ class OnbourdingThree extends StatelessWidget {
             Text(
               'experience with Cybex IT Group',
               style: GoogleFonts.plusJakartaSans(
-                color: ColorsManger.black,
+                color:  Theme.of(context).primaryColorLight,
                 fontSize: 22.sp,
                 fontWeight: FontWeight.w600,
               ),
@@ -42,7 +42,7 @@ class OnbourdingThree extends StatelessWidget {
                 Navigator.pushNamed(context, RoutesManger.onbourdingFour);
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: ColorsManger.blue,
+                backgroundColor:  Theme.of(context).primaryColor,
                 padding: EdgeInsets.symmetric(horizontal: 58.w,vertical: 16.h),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadiusGeometry.circular(10.r),

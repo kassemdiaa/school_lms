@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:school_lms/core/colors/colors_manger.dart';
 import 'package:school_lms/features/layout/home/cource_deitails/taps/exmas/result_screen.dart';
 import 'package:school_lms/models/chapter_model.dart';
 import 'package:school_lms/l10n/app_localizations.dart';
@@ -78,7 +79,7 @@ class _ExamScreenState extends State<ExamScreen>
     final progress = (_currentIndex + 1) / widget.chapter.questions.length;
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
@@ -93,13 +94,13 @@ class _ExamScreenState extends State<ExamScreen>
                     padding: const EdgeInsets.symmetric(
                         horizontal: 14, vertical: 6),
                     decoration: BoxDecoration(
-                      color: const Color.fromARGB(34, 0, 47, 150),
+                      color: Theme.of(context).secondaryHeaderColor,
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Text(
                       '${_currentIndex + 1} / ${widget.chapter.questions.length}',
-                      style: const TextStyle(
-                          color: Colors.black,
+                      style:  TextStyle(
+                          color: Theme.of(context).primaryColorLight,
                           fontSize: 13,
                           fontWeight: FontWeight.w600),
                     ),
@@ -115,8 +116,8 @@ class _ExamScreenState extends State<ExamScreen>
                   value: progress,
                   minHeight: 6,
                   backgroundColor: const Color.fromARGB(34, 0, 47, 150),
-                  valueColor: const AlwaysStoppedAnimation(
-                      Color.fromARGB(255, 0, 47, 150)),
+                  valueColor:  AlwaysStoppedAnimation(
+                      Theme.of(context).primaryColor),
                 ),
               ),
               const SizedBox(height: 36),
@@ -130,7 +131,7 @@ class _ExamScreenState extends State<ExamScreen>
                     width: double.infinity,
                     padding: const EdgeInsets.all(28),
                     decoration: BoxDecoration(
-                      color: const Color.fromARGB(34, 0, 47, 150),
+                      color: Theme.of(context).secondaryHeaderColor,
                       borderRadius: BorderRadius.circular(24),
                       border: Border.all(
                           color: const Color(0xFF6C63FF).withOpacity(0.2)),
@@ -140,8 +141,8 @@ class _ExamScreenState extends State<ExamScreen>
                       children: [
                         Text(
                           '${l10n.question} ${_currentIndex + 1}',
-                          style: const TextStyle(
-                            color: Color.fromARGB(255, 0, 47, 150),
+                          style:  TextStyle(
+                            color: Theme.of(context).canvasColor,
                             fontSize: 12,
                             letterSpacing: 2,
                             fontWeight: FontWeight.w600,
@@ -150,8 +151,8 @@ class _ExamScreenState extends State<ExamScreen>
                         const SizedBox(height: 12),
                         Text(
                           question.question,
-                          style: const TextStyle(
-                            color: Colors.black,
+                          style:  TextStyle(
+                            color: Theme.of(context).primaryColorLight,
                             fontSize: 20,
                             fontWeight: FontWeight.w600,
                             height: 1.4,
@@ -202,7 +203,7 @@ class _ExamScreenState extends State<ExamScreen>
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(14)),
                         ),
-                        child: Text('← ${l10n.back}'),
+                        child: Text('← ${l10n.back}',style: TextStyle(color: Theme.of(context).primaryColorLight),),
                       ),
                     ),
                   if (_currentIndex > 0) const SizedBox(width: 12),
@@ -215,7 +216,7 @@ class _ExamScreenState extends State<ExamScreen>
                               : null,
                       style: ElevatedButton.styleFrom(
                         backgroundColor:
-                            const Color.fromARGB(255, 0, 47, 150),
+                            Theme.of(context).primaryColor,
                         foregroundColor: Colors.white,
                         disabledBackgroundColor: const Color(0xFF2E2D42),
                         padding: const EdgeInsets.symmetric(vertical: 16),
@@ -263,12 +264,12 @@ class _OptionTile extends StatelessWidget {
             const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
         decoration: BoxDecoration(
           color: isSelected
-              ? const Color.fromARGB(34, 0, 47, 150)
-              : Colors.white,
+              ? Theme.of(context).cardColor
+              : Colors.transparent,
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
             color: isSelected
-                ? const Color.fromARGB(255, 0, 47, 150)
+                ? Theme.of(context).primaryColor
                 : Colors.transparent,
             width: isSelected ? 2 : 1,
           ),
@@ -280,7 +281,7 @@ class _OptionTile extends StatelessWidget {
               width: 34,
               height: 34,
               decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 0, 47, 150),
+                color: Theme.of(context).primaryColor,
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Center(
@@ -297,8 +298,8 @@ class _OptionTile extends StatelessWidget {
               child: Text(text,
                   style: TextStyle(
                     color: isSelected
-                        ? const Color.fromARGB(255, 0, 47, 150)
-                        : Colors.black,
+                        ? Theme.of(context).canvasColor
+                        : Theme.of(context).primaryColorLight,
                     fontSize: 15,
                     fontWeight: isSelected
                         ? FontWeight.w600

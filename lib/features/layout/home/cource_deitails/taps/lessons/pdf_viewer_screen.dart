@@ -32,12 +32,12 @@ class _PdfViewerScreenState extends State<PdfViewerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF2F4F8),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 0.5,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black87),
+          icon:  Icon(Icons.arrow_back, color: Theme.of(context).primaryColorLight),
           onPressed: () => Navigator.pop(context),
         ),
         title: Column(
@@ -46,7 +46,7 @@ class _PdfViewerScreenState extends State<PdfViewerScreen> {
             Text(
               widget.title,
               style: GoogleFonts.plusJakartaSans(
-                color: Colors.black87,
+                color: Theme.of(context).primaryColorLight,
                 fontWeight: FontWeight.w700,
                 fontSize: 14.sp,
               ),
@@ -56,7 +56,7 @@ class _PdfViewerScreenState extends State<PdfViewerScreen> {
               Text(
                 'Page $_currentPage of $_totalPages',
                 style: GoogleFonts.plusJakartaSans(
-                  color: Colors.black45,
+                  color: Theme.of(context).primaryColorLight,
                   fontSize: 10.sp,
                 ),
               ),
@@ -66,14 +66,14 @@ class _PdfViewerScreenState extends State<PdfViewerScreen> {
           // Jump to first page
           IconButton(
             icon: Icon(Icons.first_page_rounded,
-                color: const Color(0xFF002F96), size: 22.sp),
+                color: Theme.of(context).canvasColor, size: 22.sp),
             tooltip: 'First page',
             onPressed: () => _pdfController.firstPage(),
           ),
           // Jump to last page
           IconButton(
             icon: Icon(Icons.last_page_rounded,
-                color: const Color(0xFF002F96), size: 22.sp),
+                color: Theme.of(context).canvasColor, size: 22.sp),
             tooltip: 'Last page',
             onPressed: () => _pdfController.lastPage(),
           ),
@@ -122,8 +122,8 @@ class _PdfViewerScreenState extends State<PdfViewerScreen> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const CircularProgressIndicator(
-                        color: Color(0xFF002F96)),
+                     CircularProgressIndicator(
+                        color: Theme.of(context).primaryColor),
                     SizedBox(height: 16.h),
                     Text(
                       'Loading PDF...',
@@ -142,7 +142,7 @@ class _PdfViewerScreenState extends State<PdfViewerScreen> {
       // ── Bottom navigation bar ─────────────────────────────────────────────
       bottomNavigationBar: _totalPages > 0
           ? Container(
-              color: Colors.white,
+              color: Theme.of(context).scaffoldBackgroundColor,
               padding:
                   EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
               child: Row(
@@ -151,6 +151,7 @@ class _PdfViewerScreenState extends State<PdfViewerScreen> {
                   // Previous page
                   _NavButton(
                     icon: Icons.chevron_left_rounded,
+
                     label: 'Prev',
                     onTap: _currentPage > 1
                         ? () => _pdfController.previousPage()
@@ -163,7 +164,7 @@ class _PdfViewerScreenState extends State<PdfViewerScreen> {
                     style: GoogleFonts.plusJakartaSans(
                       fontSize: 13.sp,
                       fontWeight: FontWeight.w700,
-                      color: const Color(0xFF002F96),
+                      color: Theme.of(context).canvasColor,
                     ),
                   ),
 
@@ -207,19 +208,19 @@ class _NavButton extends StatelessWidget {
         children: [
           if (!isRight)
             Icon(icon,
-                color: enabled ? const Color(0xFF002F96) : Colors.black26,
+                color: Theme.of(context).primaryColorLight ,
                 size: 20.sp),
           Text(
             label,
             style: GoogleFonts.plusJakartaSans(
               fontSize: 12.sp,
               fontWeight: FontWeight.w600,
-              color: enabled ? const Color(0xFF002F96) : Colors.black26,
+              color: Theme.of(context).primaryColorLight,
             ),
           ),
           if (isRight)
             Icon(icon,
-                color: enabled ? const Color(0xFF002F96) : Colors.black26,
+                color: Theme.of(context).primaryColorLight,
                 size: 20.sp),
         ],
       ),

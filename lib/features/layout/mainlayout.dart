@@ -26,6 +26,7 @@ class _MainlayoutState extends State<Mainlayout> {
       body: taps[currentIndex],
 
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         showSelectedLabels: false,
         showUnselectedLabels: false,
         onTap: (index) {
@@ -37,24 +38,24 @@ class _MainlayoutState extends State<Mainlayout> {
           BottomNavigationBarItem(
             icon: Image.asset(
               'assets/homelogo.png',
-              width: currentIndex == 0 ?50.w:40.w,
-              color: currentIndex == 0 ? ColorsManger.blue : ColorsManger.gray,
+              width: currentIndex == 0 ?40.w:30.w,
+              color: currentIndex == 0 ? Theme.of(context).primaryColor : ColorsManger.gray,
             ),
             label: 'Home',
           ),
           BottomNavigationBarItem(
             icon: Image.asset(
               'assets/brainlogo.png',
-              width: currentIndex == 1 ?50.w:40.w,
-              color: currentIndex == 1 ? ColorsManger.blue : ColorsManger.gray,
+              width: currentIndex == 1 ?40.w:30.w,
+              color: currentIndex == 1 ?Theme.of(context).primaryColor : ColorsManger.gray,
             ),
             label: 'Cources',
           ),
           BottomNavigationBarItem(
             icon: Image.asset(
               'assets/profilelogo.png',
-              width: currentIndex == 2 ?50.w:40.w,
-              color: currentIndex == 2 ? ColorsManger.blue : ColorsManger.gray,
+              width: currentIndex == 2 ?40.w:30.w,
+              color: currentIndex == 2 ? Theme.of(context).primaryColor : ColorsManger.gray,
             ),
             label: 'Profile',
           ),

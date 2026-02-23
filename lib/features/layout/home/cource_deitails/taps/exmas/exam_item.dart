@@ -41,7 +41,7 @@ class _ExamItemState extends State<ExamItem> {
         decoration: BoxDecoration(
           color: passed
               ? const Color.fromARGB(40, 76, 175, 80)
-              : ColorsManger.lightBlue,
+              : Theme.of(context).secondaryHeaderColor,
           borderRadius: BorderRadius.circular(10.r),
           border: Border.all(
               color: passed ? const Color(0xFF4CAF50) : ColorsManger.gray,
@@ -53,7 +53,7 @@ class _ExamItemState extends State<ExamItem> {
             Text(
               '${l10n.exam} ${widget.chapter.id + 1} : ${widget.chapter.name}',
               style: GoogleFonts.plusJakartaSans(
-                color: ColorsManger.black,
+                color: Theme.of(context).primaryColorLight,
                 fontSize: 12.sp,
                 fontWeight: FontWeight.w600,
               ),

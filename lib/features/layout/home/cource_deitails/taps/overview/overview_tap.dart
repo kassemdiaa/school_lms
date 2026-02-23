@@ -17,7 +17,7 @@ class OverviewTap extends StatelessWidget {
           Text(
             cource.name,
             style: GoogleFonts.plusJakartaSans(
-              color: ColorsManger.black,
+              color: Theme.of(context).primaryColorLight,
               fontSize: 20.sp,
               fontWeight: FontWeight.w600,
             ),
@@ -56,7 +56,7 @@ class OverviewTap extends StatelessWidget {
           Container(
             margin: EdgeInsets.symmetric(horizontal: 20.w),
             padding: EdgeInsets.symmetric(horizontal: 10.w,vertical: 20.h),
-            decoration: BoxDecoration(color: ColorsManger.lightBlue,borderRadius: BorderRadius.circular(20.r)),
+            decoration: BoxDecoration(color: Theme.of(context).secondaryHeaderColor,borderRadius: BorderRadius.circular(20.r)),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -65,12 +65,12 @@ class OverviewTap extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        Image.asset('assets/bookicon.png', width: 24.w),
+                        Image.asset('assets/bookicon.png', width: 24.w,color: Theme.of(context).canvasColor,),
                         SizedBox(width: 8.w,),
                         Text(
                           '80+ Lectures',
                           style: GoogleFonts.plusJakartaSans(
-                            color: ColorsManger.black,
+                            color: Theme.of(context).primaryColorLight,
                             fontWeight: FontWeight.w500,
                             fontSize: 12.sp,
                           ),
@@ -80,12 +80,12 @@ class OverviewTap extends StatelessWidget {
                     SizedBox(height: 12.h,),
                     Row(
                       children: [
-                        Image.asset('assets/clockicon.png', width: 24.w),
+                        Image.asset('assets/clockicon.png', width: 24.w,color: Theme.of(context).canvasColor,),
                         SizedBox(width: 8.w,),
                         Text(
                           '8 Weeks',
                           style: GoogleFonts.plusJakartaSans(
-                            color: ColorsManger.black,
+                            color: Theme.of(context).primaryColorLight,
                             fontWeight: FontWeight.w500,
                             fontSize: 12.sp,
                           ),
@@ -100,12 +100,12 @@ class OverviewTap extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        Image.asset('assets/certificateicon.png', width: 24.w),
+                        Image.asset('assets/certificateicon.png', width: 24.w,color: Theme.of(context).canvasColor,),
                         SizedBox(width: 8.w,),
                         Text(
                           'Certificate',
                           style: GoogleFonts.plusJakartaSans(
-                            color: ColorsManger.black,
+                            color:Theme.of(context).primaryColorLight,
                             fontWeight: FontWeight.w500,
                             fontSize: 12.sp,
                           ),
@@ -115,12 +115,12 @@ class OverviewTap extends StatelessWidget {
                     SizedBox(height: 12.h,),
                     Row(
                       children: [
-                        Image.asset('assets/offoricon.png', width: 24.w),
+                        Image.asset('assets/offoricon.png', width: 24.w,color: Theme.of(context).canvasColor,),
                         SizedBox(width: 8.w,),
                         Text(
                           '10% Off',
                           style: GoogleFonts.plusJakartaSans(
-                            color: ColorsManger.black,
+                            color: Theme.of(context).primaryColorLight,
                             fontWeight: FontWeight.w500,
                             fontSize: 12.sp,
                           ),

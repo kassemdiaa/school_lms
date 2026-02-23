@@ -18,7 +18,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     return Scaffold(
-      backgroundColor: Colors.grey.shade100,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.w),
@@ -27,16 +27,14 @@ class _LoginScreenState extends State<LoginScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: 10.h),
-                IconButton(
-                    onPressed: () => Navigator.pop(context),
-                    icon: const Icon(Icons.arrow_back)),
+                
                 SizedBox(height: 10.h),
                 Center(
                   child: Column(
                     children: [
                       Text(l10n.signin,
                           style: GoogleFonts.plusJakartaSans(
-                            color: ColorsManger.black,
+                            color: Theme.of(context).primaryColorLight,
                             fontSize: 26.sp,
                             fontWeight: FontWeight.w900,
                           )),
@@ -48,11 +46,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 SizedBox(height: 40.h),
-                Text(l10n.email),
+                Text(l10n.email,style: TextStyle(color: Theme.of(context).primaryColorLight),),
                 SizedBox(height: 6.h),
                 _buildTextField('example@email.com'),
                 SizedBox(height: 20.h),
-                Text(l10n.password),
+                Text(l10n.password,style: TextStyle(color: Theme.of(context).primaryColorLight),),
                 SizedBox(height: 6.h),
                 _buildPasswordField(l10n),
                 SizedBox(height: 20.h),
@@ -61,7 +59,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: 55.h,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: ColorsManger.blue,
+                      backgroundColor: Theme.of(context).primaryColor,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.r)),
                     ),
@@ -104,7 +102,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         height: 20.h),
                     label: Text(l10n.signinwithgoogle,
                         style: TextStyle(
-                            fontSize: 15.sp, color: Colors.black)),
+                            fontSize: 15.sp, color: Theme.of(context).primaryColorLight)),
                   ),
                 ),
                 SizedBox(height: 25.h),
@@ -112,13 +110,13 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text('${l10n.didnthaveaccount} '),
+                      Text('${l10n.didnthaveaccount} ',style: TextStyle(color: Theme.of(context).primaryColorLight),),
                       GestureDetector(
                         onTap: () => Navigator.pushNamed(
                             context, RoutesManger.register),
                         child: Text(l10n.signuphere,
                             style: GoogleFonts.plusJakartaSans(
-                              color: ColorsManger.blue,
+                              color: Theme.of(context).primaryColorDark,
                               fontWeight: FontWeight.w700,
                               fontSize: 17.sp,
                             )),

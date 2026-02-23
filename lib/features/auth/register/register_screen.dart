@@ -18,6 +18,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     return Scaffold(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.w),
@@ -26,15 +27,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: 10.h),
-                IconButton(
-                    onPressed: () => Navigator.pop(context),
-                    icon: const Icon(Icons.arrow_back)),
                 SizedBox(height: 10.h),
                 Center(
                   child: Column(
                     children: [
                       Text(l10n.signup,
                           style: TextStyle(
+                            color: Theme.of(context).primaryColorLight,
                               fontSize: 28.sp,
                               fontWeight: FontWeight.bold)),
                       SizedBox(height: 6.h),
@@ -71,7 +70,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   height: 55.h,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: ColorsManger.blue,
+                      backgroundColor: Theme.of(context).primaryColor,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.r)),
                     ),
@@ -115,7 +114,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         height: 20.h),
                     label: Text(l10n.signupwithgoogle,
                         style: TextStyle(
-                            fontSize: 15.sp, color: Colors.black)),
+                            fontSize: 15.sp, color: Theme.of(context).primaryColorLight)),
                   ),
                 ),
                 SizedBox(height: 25.h),
@@ -124,15 +123,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text('Already have an account? ',
-                          style: TextStyle(fontSize: 14.sp)),
+                          style: TextStyle(fontSize: 14.sp,color: Theme.of(context).primaryColorLight)),
                       GestureDetector(
                         onTap: () => Navigator.pushNamed(
                             context, RoutesManger.login),
                         child: Text(l10n.signin,
                             style: TextStyle(
-                              color: ColorsManger.blue,
+                              color: Theme.of(context).primaryColorDark,
                               fontWeight: FontWeight.bold,
-                              fontSize: 14.sp,
+                              fontSize: 18.sp,
                             )),
                       ),
                     ],
@@ -151,7 +150,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label, style: TextStyle(fontSize: 14.sp)),
+        Text(label, style: TextStyle(fontSize: 14.sp,color: Theme.of(context).primaryColorLight)),
         SizedBox(height: 6.h),
         TextField(
           cursorColor: const Color.fromARGB(255, 122, 122, 122),
@@ -189,7 +188,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label, style: TextStyle(fontSize: 14.sp)),
+        Text(label, style: TextStyle(fontSize: 14.sp,color: Theme.of(context).primaryColorLight)),
         SizedBox(height: 6.h),
         TextField(
           obscureText: obscure,

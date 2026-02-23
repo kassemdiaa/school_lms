@@ -48,7 +48,7 @@ class _ResultScreenState extends State<ResultScreen> {
     final passed     = percentage >= 60;
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SafeArea(
         child: Column(
           children: [
@@ -60,8 +60,8 @@ class _ResultScreenState extends State<ResultScreen> {
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: passed
-                      ? [const Color(0xFF4CAF50), Colors.white]
-                      : [const Color(0xFF2E1A1A), Colors.white],
+                      ? [const Color(0xFF4CAF50), Theme.of(context).scaffoldBackgroundColor]
+                      : [const Color(0xFF2E1A1A), Theme.of(context).scaffoldBackgroundColor],
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                 ),
@@ -100,13 +100,13 @@ class _ResultScreenState extends State<ResultScreen> {
                       Column(
                         children: [
                           Text('$percentage%',
-                              style: const TextStyle(
-                                  color: Colors.black,
+                              style:  TextStyle(
+                                  color: Theme.of(context).primaryColorLight,
                                   fontSize: 32,
                                   fontWeight: FontWeight.w800)),
                           Text('$score / $total',
-                              style: const TextStyle(
-                                  color: Colors.black, fontSize: 13)),
+                              style:  TextStyle(
+                                  color: Theme.of(context).primaryColorLight, fontSize: 13)),
                         ],
                       ),
                     ],
@@ -208,14 +208,14 @@ class _ResultScreenState extends State<ResultScreen> {
                             ),
                             const Spacer(),
                             Text('${l10n.q}${i + 1}',
-                                style: const TextStyle(
-                                    color: Colors.black, fontSize: 12)),
+                                style:  TextStyle(
+                                    color: Theme.of(context).primaryColorLight, fontSize: 12)),
                           ],
                         ),
                         const SizedBox(height: 10),
                         Text(q.question,
-                            style: const TextStyle(
-                                color: Colors.black,
+                            style:  TextStyle(
+                                color: Theme.of(context).primaryColorLight,
                                 fontSize: 14,
                                 fontWeight: FontWeight.w600)),
                         const SizedBox(height: 10),
@@ -245,7 +245,7 @@ class _ResultScreenState extends State<ResultScreen> {
               child: ElevatedButton(
                 onPressed: () => Navigator.pop(context),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF003096),
+                  backgroundColor: Theme.of(context).primaryColor,
                   foregroundColor: Colors.white,
                   minimumSize: const Size(double.infinity, 52),
                   shape: RoundedRectangleBorder(

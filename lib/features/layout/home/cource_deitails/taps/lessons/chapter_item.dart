@@ -54,7 +54,7 @@ class _ChapterItemState extends State<ChapterItem> {
               padding:
                   EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
               decoration: BoxDecoration(
-                color: ColorsManger.lightBlue,
+                color: Theme.of(context).secondaryHeaderColor,
                 borderRadius: BorderRadius.circular(10.r),
                 border: Border.all(color: ColorsManger.gray, width: 1),
               ),
@@ -64,7 +64,7 @@ class _ChapterItemState extends State<ChapterItem> {
                     child: Text(
                       '${l10n.chapter} ${widget.chapter.id + 1} : ${widget.chapter.name}',
                       style: GoogleFonts.plusJakartaSans(
-                        color: ColorsManger.black,
+                        color: Theme.of(context).primaryColorLight,
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w600,
                       ),
@@ -74,7 +74,7 @@ class _ChapterItemState extends State<ChapterItem> {
                     turns: isExpanded ? 0.5 : 0,
                     duration: const Duration(milliseconds: 300),
                     child: Icon(Icons.keyboard_arrow_down_rounded,
-                        color: ColorsManger.blue, size: 20.sp),
+                        color: Theme.of(context).canvasColor, size: 20.sp),
                   ),
                 ],
               ),
@@ -96,7 +96,7 @@ class _ChapterItemState extends State<ChapterItem> {
                     padding: EdgeInsets.symmetric(
                         horizontal: 10.w, vertical: 10.h),
                     decoration: BoxDecoration(
-                      color: ColorsManger.lightBlue,
+                      color: Theme.of(context).secondaryHeaderColor,
                       borderRadius: BorderRadius.circular(10.r),
                       border:
                           Border.all(color: ColorsManger.gray, width: 1),
@@ -112,20 +112,20 @@ class _ChapterItemState extends State<ChapterItem> {
                             child: Row(
                               children: [
                                 Image.asset('assets/circledPlay.png',
-                                    width: 24.w),
+                                    width: 24.w,color: Theme.of(context).canvasColor,),
                                 SizedBox(width: 14.w),
                                 Expanded(
                                   child: Text(
                                     '${l10n.lessons} ${l10n.overview}',
                                     style: GoogleFonts.plusJakartaSans(
-                                      color: ColorsManger.black,
+                                      color: Theme.of(context).primaryColorLight,
                                       fontSize: 12.sp,
                                       fontWeight: FontWeight.w500,
                                     ),
                                   ),
                                 ),
                                 Icon(Icons.chevron_right_rounded,
-                                    color: ColorsManger.blue, size: 18.sp),
+                                    color: Theme.of(context).canvasColor, size: 18.sp),
                               ],
                             ),
                           ),
@@ -141,20 +141,20 @@ class _ChapterItemState extends State<ChapterItem> {
                             child: Row(
                               children: [
                                 Image.asset('assets/viewdetails.png',
-                                    width: 24.w),
+                                    width: 24.w,color: Theme.of(context).canvasColor,),
                                 SizedBox(width: 14.w),
                                 Expanded(
                                   child: Text(
                                     l10n.overview,
                                     style: GoogleFonts.plusJakartaSans(
-                                      color: ColorsManger.black,
+                                      color: Theme.of(context).primaryColorLight,
                                       fontSize: 12.sp,
                                       fontWeight: FontWeight.w500,
                                     ),
                                   ),
                                 ),
                                 Icon(Icons.chevron_right_rounded,
-                                    color: ColorsManger.blue, size: 18.sp),
+                                    color: Theme.of(context).canvasColor, size: 18.sp),
                               ],
                             ),
                           ),

@@ -10,7 +10,7 @@ class OnbourdingFour extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold(backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: Container(
         width: double.infinity,
         child: Column(
@@ -23,7 +23,7 @@ class OnbourdingFour extends StatelessWidget {
             Text(
               'Join a community of learners and',
               style: GoogleFonts.plusJakartaSans(
-                color: ColorsManger.black,
+                color:  Theme.of(context).primaryColorLight,
                 fontSize: 22.sp,
                 fontWeight: FontWeight.w600,
               ),
@@ -32,7 +32,7 @@ class OnbourdingFour extends StatelessWidget {
             Text(
               'embark on a learning adventure',
               style: GoogleFonts.plusJakartaSans(
-                color: ColorsManger.black,
+                color:  Theme.of(context).primaryColorLight,
                 fontSize: 22.sp,
                 fontWeight: FontWeight.w600,
               ),
@@ -43,7 +43,7 @@ class OnbourdingFour extends StatelessWidget {
                 Navigator.pushNamed(context, RoutesManger.loginOrRegister);
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: ColorsManger.blue,
+                backgroundColor:  Theme.of(context).primaryColor,
                 padding: EdgeInsets.symmetric(horizontal: 58.w,vertical: 16.h),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadiusGeometry.circular(10.r),
