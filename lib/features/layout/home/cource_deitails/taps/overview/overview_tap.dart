@@ -6,8 +6,8 @@ import 'package:school_lms/core/colors/colors_manger.dart';
 import 'package:school_lms/models/cource_model.dart';
 
 class OverviewTap extends StatelessWidget {
-  OverviewTap({super.key, required this.cource});
-  CourceModel cource;
+  const OverviewTap({super.key, required this.cource});
+ final CourceModel cource;
   @override
   Widget build(BuildContext context) {
     return Padding(

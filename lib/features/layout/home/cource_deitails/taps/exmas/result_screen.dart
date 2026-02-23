@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:school_lms/models/question_model.dart';
 import 'package:school_lms/core/progress/progress_manager.dart';
 import 'package:school_lms/l10n/app_localizations.dart';
-import 'exam_screen.dart';
+
 
 class ResultScreen extends StatefulWidget {
   final List<QuestionModel> questions;

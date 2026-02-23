@@ -1,5 +1,3 @@
-import 'dart:ui_web';
-
 import 'package:flutter/material.dart';
 import 'package:school_lms/core/assets_manegar/assets_manegar.dart';
 import 'package:school_lms/models/chapter_model.dart';
@@ -101,8 +99,8 @@ class CourceModel {
         id: 0,
         name: l10n.chemistry,
         instractorName: 'Ahmed Taha',
-        imagePath: AssetsManegar.arabic,
-        coverPath: AssetsManegar.arabicCover,
+        imagePath: AssetsManegar.chemistry,
+        coverPath: AssetsManegar.chemistryCover,
         description:
             'The "Central Science." Chemistry looks at the microscopic building blocks of everything. You\'ll explore how atoms bond to create molecules—like why water behaves the way it does or how a battery stores energy.',
         chapters: _buildChapters(),

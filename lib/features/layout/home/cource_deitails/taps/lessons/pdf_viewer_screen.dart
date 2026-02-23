@@ -201,7 +201,6 @@ class _NavButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final enabled = onTap != null;
     return GestureDetector(
       onTap: onTap,
       child: Row(

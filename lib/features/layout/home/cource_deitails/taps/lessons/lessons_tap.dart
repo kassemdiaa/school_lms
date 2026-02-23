@@ -4,8 +4,8 @@ import 'package:school_lms/features/layout/home/cource_deitails/taps/lessons/cha
 import 'package:school_lms/models/cource_model.dart';
 
 class LessonsTap extends StatelessWidget {
-  LessonsTap({super.key, required this.cource});
-  CourceModel cource;
+  const LessonsTap({super.key, required this.cource});
+  final CourceModel cource;
   @override
   Widget build(BuildContext context) {
     return Expanded(
