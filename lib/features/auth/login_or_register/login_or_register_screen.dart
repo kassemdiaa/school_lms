@@ -4,21 +4,23 @@ import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:school_lms/core/colors/colors_manger.dart';
 import 'package:school_lms/core/routes/routes_manger.dart';
+import 'package:school_lms/l10n/app_localizations.dart';
 
 class LoginOrRegisterScreen extends StatelessWidget {
   const LoginOrRegisterScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
-      body: Container(
+      body: SizedBox(
         width: double.infinity,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SvgPicture.asset('assets/loginorregister.svg', width: 346.w),
-            SizedBox(height: 20.h,),
+            SizedBox(height: 20.h),
             Text(
               'Join Cybex IT Group to Kick Start ',
               style: GoogleFonts.plusJakartaSans(
@@ -27,7 +29,7 @@ class LoginOrRegisterScreen extends StatelessWidget {
                 fontWeight: FontWeight.w600,
               ),
             ),
-            SizedBox(height: 3.h,),
+            SizedBox(height: 3.h),
             Text(
               'Your Lesson',
               style: GoogleFonts.plusJakartaSans(
@@ -36,23 +38,23 @@ class LoginOrRegisterScreen extends StatelessWidget {
                 fontWeight: FontWeight.w600,
               ),
             ),
-            SizedBox(height: 91.h,),
+            SizedBox(height: 91.h),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, RoutesManger.login);
-                  },
+                  onPressed: () =>
+                      Navigator.pushNamed(context, RoutesManger.login),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: ColorsManger.blue,
-                    padding: EdgeInsets.symmetric(horizontal: 48.w,vertical: 14.h),
+                    padding: EdgeInsets.symmetric(
+                        horizontal: 48.w, vertical: 14.h),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadiusGeometry.circular(10.r),
                     ),
                   ),
                   child: Text(
-                    'Sign In',
+                    l10n.signin,
                     style: GoogleFonts.plusJakartaSans(
                       color: ColorsManger.white,
                       fontSize: 20.sp,
@@ -60,21 +62,21 @@ class LoginOrRegisterScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(width: 8.w,),
+                SizedBox(width: 8.w),
                 ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, RoutesManger.register);
-                  },
+                  onPressed: () =>
+                      Navigator.pushNamed(context, RoutesManger.register),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: ColorsManger.white,
-                    padding: EdgeInsets.symmetric(horizontal: 48.w,vertical: 14.h),
+                    padding: EdgeInsets.symmetric(
+                        horizontal: 48.w, vertical: 14.h),
                     shape: RoundedRectangleBorder(
-                      side: BorderSide(color: ColorsManger.blue,width: 1,),
-                      borderRadius: BorderRadiusGeometry.circular(10.r)
+                      side: BorderSide(color: ColorsManger.blue, width: 1),
+                      borderRadius: BorderRadiusGeometry.circular(10.r),
                     ),
                   ),
                   child: Text(
-                    'Sign Up',
+                    l10n.signup,
                     style: GoogleFonts.plusJakartaSans(
                       color: ColorsManger.blue,
                       fontSize: 20.sp,

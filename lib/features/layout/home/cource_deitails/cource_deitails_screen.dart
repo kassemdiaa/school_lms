@@ -6,30 +6,30 @@ import 'package:school_lms/features/layout/home/cource_deitails/taps/lessons/les
 import 'package:school_lms/features/layout/home/cource_deitails/taps/overview/overview_tap.dart';
 import 'package:school_lms/features/layout/home/cource_deitails/taps/exmas/exams_tap.dart';
 import 'package:school_lms/models/cource_model.dart';
+import 'package:school_lms/l10n/app_localizations.dart';
 
 class CourceDeitailsScreen extends StatefulWidget {
   const CourceDeitailsScreen({super.key});
-
   @override
   State<CourceDeitailsScreen> createState() => _CourceDeitailsScreenState();
 }
 
 class _CourceDeitailsScreenState extends State<CourceDeitailsScreen> {
-  // keep track of the currently selected tab –
-  // defining it here ensures it survives rebuilds
   int selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final cource =
         ModalRoute.of(context)?.settings.arguments as CourceModel? ??
-        CourceModel.cources[1];
+        CourceModel.getCources(context)[0];
 
-    List<Widget> taps =[
-      OverviewTap(cource: cource,),
-      LessonsTap(cource: cource,),
-      ExamsTap(cource: cource,)
+    final List<Widget> taps = [
+      OverviewTap(cource: cource),
+      LessonsTap(cource: cource),
+      ExamsTap(cource: cource),
     ];
+
     return Scaffold(
       body: SizedBox(
         width: double.infinity,
@@ -43,27 +43,21 @@ class _CourceDeitailsScreenState extends State<CourceDeitailsScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                // Overview tab
                 Expanded(
                   child: InkWell(
-                    onTap: () {
-                      selectedIndex = 0;
-                      setState(() {});
-                    },
+                    onTap: () => setState(() => selectedIndex = 0),
                     child: Container(
                       alignment: Alignment.center,
                       padding: EdgeInsets.symmetric(
-                        horizontal: 20.w,
-                        vertical: 8.h,
-                      ),
-                  
+                          horizontal: 20.w, vertical: 8.h),
                       decoration: BoxDecoration(
                         color: selectedIndex == 0 ? ColorsManger.blue : null,
                         borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(14.r),
-                        ),
+                            bottomLeft: Radius.circular(14.r)),
                       ),
                       child: Text(
-                        'Overview',
+                        l10n.overview,
                         style: GoogleFonts.plusJakartaSans(
                           color: selectedIndex == 0
                               ? ColorsManger.white
@@ -75,22 +69,23 @@ class _CourceDeitailsScreenState extends State<CourceDeitailsScreen> {
                     ),
                   ),
                 ),
+                // Lessons tab
                 Expanded(
                   child: InkWell(
-                    onTap: () {
-                      selectedIndex = 1;
-                      setState(() {});
-                    },
+                    onTap: () => setState(() => selectedIndex = 1),
                     child: Container(
                       alignment: Alignment.center,
                       padding: EdgeInsets.symmetric(
-                        horizontal: 20.w,
-                        vertical: 8.h,
+                          horizontal: 20.w, vertical: 8.h),
+                      decoration: BoxDecoration(
+                        color: selectedIndex == 1 ? ColorsManger.blue : null,
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(10.r),
+                          bottomRight: Radius.circular(10.r),
+                        ),
                       ),
-                      
-                      decoration: BoxDecoration(color: selectedIndex == 1 ? ColorsManger.blue : null,borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10.r),bottomRight: Radius.circular(10.r))),
                       child: Text(
-                        'Lessons',
+                        l10n.lessons,
                         style: GoogleFonts.plusJakartaSans(
                           color: selectedIndex == 1
                               ? ColorsManger.white
@@ -102,22 +97,21 @@ class _CourceDeitailsScreenState extends State<CourceDeitailsScreen> {
                     ),
                   ),
                 ),
+                // Exams tab
                 Expanded(
                   child: InkWell(
-                    onTap: () {
-                      selectedIndex = 2;
-                      setState(() {});
-                    },
+                    onTap: () => setState(() => selectedIndex = 2),
                     child: Container(
                       alignment: Alignment.center,
                       padding: EdgeInsets.symmetric(
-                        horizontal: 20.w,
-                        vertical: 8.h,
+                          horizontal: 20.w, vertical: 8.h),
+                      decoration: BoxDecoration(
+                        color: selectedIndex == 2 ? ColorsManger.blue : null,
+                        borderRadius: BorderRadius.only(
+                            bottomRight: Radius.circular(14.r)),
                       ),
-                      
-                      decoration: BoxDecoration(color: selectedIndex == 2 ? ColorsManger.blue : null,borderRadius: BorderRadius.only(bottomRight: Radius.circular(14.r))),
                       child: Text(
-                        'Exams',
+                        l10n.exams,
                         style: GoogleFonts.plusJakartaSans(
                           color: selectedIndex == 2
                               ? ColorsManger.white
@@ -131,8 +125,7 @@ class _CourceDeitailsScreenState extends State<CourceDeitailsScreen> {
                 ),
               ],
             ),
-            //Container(width: double.infinity,color: ColorsManger.blue,height: 2,),
-            taps[selectedIndex]
+            taps[selectedIndex],
           ],
         ),
       ),

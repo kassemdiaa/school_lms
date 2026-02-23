@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:school_lms/features/layout/home/cource_deitails/taps/exmas/result_screen.dart';
 import 'package:school_lms/models/chapter_model.dart';
+import 'package:school_lms/l10n/app_localizations.dart';
 
 class ExamScreen extends StatefulWidget {
   const ExamScreen({super.key, required this.chapter, required this.courseId});
   final ChapterModel chapter;
-  final int courseId; // ← NEW
-
+  final int courseId;
   @override
   State<ExamScreen> createState() => _ExamScreenState();
 }
@@ -23,16 +23,13 @@ class _ExamScreenState extends State<ExamScreen>
   void initState() {
     super.initState();
     _animController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 400),
-    );
+        vsync: this, duration: const Duration(milliseconds: 400));
     _fadeAnim = Tween<double>(begin: 0, end: 1).animate(
-      CurvedAnimation(parent: _animController, curve: Curves.easeOut),
-    );
+        CurvedAnimation(parent: _animController, curve: Curves.easeOut));
     _slideAnim = Tween<Offset>(
-      begin: const Offset(0.1, 0),
-      end: Offset.zero,
-    ).animate(CurvedAnimation(parent: _animController, curve: Curves.easeOut));
+            begin: const Offset(0.1, 0), end: Offset.zero)
+        .animate(
+            CurvedAnimation(parent: _animController, curve: Curves.easeOut));
     _animController.forward();
   }
 
@@ -61,8 +58,8 @@ class _ExamScreenState extends State<ExamScreen>
         builder: (_) => ResultScreen(
           questions: widget.chapter.questions,
           selectedAnswers: _selectedAnswers,
-          courseId: widget.courseId,   // ← forward
-          chapterId: widget.chapter.id, // ← forward
+          courseId: widget.courseId,
+          chapterId: widget.chapter.id,
         ),
       ),
     );
@@ -76,6 +73,7 @@ class _ExamScreenState extends State<ExamScreen>
 
   @override
   Widget build(BuildContext context) {
+    final l10n     = AppLocalizations.of(context)!;
     final question = widget.chapter.questions[_currentIndex];
     final progress = (_currentIndex + 1) / widget.chapter.questions.length;
 
@@ -87,13 +85,13 @@ class _ExamScreenState extends State<ExamScreen>
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Header
+              // ── Counter ────────────────────────────────────────────────────
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 14, vertical: 6),
                     decoration: BoxDecoration(
                       color: const Color.fromARGB(34, 0, 47, 150),
                       borderRadius: BorderRadius.circular(20),
@@ -101,17 +99,16 @@ class _ExamScreenState extends State<ExamScreen>
                     child: Text(
                       '${_currentIndex + 1} / ${widget.chapter.questions.length}',
                       style: const TextStyle(
-                        color: Colors.black,
-                        fontSize: 13,
-                        fontWeight: FontWeight.w600,
-                      ),
+                          color: Colors.black,
+                          fontSize: 13,
+                          fontWeight: FontWeight.w600),
                     ),
                   ),
                 ],
               ),
               const SizedBox(height: 20),
 
-              // Progress Bar
+              // ── Progress bar ───────────────────────────────────────────────
               ClipRRect(
                 borderRadius: BorderRadius.circular(8),
                 child: LinearProgressIndicator(
@@ -124,7 +121,7 @@ class _ExamScreenState extends State<ExamScreen>
               ),
               const SizedBox(height: 36),
 
-              // Question Card
+              // ── Question card ──────────────────────────────────────────────
               FadeTransition(
                 opacity: _fadeAnim,
                 child: SlideTransition(
@@ -136,14 +133,13 @@ class _ExamScreenState extends State<ExamScreen>
                       color: const Color.fromARGB(34, 0, 47, 150),
                       borderRadius: BorderRadius.circular(24),
                       border: Border.all(
-                        color: const Color(0xFF6C63FF).withOpacity(0.2),
-                      ),
+                          color: const Color(0xFF6C63FF).withOpacity(0.2)),
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Question ${_currentIndex + 1}',
+                          '${l10n.question} ${_currentIndex + 1}',
                           style: const TextStyle(
                             color: Color.fromARGB(255, 0, 47, 150),
                             fontSize: 12,
@@ -168,7 +164,7 @@ class _ExamScreenState extends State<ExamScreen>
               ),
               const SizedBox(height: 28),
 
-              // Options
+              // ── Options ────────────────────────────────────────────────────
               Expanded(
                 child: FadeTransition(
                   opacity: _fadeAnim,
@@ -183,10 +179,8 @@ class _ExamScreenState extends State<ExamScreen>
                         label: String.fromCharCode(65 + i),
                         text: option,
                         isSelected: isSelected,
-                        onTap: () {
-                          setState(
-                              () => _selectedAnswers[_currentIndex] = option);
-                        },
+                        onTap: () => setState(
+                            () => _selectedAnswers[_currentIndex] = option),
                       );
                     },
                   ),
@@ -194,7 +188,7 @@ class _ExamScreenState extends State<ExamScreen>
               ),
               const SizedBox(height: 16),
 
-              // Navigation Buttons
+              // ── Navigation buttons ─────────────────────────────────────────
               Row(
                 children: [
                   if (_currentIndex > 0)
@@ -206,35 +200,35 @@ class _ExamScreenState extends State<ExamScreen>
                           side: const BorderSide(color: Color(0xFF2E2D42)),
                           padding: const EdgeInsets.symmetric(vertical: 16),
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(14),
-                          ),
+                              borderRadius: BorderRadius.circular(14)),
                         ),
-                        child: const Text('← Back'),
+                        child: Text('← ${l10n.back}'),
                       ),
                     ),
                   if (_currentIndex > 0) const SizedBox(width: 12),
                   Expanded(
                     flex: 2,
                     child: ElevatedButton(
-                      onPressed: _selectedAnswers.containsKey(_currentIndex)
-                          ? _nextQuestion
-                          : null,
+                      onPressed:
+                          _selectedAnswers.containsKey(_currentIndex)
+                              ? _nextQuestion
+                              : null,
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color.fromARGB(255, 0, 47, 150),
+                        backgroundColor:
+                            const Color.fromARGB(255, 0, 47, 150),
                         foregroundColor: Colors.white,
                         disabledBackgroundColor: const Color(0xFF2E2D42),
                         padding: const EdgeInsets.symmetric(vertical: 16),
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(14),
-                        ),
+                            borderRadius: BorderRadius.circular(14)),
                         elevation: 0,
                       ),
                       child: Text(
-                        _currentIndex == widget.chapter.questions.length - 1
-                            ? 'Submit Exam →'
-                            : 'Next →',
-                        style:
-                            const TextStyle(fontWeight: FontWeight.w700),
+                        _currentIndex ==
+                                widget.chapter.questions.length - 1
+                            ? '${l10n.submit} →'
+                            : '${l10n.next} →',
+                        style: const TextStyle(fontWeight: FontWeight.w700),
                       ),
                     ),
                   ),
@@ -248,19 +242,16 @@ class _ExamScreenState extends State<ExamScreen>
   }
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
 class _OptionTile extends StatelessWidget {
   final String label;
   final String text;
   final bool isSelected;
   final VoidCallback onTap;
-
-  const _OptionTile({
-    required this.label,
-    required this.text,
-    required this.isSelected,
-    required this.onTap,
-  });
+  const _OptionTile(
+      {required this.label,
+      required this.text,
+      required this.isSelected,
+      required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -268,7 +259,8 @@ class _OptionTile extends StatelessWidget {
       onTap: onTap,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+        padding:
+            const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
         decoration: BoxDecoration(
           color: isSelected
               ? const Color.fromARGB(34, 0, 47, 150)
@@ -292,29 +284,26 @@ class _OptionTile extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Center(
-                child: Text(
-                  label,
-                  style: TextStyle(
-                    color: isSelected ? Colors.white : Colors.white54,
-                    fontWeight: FontWeight.w700,
-                    fontSize: 13,
-                  ),
-                ),
+                child: Text(label,
+                    style: TextStyle(
+                      color: isSelected ? Colors.white : Colors.white54,
+                      fontWeight: FontWeight.w700,
+                      fontSize: 13,
+                    )),
               ),
             ),
             const SizedBox(width: 16),
             Expanded(
-              child: Text(
-                text,
-                style: TextStyle(
-                  color: isSelected
-                      ? const Color.fromARGB(255, 0, 47, 150)
-                      : Colors.black,
-                  fontSize: 15,
-                  fontWeight:
-                      isSelected ? FontWeight.w600 : FontWeight.normal,
-                ),
-              ),
+              child: Text(text,
+                  style: TextStyle(
+                    color: isSelected
+                        ? const Color.fromARGB(255, 0, 47, 150)
+                        : Colors.black,
+                    fontSize: 15,
+                    fontWeight: isSelected
+                        ? FontWeight.w600
+                        : FontWeight.normal,
+                  )),
             ),
             if (isSelected)
               const Icon(Icons.check_circle_rounded,

@@ -4,8 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:school_lms/l10n/app_localizations.dart';
 
-// ─── Entry point widget ───────────────────────────────────────────────────────
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
   @override
@@ -14,32 +14,32 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen>
     with SingleTickerProviderStateMixin {
-  // ── state ──────────────────────────────────────────────────────────────────
-  String _name      = 'Name Here';
-  String _tagLine   = 'Tag Line';
-  String _about     = 'Lorem ipsum dolor sit amet consectetur. Nec eget accumsan molestie proin. Integer rhoncus vitae nisi natoque ac mus tellus scelerisque gravida.';
+  String _name     = 'Name Here';
+  String _tagLine  = 'Tag Line';
+  String _about    = 'Lorem ipsum dolor sit amet consectetur.';
   List<String> _skills = ['UI/UX', 'Graphics Design', 'Figma', 'Video Editor'];
   String? _photoPath;
 
   late AnimationController _animCtrl;
-  late Animation<double>    _fadeAnim;
-  late Animation<Offset>    _slideAnim;
+  late Animation<double>   _fadeAnim;
+  late Animation<Offset>   _slideAnim;
 
-  static const _kName      = 'profile_name';
-  static const _kTagLine   = 'profile_tagline';
-  static const _kAbout     = 'profile_about';
-  static const _kSkills    = 'profile_skills';
-  static const _kPhoto     = 'profile_photo';
+  static const _kName    = 'profile_name';
+  static const _kTagLine = 'profile_tagline';
+  static const _kAbout   = 'profile_about';
+  static const _kSkills  = 'profile_skills';
+  static const _kPhoto   = 'profile_photo';
 
-  // ── lifecycle ──────────────────────────────────────────────────────────────
   @override
   void initState() {
     super.initState();
     _animCtrl = AnimationController(
-      vsync: this, duration: const Duration(milliseconds: 600));
-    _fadeAnim  = CurvedAnimation(parent: _animCtrl, curve: Curves.easeOut);
-    _slideAnim = Tween<Offset>(begin: const Offset(0, 0.08), end: Offset.zero)
-        .animate(CurvedAnimation(parent: _animCtrl, curve: Curves.easeOut));
+        vsync: this, duration: const Duration(milliseconds: 600));
+    _fadeAnim = CurvedAnimation(parent: _animCtrl, curve: Curves.easeOut);
+    _slideAnim =
+        Tween<Offset>(begin: const Offset(0, 0.08), end: Offset.zero)
+            .animate(CurvedAnimation(
+                parent: _animCtrl, curve: Curves.easeOut));
     _loadProfile().then((_) => _animCtrl.forward());
   }
 
@@ -49,7 +49,6 @@ class _ProfileScreenState extends State<ProfileScreen>
     super.dispose();
   }
 
-  // ── persistence ────────────────────────────────────────────────────────────
   Future<void> _loadProfile() async {
     final p = await SharedPreferences.getInstance();
     setState(() {
@@ -63,26 +62,25 @@ class _ProfileScreenState extends State<ProfileScreen>
 
   Future<void> _saveProfile() async {
     final p = await SharedPreferences.getInstance();
-    await p.setString(_kName,    _name);
+    await p.setString(_kName, _name);
     await p.setString(_kTagLine, _tagLine);
-    await p.setString(_kAbout,   _about);
+    await p.setString(_kAbout, _about);
     await p.setStringList(_kSkills, _skills);
     if (_photoPath != null) await p.setString(_kPhoto, _photoPath!);
   }
 
-  // ── photo picker ───────────────────────────────────────────────────────────
   Future<void> _pickPhoto() async {
     final picker = ImagePicker();
-    final picked = await picker.pickImage(
-        source: ImageSource.gallery, imageQuality: 85);
+    final picked =
+        await picker.pickImage(source: ImageSource.gallery, imageQuality: 85);
     if (picked != null) {
       setState(() => _photoPath = picked.path);
       _saveProfile();
     }
   }
 
-  // ── edit sheet ─────────────────────────────────────────────────────────────
-  void _openEditSheet() {
+  void _openEditSheet(BuildContext context) {
+    final l10n      = AppLocalizations.of(context)!;
     final nameCtrl  = TextEditingController(text: _name);
     final tagCtrl   = TextEditingController(text: _tagLine);
     final aboutCtrl = TextEditingController(text: _about);
@@ -93,16 +91,17 @@ class _ProfileScreenState extends State<ProfileScreen>
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
       builder: (_) => _EditSheet(
-        nameCtrl:  nameCtrl,
-        tagCtrl:   tagCtrl,
+        l10n: l10n,
+        nameCtrl: nameCtrl,
+        tagCtrl: tagCtrl,
         aboutCtrl: aboutCtrl,
         skillCtrl: skillCtrl,
         onSave: () {
           setState(() {
-            _name     = nameCtrl.text.trim().isEmpty ? _name  : nameCtrl.text.trim();
-            _tagLine  = tagCtrl.text.trim().isEmpty  ? _tagLine : tagCtrl.text.trim();
-            _about    = aboutCtrl.text.trim().isEmpty ? _about : aboutCtrl.text.trim();
-            _skills   = skillCtrl.text
+            _name    = nameCtrl.text.trim().isEmpty ? _name : nameCtrl.text.trim();
+            _tagLine = tagCtrl.text.trim().isEmpty  ? _tagLine : tagCtrl.text.trim();
+            _about   = aboutCtrl.text.trim().isEmpty ? _about : aboutCtrl.text.trim();
+            _skills  = skillCtrl.text
                 .split(',')
                 .map((s) => s.trim())
                 .where((s) => s.isNotEmpty)
@@ -115,9 +114,9 @@ class _ProfileScreenState extends State<ProfileScreen>
     );
   }
 
-  // ── build ──────────────────────────────────────────────────────────────────
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       backgroundColor: const Color(0xFFF2F4F8),
       appBar: AppBar(
@@ -127,24 +126,23 @@ class _ProfileScreenState extends State<ProfileScreen>
           icon: const Icon(Icons.arrow_back, color: Colors.black87),
           onPressed: () => Navigator.maybePop(context),
         ),
-        title: Text(
-          'Profile',
-          style: GoogleFonts.plusJakartaSans(
-            color: Colors.black87,
-            fontWeight: FontWeight.w700,
-            fontSize: 20.sp,
-          ),
-        ),
+        title: Text(l10n.profile,
+            style: GoogleFonts.plusJakartaSans(
+              color: Colors.black87,
+              fontWeight: FontWeight.w700,
+              fontSize: 20.sp,
+            )),
       ),
       body: FadeTransition(
         opacity: _fadeAnim,
         child: SlideTransition(
           position: _slideAnim,
           child: SingleChildScrollView(
-            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
+            padding:
+                EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
             child: Column(
               children: [
-                // ── avatar ──────────────────────────────────────────────────
+                // ── Avatar ────────────────────────────────────────────────
                 GestureDetector(
                   onTap: _pickPhoto,
                   child: Stack(
@@ -155,37 +153,31 @@ class _ProfileScreenState extends State<ProfileScreen>
                         height: 90.w,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          border: Border.all(
-                              color: Colors.white, width: 3),
+                          border: Border.all(color: Colors.white, width: 3),
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.black.withOpacity(0.12),
-                              blurRadius: 16,
-                              offset: const Offset(0, 6),
-                            )
+                                color: Colors.black.withOpacity(0.12),
+                                blurRadius: 16,
+                                offset: const Offset(0, 6))
                           ],
                         ),
                         child: ClipOval(
                           child: _photoPath != null
                               ? Image.file(File(_photoPath!),
                                   fit: BoxFit.cover)
-                              : Image.asset('assets/default_avatar.png',
-                                  fit: BoxFit.cover,
-                                  errorBuilder: (_, __, ___) => Container(
-                                    color: const Color(0xFFD0D8F0),
-                                    child: Icon(Icons.person,
-                                        size: 48.sp,
-                                        color: const Color(0xFF002F96)),
-                                  )),
+                              : Container(
+                                  color: const Color(0xFFD0D8F0),
+                                  child: Icon(Icons.person,
+                                      size: 48.sp,
+                                      color: const Color(0xFF002F96))),
                         ),
                       ),
                       Container(
                         width: 26.w,
                         height: 26.w,
                         decoration: const BoxDecoration(
-                          color: Color(0xFF002F96),
-                          shape: BoxShape.circle,
-                        ),
+                            color: Color(0xFF002F96),
+                            shape: BoxShape.circle),
                         child: Icon(Icons.camera_alt_rounded,
                             color: Colors.white, size: 14.sp),
                       ),
@@ -194,7 +186,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                 ),
                 SizedBox(height: 16.h),
 
-                // ── card ─────────────────────────────────────────────────────
+                // ── Card ──────────────────────────────────────────────────
                 Container(
                   width: double.infinity,
                   decoration: BoxDecoration(
@@ -202,18 +194,16 @@ class _ProfileScreenState extends State<ProfileScreen>
                     borderRadius: BorderRadius.circular(20.r),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.06),
-                        blurRadius: 20,
-                        offset: const Offset(0, 4),
-                      )
+                          color: Colors.black.withOpacity(0.06),
+                          blurRadius: 20,
+                          offset: const Offset(0, 4))
                     ],
                   ),
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
+                  padding: EdgeInsets.symmetric(
+                      horizontal: 20.w, vertical: 20.h),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // name + edit icon
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -221,28 +211,24 @@ class _ProfileScreenState extends State<ProfileScreen>
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Text(
-                                  _name,
-                                  style: GoogleFonts.plusJakartaSans(
-                                    fontSize: 20.sp,
-                                    fontWeight: FontWeight.w800,
-                                    color: Colors.black87,
-                                  ),
-                                ),
+                                Text(_name,
+                                    style: GoogleFonts.plusJakartaSans(
+                                      fontSize: 20.sp,
+                                      fontWeight: FontWeight.w800,
+                                      color: Colors.black87,
+                                    )),
                                 SizedBox(height: 2.h),
-                                Text(
-                                  _tagLine,
-                                  style: GoogleFonts.plusJakartaSans(
-                                    fontSize: 12.sp,
-                                    color: Colors.black45,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
+                                Text(_tagLine,
+                                    style: GoogleFonts.plusJakartaSans(
+                                      fontSize: 12.sp,
+                                      color: Colors.black45,
+                                      fontWeight: FontWeight.w500,
+                                    )),
                               ],
                             ),
                           ),
                           GestureDetector(
-                            onTap: _openEditSheet,
+                            onTap: () => _openEditSheet(context),
                             child: Container(
                               padding: EdgeInsets.all(6.w),
                               decoration: BoxDecoration(
@@ -257,22 +243,26 @@ class _ProfileScreenState extends State<ProfileScreen>
                         ],
                       ),
                       SizedBox(height: 20.h),
-
-                      // about
-                      _SectionLabel(label: 'About Me'),
+                      Text(l10n.aboutme,
+                          style: GoogleFonts.plusJakartaSans(
+                            fontSize: 15.sp,
+                            fontWeight: FontWeight.w800,
+                            color: Colors.black87,
+                          )),
                       SizedBox(height: 6.h),
-                      Text(
-                        _about,
-                        style: GoogleFonts.plusJakartaSans(
-                          fontSize: 12.sp,
-                          color: Colors.black54,
-                          height: 1.6,
-                        ),
-                      ),
+                      Text(_about,
+                          style: GoogleFonts.plusJakartaSans(
+                            fontSize: 12.sp,
+                            color: Colors.black54,
+                            height: 1.6,
+                          )),
                       SizedBox(height: 20.h),
-
-                      // skills
-                      _SectionLabel(label: 'My Skills'),
+                      Text(l10n.myskills,
+                          style: GoogleFonts.plusJakartaSans(
+                            fontSize: 15.sp,
+                            fontWeight: FontWeight.w800,
+                            color: Colors.black87,
+                          )),
                       SizedBox(height: 10.h),
                       Wrap(
                         spacing: 8.w,
@@ -294,22 +284,6 @@ class _ProfileScreenState extends State<ProfileScreen>
   }
 }
 
-// ─── Section label ────────────────────────────────────────────────────────────
-class _SectionLabel extends StatelessWidget {
-  const _SectionLabel({required this.label});
-  final String label;
-  @override
-  Widget build(BuildContext context) => Text(
-        label,
-        style: GoogleFonts.plusJakartaSans(
-          fontSize: 15.sp,
-          fontWeight: FontWeight.w800,
-          color: Colors.black87,
-        ),
-      );
-}
-
-// ─── Skill chip ───────────────────────────────────────────────────────────────
 class _SkillChip extends StatelessWidget {
   const _SkillChip({required this.label});
   final String label;
@@ -322,33 +296,30 @@ class _SkillChip extends StatelessWidget {
           border: Border.all(color: Colors.black12),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.04),
-              blurRadius: 4,
-              offset: const Offset(0, 2),
-            )
+                color: Colors.black.withOpacity(0.04),
+                blurRadius: 4,
+                offset: const Offset(0, 2))
           ],
         ),
-        child: Text(
-          label,
-          style: GoogleFonts.plusJakartaSans(
-            fontSize: 11.sp,
-            fontWeight: FontWeight.w600,
-            color: Colors.black87,
-          ),
-        ),
+        child: Text(label,
+            style: GoogleFonts.plusJakartaSans(
+              fontSize: 11.sp,
+              fontWeight: FontWeight.w600,
+              color: Colors.black87,
+            )),
       );
 }
 
-// ─── Edit bottom sheet ────────────────────────────────────────────────────────
 class _EditSheet extends StatelessWidget {
   const _EditSheet({
+    required this.l10n,
     required this.nameCtrl,
     required this.tagCtrl,
     required this.aboutCtrl,
     required this.skillCtrl,
     required this.onSave,
   });
-
+  final AppLocalizations l10n;
   final TextEditingController nameCtrl;
   final TextEditingController tagCtrl;
   final TextEditingController aboutCtrl;
@@ -360,7 +331,8 @@ class _EditSheet extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.vertical(top: Radius.circular(24.r)),
+        borderRadius:
+            BorderRadius.vertical(top: Radius.circular(24.r)),
       ),
       padding: EdgeInsets.only(
         left: 24.w,
@@ -373,36 +345,32 @@ class _EditSheet extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            // handle bar
             Center(
               child: Container(
                 width: 40.w,
                 height: 4.h,
                 decoration: BoxDecoration(
-                  color: Colors.black12,
-                  borderRadius: BorderRadius.circular(4.r),
-                ),
+                    color: Colors.black12,
+                    borderRadius: BorderRadius.circular(4.r)),
               ),
             ),
             SizedBox(height: 20.h),
-            Text(
-              'Edit Profile',
-              style: GoogleFonts.plusJakartaSans(
-                fontSize: 18.sp,
-                fontWeight: FontWeight.w800,
-                color: Colors.black87,
-              ),
-            ),
+            Text(l10n.profile,
+                style: GoogleFonts.plusJakartaSans(
+                  fontSize: 18.sp,
+                  fontWeight: FontWeight.w800,
+                  color: Colors.black87,
+                )),
             SizedBox(height: 20.h),
             _Field(ctrl: nameCtrl,  label: 'Name'),
             SizedBox(height: 14.h),
             _Field(ctrl: tagCtrl,   label: 'Tag Line'),
             SizedBox(height: 14.h),
-            _Field(ctrl: aboutCtrl, label: 'About Me', maxLines: 4),
+            _Field(ctrl: aboutCtrl, label: l10n.aboutme, maxLines: 4),
             SizedBox(height: 14.h),
             _Field(
               ctrl: skillCtrl,
-              label: 'Skills (comma separated)',
+              label: l10n.myskills,
               hint: 'e.g. Flutter, Dart, UI/UX',
             ),
             SizedBox(height: 24.h),
@@ -415,17 +383,12 @@ class _EditSheet extends StatelessWidget {
                   foregroundColor: Colors.white,
                   padding: EdgeInsets.symmetric(vertical: 16.h),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(14.r),
-                  ),
+                      borderRadius: BorderRadius.circular(14.r)),
                   elevation: 0,
                 ),
-                child: Text(
-                  'Save Changes',
-                  style: GoogleFonts.plusJakartaSans(
-                    fontWeight: FontWeight.w700,
-                    fontSize: 14.sp,
-                  ),
-                ),
+                child: Text('Save Changes',
+                    style: GoogleFonts.plusJakartaSans(
+                        fontWeight: FontWeight.w700, fontSize: 14.sp)),
               ),
             ),
           ],
@@ -435,14 +398,12 @@ class _EditSheet extends StatelessWidget {
   }
 }
 
-// ─── Reusable text field ──────────────────────────────────────────────────────
 class _Field extends StatelessWidget {
-  const _Field({
-    required this.ctrl,
-    required this.label,
-    this.maxLines = 1,
-    this.hint,
-  });
+  const _Field(
+      {required this.ctrl,
+      required this.label,
+      this.maxLines = 1,
+      this.hint});
   final TextEditingController ctrl;
   final String label;
   final int maxLines;
@@ -453,14 +414,11 @@ class _Field extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          label,
-          style: GoogleFonts.plusJakartaSans(
-            fontSize: 12.sp,
-            fontWeight: FontWeight.w700,
-            color: Colors.black54,
-          ),
-        ),
+        Text(label,
+            style: GoogleFonts.plusJakartaSans(
+                fontSize: 12.sp,
+                fontWeight: FontWeight.w700,
+                color: Colors.black54)),
         SizedBox(height: 6.h),
         TextField(
           controller: ctrl,
@@ -481,7 +439,8 @@ class _Field extends StatelessWidget {
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12.r),
-              borderSide: const BorderSide(color: Color(0xFF002F96), width: 1.5),
+              borderSide: const BorderSide(
+                  color: Color(0xFF002F96), width: 1.5),
             ),
           ),
         ),

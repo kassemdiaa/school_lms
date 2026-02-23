@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:school_lms/models/question_model.dart';
-import 'package:school_lms/core/progress/progress_manager.dart'; // ← NEW
+import 'package:school_lms/core/progress/progress_manager.dart';
+import 'package:school_lms/l10n/app_localizations.dart';
 import 'exam_screen.dart';
 
 class ResultScreen extends StatefulWidget {
   final List<QuestionModel> questions;
   final Map<int, String> selectedAnswers;
-  final int courseId;   // ← NEW
-  final int chapterId;  // ← NEW
+  final int courseId;
+  final int chapterId;
 
   const ResultScreen({
     super.key,
@@ -32,31 +33,30 @@ class _ResultScreenState extends State<ResultScreen> {
   void initState() {
     super.initState();
     final percentage = (_score / widget.questions.length * 100).round();
-    // Save progress only when student passes (> 50%)
     if (percentage > 50) {
       ProgressManager.markChapterPassed(widget.courseId, widget.chapterId)
-          .then((_) {
-        if (mounted) setState(() {});
-      });
+          .then((_) { if (mounted) setState(() {}); });
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final score = _score;
-    final total = widget.questions.length;
+    final l10n       = AppLocalizations.of(context)!;
+    final score      = _score;
+    final total      = widget.questions.length;
     final percentage = (score / total * 100).round();
-    final passed = percentage >= 60;
+    final passed     = percentage >= 60;
 
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Column(
           children: [
-            // Score Header
+            // ── Score header ───────────────────────────────────────────────
             Container(
               width: double.infinity,
-              padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 24),
+              padding:
+                  const EdgeInsets.symmetric(vertical: 40, horizontal: 24),
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: passed
@@ -69,7 +69,7 @@ class _ResultScreenState extends State<ResultScreen> {
               child: Column(
                 children: [
                   Text(
-                    'EXAM COMPLETE',
+                    l10n.finish.toUpperCase(),
                     style: TextStyle(
                       color: passed
                           ? const Color(0xFF4CAF50)
@@ -99,21 +99,14 @@ class _ResultScreenState extends State<ResultScreen> {
                       ),
                       Column(
                         children: [
-                          Text(
-                            '$percentage%',
-                            style: const TextStyle(
-                              color: Colors.black,
-                              fontSize: 32,
-                              fontWeight: FontWeight.w800,
-                            ),
-                          ),
-                          Text(
-                            '$score / $total',
-                            style: const TextStyle(
-                              color: Colors.black,
-                              fontSize: 13,
-                            ),
-                          ),
+                          Text('$percentage%',
+                              style: const TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 32,
+                                  fontWeight: FontWeight.w800)),
+                          Text('$score / $total',
+                              style: const TextStyle(
+                                  color: Colors.black, fontSize: 13)),
                         ],
                       ),
                     ],
@@ -134,7 +127,7 @@ class _ResultScreenState extends State<ResultScreen> {
                       ),
                     ),
                     child: Text(
-                      passed ? '🎉 Passed!' : '❌ Failed',
+                      passed ? '🎉 ${l10n.passed}' : '❌ ${l10n.faild}',
                       style: TextStyle(
                         color: passed
                             ? const Color(0xFF4CAF50)
@@ -148,7 +141,7 @@ class _ResultScreenState extends State<ResultScreen> {
               ),
             ),
 
-            // Answers List
+            // ── Answers list ───────────────────────────────────────────────
             Expanded(
               child: ListView.separated(
                 padding: const EdgeInsets.symmetric(
@@ -156,10 +149,9 @@ class _ResultScreenState extends State<ResultScreen> {
                 itemCount: widget.questions.length,
                 separatorBuilder: (_, __) => const SizedBox(height: 12),
                 itemBuilder: (context, i) {
-                  final q = widget.questions[i];
-                  final selected = widget.selectedAnswers[i];
+                  final q         = widget.questions[i];
+                  final selected  = widget.selectedAnswers[i];
                   final isCorrect = selected == q.answer;
-
                   return Container(
                     padding: const EdgeInsets.all(18),
                     decoration: BoxDecoration(
@@ -202,7 +194,7 @@ class _ResultScreenState extends State<ResultScreen> {
                                   ),
                                   const SizedBox(width: 4),
                                   Text(
-                                    isCorrect ? 'Correct' : 'Wrong',
+                                    isCorrect ? l10n.correct : l10n.wrong,
                                     style: TextStyle(
                                       color: isCorrect
                                           ? const Color(0xFF4CAF50)
@@ -215,35 +207,28 @@ class _ResultScreenState extends State<ResultScreen> {
                               ),
                             ),
                             const Spacer(),
-                            Text(
-                              'Q${i + 1}',
-                              style: const TextStyle(
-                                color: Colors.black,
-                                fontSize: 12,
-                              ),
-                            ),
+                            Text('${l10n.q}${i + 1}',
+                                style: const TextStyle(
+                                    color: Colors.black, fontSize: 12)),
                           ],
                         ),
                         const SizedBox(height: 10),
-                        Text(
-                          q.question,
-                          style: const TextStyle(
-                            color: Colors.black,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
+                        Text(q.question,
+                            style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600)),
                         const SizedBox(height: 10),
                         if (!isCorrect) ...[
                           _AnswerRow(
-                            label: 'Your answer',
-                            value: selected ?? 'Not answered',
+                            label: l10n.wrong,
+                            value: selected ?? '',
                             color: const Color(0xFFFF5252),
                           ),
                           const SizedBox(height: 6),
                         ],
                         _AnswerRow(
-                          label: 'Correct answer',
+                          label: l10n.correct,
                           value: q.answer,
                           color: const Color(0xFF4CAF50),
                         ),
@@ -254,25 +239,22 @@ class _ResultScreenState extends State<ResultScreen> {
               ),
             ),
 
-            // Retry / Back button
+            // ── Continue button ────────────────────────────────────────────
             Padding(
               padding: const EdgeInsets.all(20),
               child: ElevatedButton(
-                onPressed: () => Navigator.pop(context), // go back to exam list
+                onPressed: () => Navigator.pop(context),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF003096),
                   foregroundColor: Colors.white,
                   minimumSize: const Size(double.infinity, 52),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(14),
-                  ),
+                      borderRadius: BorderRadius.circular(14)),
                   elevation: 0,
                 ),
-                child: const Text(
-                  'Continue',
-                  style:
-                      TextStyle(fontWeight: FontWeight.w700, fontSize: 16),
-                ),
+                child: Text(l10n.finish,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w700, fontSize: 16)),
               ),
             ),
           ],
@@ -282,40 +264,27 @@ class _ResultScreenState extends State<ResultScreen> {
   }
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
 class _AnswerRow extends StatelessWidget {
   final String label;
   final String value;
   final Color color;
-
-  const _AnswerRow({
-    required this.label,
-    required this.value,
-    required this.color,
-  });
+  const _AnswerRow(
+      {required this.label, required this.value, required this.color});
 
   @override
   Widget build(BuildContext context) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          '$label: ',
-          style: TextStyle(
-            color: color.withOpacity(0.7),
-            fontSize: 12,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        Expanded(
-          child: Text(
-            value,
+        Text('$label: ',
             style: TextStyle(
-              color: color,
-              fontSize: 12,
-              fontWeight: FontWeight.w700,
-            ),
-          ),
+                color: color.withOpacity(0.7),
+                fontSize: 12,
+                fontWeight: FontWeight.w600)),
+        Expanded(
+          child: Text(value,
+              style: TextStyle(
+                  color: color, fontSize: 12, fontWeight: FontWeight.w700)),
         ),
       ],
     );

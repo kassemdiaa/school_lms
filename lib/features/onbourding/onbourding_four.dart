@@ -17,6 +17,7 @@ class OnbourdingFour extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            SizedBox(height: 30.h,),
             SvgPicture.asset('assets/onbourdingfour.svg', width: 346.w),
             SizedBox(height: 20.h,),
             Text(
@@ -36,7 +37,7 @@ class OnbourdingFour extends StatelessWidget {
                 fontWeight: FontWeight.w600,
               ),
             ),
-            SizedBox(height: 91.h,),
+            Spacer(),
             ElevatedButton(
               onPressed: () {
                 Navigator.pushNamed(context, RoutesManger.loginOrRegister);
@@ -57,6 +58,7 @@ class OnbourdingFour extends StatelessWidget {
                 ),
               ),
             ),
+            SizedBox(height: 40.h,)
           ],
         ),
       ),
