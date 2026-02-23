@@ -45,11 +45,11 @@ class SchoolLms extends StatelessWidget {
         builder: (context, locale, _) => MaterialApp(
           debugShowCheckedModeBanner: false,
           onGenerateRoute: RoutesManger.getRoute,
-          initialRoute: RoutesManger.mainLayout,
+          initialRoute: RoutesManger.onbourdingOne,
           locale: locale,
           theme: ThemeManger.light,
           darkTheme: ThemeManger.dark,
-          themeMode: ThemeMode.light,
+          themeMode: ThemeMode.dark,
           localizationsDelegates: const [
             AppLocalizations.delegate,
             GlobalMaterialLocalizations.delegate,
