@@ -10,22 +10,37 @@ import 'package:shared_preferences/shared_preferences.dart';
 // ── Global locale notifier ─────────────────────────────────────────────────────
 final ValueNotifier<Locale> appLocale = ValueNotifier(const Locale('en'));
 
-// ── Key used to persist the language choice ────────────────────────────────────
-const _kLangKey = 'selected_language';
+// ── Global theme notifier ──────────────────────────────────────────────────────
+final ValueNotifier<ThemeMode> appTheme = ValueNotifier(ThemeMode.light);
 
-// ── Save chosen language to SharedPreferences ──────────────────────────────────
+// ── Persistence keys ───────────────────────────────────────────────────────────
+const _kLangKey  = 'selected_language';
+const _kThemeKey = 'selected_theme';
+
+// ── Save locale ────────────────────────────────────────────────────────────────
 Future<void> saveLocale(String languageCode) async {
   final prefs = await SharedPreferences.getInstance();
   await prefs.setString(_kLangKey, languageCode);
 }
 
+// ── Save theme ─────────────────────────────────────────────────────────────────
+Future<void> saveTheme(ThemeMode mode) async {
+  final prefs = await SharedPreferences.getInstance();
+  await prefs.setString(_kThemeKey, mode == ThemeMode.dark ? 'dark' : 'light');
+}
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Load saved language (defaults to 'en' if never set)
   final prefs = await SharedPreferences.getInstance();
+
+  // Restore locale
   final savedLang = prefs.getString(_kLangKey) ?? 'en';
   appLocale.value = Locale(savedLang);
+
+  // Restore theme
+  final savedTheme = prefs.getString(_kThemeKey) ?? 'light';
+  appTheme.value = savedTheme == 'dark' ? ThemeMode.dark : ThemeMode.light;
 
   await ProgressManager.init();
   runApp(const SchoolLms());
@@ -42,24 +57,27 @@ class SchoolLms extends StatelessWidget {
       splitScreenMode: true,
       builder: (context, child) => ValueListenableBuilder<Locale>(
         valueListenable: appLocale,
-        builder: (context, locale, _) => MaterialApp(
-          debugShowCheckedModeBanner: false,
-          onGenerateRoute: RoutesManger.getRoute,
-          initialRoute: RoutesManger.onbourdingOne,
-          locale: locale,
-          theme: ThemeManger.light,
-          darkTheme: ThemeManger.dark,
-          themeMode: ThemeMode.dark,
-          localizationsDelegates: const [
-            AppLocalizations.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
-          supportedLocales: const [
-            Locale('en'),
-            Locale('ar'),
-          ],
+        builder: (context, locale, _) => ValueListenableBuilder<ThemeMode>(
+          valueListenable: appTheme,
+          builder: (context, themeMode, _) => MaterialApp(
+            debugShowCheckedModeBanner: false,
+            onGenerateRoute: RoutesManger.getRoute,
+            initialRoute: RoutesManger.onbourdingOne,
+            locale: locale,
+            theme: ThemeManger.light,
+            darkTheme: ThemeManger.dark,
+            themeMode: themeMode,           // ← driven by notifier
+            localizationsDelegates: const [
+              AppLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: const [
+              Locale('en'),
+              Locale('ar'),
+            ],
+          ),
         ),
       ),
     );

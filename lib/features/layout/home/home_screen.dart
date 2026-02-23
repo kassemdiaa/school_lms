@@ -6,7 +6,7 @@ import 'package:school_lms/core/colors/colors_manger.dart';
 import 'package:school_lms/features/layout/home/cource_item.dart';
 import 'package:school_lms/models/cource_model.dart';
 import 'package:school_lms/l10n/app_localizations.dart';
-import 'package:school_lms/main.dart'; // ← import appLocale notifier
+import 'package:school_lms/main.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -52,27 +52,32 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  // ── Toggle locale between EN and AR ─────────────────────────────────────────
+  // ── Toggle locale ────────────────────────────────────────────────────────────
   void _toggleLocale() {
     final isAr = appLocale.value.languageCode == 'ar';
     appLocale.value = isAr ? const Locale('en') : const Locale('ar');
-    saveLocale(appLocale.value.languageCode); // ← persist
-
-    // Refresh courses list after locale changes
+    saveLocale(appLocale.value.languageCode);
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (mounted) {
-        setState(() {
-          _allCources = CourceModel.getCources(context);
-          _onSearch();
-        });
-      }
+      if (mounted) setState(() {
+        _allCources = CourceModel.getCources(context);
+        _onSearch();
+      });
     });
+  }
+
+  // ── Toggle theme ─────────────────────────────────────────────────────────────
+  void _toggleTheme() {
+    final isDark = appTheme.value == ThemeMode.dark;
+    appTheme.value = isDark ? ThemeMode.light : ThemeMode.dark;
+    saveTheme(appTheme.value);
+    setState(() {}); // rebuild icon
   }
 
   @override
   Widget build(BuildContext context) {
-    final l10n    = AppLocalizations.of(context)!;
-    final isAr    = appLocale.value.languageCode == 'ar';
+    final l10n  = AppLocalizations.of(context)!;
+    final isAr  = appLocale.value.languageCode == 'ar';
+    final isDark = appTheme.value == ThemeMode.dark;
 
     return SafeArea(
       child: Scaffold(
@@ -99,7 +104,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
           actions: [
-            // ── Globe button with language badge ──────────────────────────
+            // ── Globe: language toggle ─────────────────────────────────────
             InkWell(
               borderRadius: BorderRadius.circular(20.r),
               onTap: _toggleLocale,
@@ -134,10 +139,29 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-            SizedBox(width: 6.w),
+            SizedBox(width: 4.w),
+
+            // ── Sun / Moon: theme toggle ───────────────────────────────────
             InkWell(
-              child: Icon(Icons.notifications_outlined,
-                  color: ColorsManger.gray, size: 26.sp),
+              borderRadius: BorderRadius.circular(20.r),
+              onTap: _toggleTheme,
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 6.w, vertical: 4.h),
+                child: AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 300),
+                  transitionBuilder: (child, anim) =>
+                      RotationTransition(
+                        turns: anim,
+                        child: FadeTransition(opacity: anim, child: child),
+                      ),
+                  child: Icon(
+                    isDark ? Icons.wb_sunny_rounded : Icons.nightlight_round,
+                    key: ValueKey(isDark),
+                    color: isDark ? Colors.amber : ColorsManger.gray,
+                    size: 26.sp,
+                  ),
+                ),
+              ),
             ),
             SizedBox(width: 10.w),
           ],
@@ -145,8 +169,7 @@ class _HomeScreenState extends State<HomeScreen> {
         body: SingleChildScrollView(
           child: Container(
             width: double.infinity,
-            margin:
-                EdgeInsets.symmetric(horizontal: 14.w, vertical: 10.h),
+            margin: EdgeInsets.symmetric(horizontal: 14.w, vertical: 10.h),
             child: Column(
               children: [
                 // ── Search bar ────────────────────────────────────────────
@@ -173,7 +196,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       fontWeight: FontWeight.w400,
                     ),
                     filled: true,
-                    fillColor: ColorsManger.white,
+                    fillColor: Theme.of(context).hoverColor,
                     contentPadding: EdgeInsets.symmetric(
                         horizontal: 7.w, vertical: 10.h),
                     enabledBorder: OutlineInputBorder(
