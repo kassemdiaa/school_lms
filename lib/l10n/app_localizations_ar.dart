@@ -123,7 +123,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get pleasesignin => 'يرجى تسجيل الدخول إلى حسابك';
 
   @override
-  String get fullname => 'الاسم بالكامل';
+  String get username => 'اسم المستخدم';
 
   @override
   String get confirmpassword => 'تأكيد كلمة المرور';

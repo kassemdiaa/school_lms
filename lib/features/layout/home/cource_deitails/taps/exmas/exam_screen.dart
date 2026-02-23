@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:school_lms/core/colors/colors_manger.dart';
 import 'package:school_lms/features/layout/home/cource_deitails/taps/exmas/result_screen.dart';
 import 'package:school_lms/models/chapter_model.dart';
 import 'package:school_lms/l10n/app_localizations.dart';

@@ -123,7 +123,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get pleasesignin => 'Please Sign in with your account';
 
   @override
-  String get fullname => 'Full Name';
+  String get username => 'Username';
 
   @override
   String get confirmpassword => 'Confirm Password';

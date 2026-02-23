@@ -326,11 +326,11 @@ abstract class AppLocalizations {
   /// **'Please Sign in with your account'**
   String get pleasesignin;
 
-  /// No description provided for @fullname.
+  /// No description provided for @username.
   ///
   /// In en, this message translates to:
-  /// **'Full Name'**
-  String get fullname;
+  /// **'Username'**
+  String get username;
 
   /// No description provided for @confirmpassword.
   ///

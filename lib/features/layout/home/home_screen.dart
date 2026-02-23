@@ -7,6 +7,7 @@ import 'package:school_lms/features/layout/home/cource_item.dart';
 import 'package:school_lms/models/cource_model.dart';
 import 'package:school_lms/l10n/app_localizations.dart';
 import 'package:school_lms/main.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -18,11 +19,24 @@ class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController _searchCtrl = TextEditingController();
   List<CourceModel> _allCources = [];
   List<CourceModel> _filtered   = [];
+  String _username = '';
+
+  static const _kUsername = 'logged_username';
 
   @override
   void initState() {
     super.initState();
     _searchCtrl.addListener(_onSearch);
+    _loadUsername();
+  }
+
+  Future<void> _loadUsername() async {
+    final prefs = await SharedPreferences.getInstance();
+    if (mounted) {
+      setState(() {
+        _username = prefs.getString(_kUsername) ?? '';
+      });
+    }
   }
 
   @override
@@ -52,7 +66,6 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  // ── Toggle locale ────────────────────────────────────────────────────────────
   void _toggleLocale() {
     final isAr = appLocale.value.languageCode == 'ar';
     appLocale.value = isAr ? const Locale('en') : const Locale('ar');
@@ -65,18 +78,17 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  // ── Toggle theme ─────────────────────────────────────────────────────────────
   void _toggleTheme() {
     final isDark = appTheme.value == ThemeMode.dark;
     appTheme.value = isDark ? ThemeMode.light : ThemeMode.dark;
     saveTheme(appTheme.value);
-    setState(() {}); // rebuild icon
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
-    final l10n  = AppLocalizations.of(context)!;
-    final isAr  = appLocale.value.languageCode == 'ar';
+    final l10n   = AppLocalizations.of(context)!;
+    final isAr   = appLocale.value.languageCode == 'ar';
     final isDark = appTheme.value == ThemeMode.dark;
 
     return SafeArea(
@@ -93,12 +105,16 @@ class _HomeScreenState extends State<HomeScreen> {
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              Text(
-                'Kassem',
-                style: GoogleFonts.plusJakartaSans(
-                  color: Theme.of(context).primaryColorDark,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600,
+              // ── Show the typed username ────────────────────────────────
+              Flexible(
+                child: Text(
+                  _username.isEmpty ? 'User' : _username,
+                  style: GoogleFonts.plusJakartaSans(
+                    color: Theme.of(context).primaryColorDark,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                  ),
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
             ],
@@ -149,11 +165,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: EdgeInsets.symmetric(horizontal: 6.w, vertical: 4.h),
                 child: AnimatedSwitcher(
                   duration: const Duration(milliseconds: 300),
-                  transitionBuilder: (child, anim) =>
-                      RotationTransition(
-                        turns: anim,
-                        child: FadeTransition(opacity: anim, child: child),
-                      ),
+                  transitionBuilder: (child, anim) => RotationTransition(
+                    turns: anim,
+                    child: FadeTransition(opacity: anim, child: child),
+                  ),
                   child: Icon(
                     isDark ? Icons.wb_sunny_rounded : Icons.nightlight_round,
                     key: ValueKey(isDark),
