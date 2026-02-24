@@ -4,8 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:school_lms/core/assets_manegar/assets_manegar.dart';
 import 'package:school_lms/core/colors/colors_manger.dart';
 import 'package:school_lms/models/chapter_model.dart';
-import 'package:school_lms/features/layout/home/cource_deitails/taps/lessons/video_player_screen.dart';
-import 'package:school_lms/features/layout/home/cource_deitails/taps/lessons/pdf_viewer_screen.dart';
+import 'package:school_lms/features/layout/home/cource_deitails/taps/lessons/video_player/video_player_screen.dart';
+import 'package:school_lms/features/layout/home/cource_deitails/taps/lessons/pdf_viewer/pdf_viewer_screen.dart';
 import 'package:school_lms/l10n/app_localizations.dart';
 
 class ChapterItem extends StatefulWidget {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:school_lms/features/layout/home/cource_deitails/taps/lessons/pdf_viewer/nav_button.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class PdfViewerScreen extends StatefulWidget {
@@ -149,7 +150,7 @@ class _PdfViewerScreenState extends State<PdfViewerScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   // Previous page
-                  _NavButton(
+                  NavButton(
                     icon: Icons.chevron_left_rounded,
 
                     label: 'Prev',
@@ -169,7 +170,7 @@ class _PdfViewerScreenState extends State<PdfViewerScreen> {
                   ),
 
                   // Next page
-                  _NavButton(
+                  NavButton(
                     icon: Icons.chevron_right_rounded,
                     label: 'Next',
                     onTap: _currentPage < _totalPages
@@ -186,43 +187,4 @@ class _PdfViewerScreenState extends State<PdfViewerScreen> {
 }
 
 // ─── Nav button ───────────────────────────────────────────────────────────────
-class _NavButton extends StatelessWidget {
-  const _NavButton({
-    required this.icon,
-    required this.label,
-    required this.onTap,
-    this.isRight = false,
-  });
 
-  final IconData icon;
-  final String label;
-  final VoidCallback? onTap;
-  final bool isRight;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Row(
-        children: [
-          if (!isRight)
-            Icon(icon,
-                color: Theme.of(context).primaryColorLight ,
-                size: 20.sp),
-          Text(
-            label,
-            style: GoogleFonts.plusJakartaSans(
-              fontSize: 12.sp,
-              fontWeight: FontWeight.w600,
-              color: Theme.of(context).primaryColorLight,
-            ),
-          ),
-          if (isRight)
-            Icon(icon,
-                color: Theme.of(context).primaryColorLight,
-                size: 20.sp),
-        ],
-      ),
-    );
-  }
-}

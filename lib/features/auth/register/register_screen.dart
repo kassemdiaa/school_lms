@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:school_lms/core/colors/colors_manger.dart';
 import 'package:school_lms/core/routes/routes_manger.dart';
+import 'package:school_lms/features/auth/widgets/validated_field.dart';
+import 'package:school_lms/features/auth/widgets/field_lable.dart';
 import 'package:school_lms/l10n/app_localizations.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -78,8 +80,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   SizedBox(height: 30.h),
 
                   // ── Username ────────────────────────────────────────────
-                  _FieldLabel(label: l10n.username),
-                  _ValidatedField(
+                  FieldLabel(label: l10n.username),
+                  ValidatedField(
                     controller: _usernameCtrl,
                     hint: l10n.username,
                     validator: (v) => (v == null || v.trim().isEmpty)
@@ -89,8 +91,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   SizedBox(height: 16.h),
 
                   // ── Email ───────────────────────────────────────────────
-                  _FieldLabel(label: l10n.email),
-                  _ValidatedField(
+                  FieldLabel(label: l10n.email),
+                  ValidatedField(
                     controller: _emailCtrl,
                     hint: 'example@email.com',
                     keyboardType: TextInputType.emailAddress,
@@ -109,8 +111,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   SizedBox(height: 16.h),
 
                   // ── Password ────────────────────────────────────────────
-                  _FieldLabel(label: l10n.password),
-                  _ValidatedField(
+                  FieldLabel(label: l10n.password),
+                  ValidatedField(
                     controller: _passwordCtrl,
                     hint: l10n.password,
                     obscure: _obscurePassword,
@@ -134,8 +136,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   SizedBox(height: 16.h),
 
                   // ── Confirm Password ────────────────────────────────────
-                  _FieldLabel(label: l10n.confirmpassword),
-                  _ValidatedField(
+                  FieldLabel(label: l10n.confirmpassword),
+                  ValidatedField(
                     controller: _confirmPasswordCtrl,
                     hint: l10n.confirmpassword,
                     obscure: _obscureConfirmPassword,
@@ -253,76 +255,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
 }
 
 // ── Field label ───────────────────────────────────────────────────────────────
-class _FieldLabel extends StatelessWidget {
-  const _FieldLabel({required this.label});
-  final String label;
-  @override
-  Widget build(BuildContext context) => Padding(
-        padding: EdgeInsets.only(bottom: 6.h),
-        child: Text(label,
-            style: TextStyle(
-                fontSize: 14.sp,
-                color: Theme.of(context).primaryColorLight)),
-      );
-}
+
 
 // ── Reusable validated text field ─────────────────────────────────────────────
-class _ValidatedField extends StatelessWidget {
-  const _ValidatedField({
-    required this.controller,
-    required this.hint,
-    required this.validator,
-    this.obscure = false,
-    this.suffixIcon,
-    this.keyboardType,
-  });
-
-  final TextEditingController controller;
-  final String hint;
-  final String? Function(String?) validator;
-  final bool obscure;
-  final Widget? suffixIcon;
-  final TextInputType? keyboardType;
-
-  @override
-  Widget build(BuildContext context) {
-    return TextFormField(
-      controller: controller,
-      obscureText: obscure,
-      keyboardType: keyboardType,
-      cursorColor: const Color.fromARGB(255, 122, 122, 122),
-      validator: validator,
-      decoration: InputDecoration(
-        hintText: hint,
-        hintStyle: TextStyle(
-            color: const Color.fromARGB(255, 198, 198, 198),
-            fontSize: 12.sp),
-        filled: true,
-        fillColor: Colors.white,
-        contentPadding:
-            EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.h),
-        suffixIcon: suffixIcon,
-        errorStyle: TextStyle(fontSize: 11.sp),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10.r),
-          borderSide: BorderSide(
-              color: const Color.fromARGB(255, 198, 198, 198), width: 1.w),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10.r),
-          borderSide: BorderSide(
-              color: const Color.fromARGB(255, 122, 122, 122), width: 1.w),
-        ),
-        errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10.r),
-          borderSide: BorderSide(color: Colors.red.shade400, width: 1.w),
-        ),
-        focusedErrorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10.r),
-          borderSide:
-              BorderSide(color: Colors.red.shade400, width: 1.5.w),
-        ),
-      ),
-    );
-  }
-}

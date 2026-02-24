@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:school_lms/features/layout/home/cource_deitails/taps/exmas/answer_row.dart';
 import 'package:school_lms/models/question_model.dart';
 import 'package:school_lms/core/progress/progress_manager.dart';
 import 'package:school_lms/l10n/app_localizations.dart';
@@ -221,14 +222,14 @@ class _ResultScreenState extends State<ResultScreen> {
                                 fontWeight: FontWeight.w600)),
                         SizedBox(height: 10.h),
                         if (!isCorrect) ...[
-                          _AnswerRow(
+                          AnswerRow(
                             label: l10n.wrong,
                             value: selected ?? '',
                             color: const Color(0xFFFF5252),
                           ),
                           SizedBox(height: 6.h),
                         ],
-                        _AnswerRow(
+                        AnswerRow(
                           label: l10n.correct,
                           value: q.answer,
                           color: const Color(0xFF4CAF50),
@@ -265,29 +266,3 @@ class _ResultScreenState extends State<ResultScreen> {
   }
 }
 
-class _AnswerRow extends StatelessWidget {
-  final String label;
-  final String value;
-  final Color color;
-  const _AnswerRow(
-      {required this.label, required this.value, required this.color});
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text('$label: ',
-            style: TextStyle(
-                color: color.withOpacity(0.7),
-                fontSize: 12.sp,
-                fontWeight: FontWeight.w600)),
-        Expanded(
-          child: Text(value,
-              style: TextStyle(
-                  color: color, fontSize: 12.sp, fontWeight: FontWeight.w700)),
-        ),
-      ],
-    );
-  }
-}
