@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:school_lms/core/colors/colors_manger.dart';
 import 'package:school_lms/core/progress/progress_manager.dart';
-import 'package:school_lms/core/routes/routes_manger.dart';
 import 'package:school_lms/features/layout/enroled_cources/empty_state.dart';
 import 'package:school_lms/features/layout/enroled_cources/enrolled_cources_card.dart';
 import 'package:school_lms/models/cource_model.dart';

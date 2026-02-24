@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:school_lms/core/colors/colors_manger.dart';
 import 'package:school_lms/core/progress/progress_manager.dart';
-import 'package:school_lms/features/layout/home/cource_deitails/taps/exmas/exam_screen.dart';
+import 'package:school_lms/features/layout/home/cource_deitails/taps/exmas/exam_screens/exam_screen.dart';
 import 'package:school_lms/models/chapter_model.dart';
 import 'package:school_lms/l10n/app_localizations.dart';
 

@@ -26,6 +26,22 @@ class CourceModel {
   // ── Shared chapters template (same questions for all courses) ──────────────
   static List<ChapterModel> _buildChapters() => [
         ChapterModel(
+          id: 0, name: 'Chapter Name', videoPath: AssetsManegar.mathVid, docPath: AssetsManegar.mathdoc,
+          questions: [
+            QuestionModel(question: 'What is the capital of France?', answer: 'Paris',
+                options: ['London', 'Berlin', 'Paris', 'Madrid']),
+            QuestionModel(question: 'Which data structure uses LIFO order?', answer: 'Stack',
+                options: ['Queue', 'Stack', 'Tree', 'Graph']),
+            QuestionModel(question: 'What does HTTP stand for?', answer: 'HyperText Transfer Protocol',
+                options: ['HyperText Transfer Protocol', 'High Transfer Text Protocol',
+                  'Hyper Transfer Text Process', 'HyperText Transport Process']),
+            QuestionModel(question: 'Which planet is known as the Red Planet?', answer: 'Mars',
+                options: ['Venus', 'Jupiter', 'Mars', 'Saturn']),
+            QuestionModel(question: 'What is 2^10?', answer: '1024',
+                options: ['512', '1024', '2048', '256']),
+          ],
+        ),
+        ChapterModel(
           id: 1, name: 'Chapter Name', videoPath: AssetsManegar.mathVid, docPath: AssetsManegar.mathdoc,
           questions: [
             QuestionModel(question: 'What is the capital of France?', answer: 'Paris',
@@ -44,22 +60,6 @@ class CourceModel {
         ChapterModel(
           id: 2, name: 'Chapter Name', videoPath: AssetsManegar.mathVid, docPath: AssetsManegar.mathdoc,
           questions: [
-            QuestionModel(question: 'What is the capital of France?', answer: 'Paris',
-                options: ['London', 'Berlin', 'Paris', 'Madrid']),
-            QuestionModel(question: 'Which data structure uses LIFO order?', answer: 'Stack',
-                options: ['Queue', 'Stack', 'Tree', 'Graph']),
-            QuestionModel(question: 'What does HTTP stand for?', answer: 'HyperText Transfer Protocol',
-                options: ['HyperText Transfer Protocol', 'High Transfer Text Protocol',
-                  'Hyper Transfer Text Process', 'HyperText Transport Process']),
-            QuestionModel(question: 'Which planet is known as the Red Planet?', answer: 'Mars',
-                options: ['Venus', 'Jupiter', 'Mars', 'Saturn']),
-            QuestionModel(question: 'What is 2^10?', answer: '1024',
-                options: ['512', '1024', '2048', '256']),
-          ],
-        ),
-        ChapterModel(
-          id: 3, name: 'Chapter Name', videoPath: AssetsManegar.mathVid, docPath: AssetsManegar.mathdoc,
-          questions: [
             QuestionModel(question: AssetsManegar.mathVid, answer: 'Paris',
                 options: ['London', 'Berlin', 'Paris', 'Madrid']),
             QuestionModel(question: 'Which data structure uses LIFO order?', answer: 'Stack',
@@ -74,7 +74,7 @@ class CourceModel {
           ],
         ),
         ChapterModel(
-          id: 4, name: 'Chapter Name', videoPath: AssetsManegar.mathVid, docPath: AssetsManegar.mathdoc,
+          id: 3, name: 'Chapter Name', videoPath: AssetsManegar.mathVid, docPath: AssetsManegar.mathdoc,
           questions: [
             QuestionModel(question: 'What is the capital of France?', answer: 'Paris',
                 options: ['London', 'Berlin', 'Paris', 'Madrid']),
