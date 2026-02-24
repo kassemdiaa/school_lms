@@ -45,7 +45,7 @@ class _ExamItemState extends State<ExamItem> {
           borderRadius: BorderRadius.circular(10.r),
           border: Border.all(
               color: passed ? const Color(0xFF4CAF50) : ColorsManger.gray,
-              width: 1),
+              width: 1.w),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

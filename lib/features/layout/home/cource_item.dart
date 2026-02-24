@@ -87,11 +87,11 @@ class _CourceItemState extends State<CourceItem> {
               if (passedChapters > 0)
                 Expanded(
                     flex: passedChapters,
-                    child: Container(color: ColorsManger.blue, height: 4)),
+                    child: Container(color: ColorsManger.blue, height: 4.h)),
               if (passedChapters < totalChapters)
                 Expanded(
                     flex: totalChapters - passedChapters,
-                    child: Container(color: ColorsManger.gray, height: 4)),
+                    child: Container(color: ColorsManger.gray, height: 4.h)),
             ],
           ),
         ],

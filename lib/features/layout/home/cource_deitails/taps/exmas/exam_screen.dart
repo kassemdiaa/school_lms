@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:school_lms/features/layout/home/cource_deitails/taps/exmas/result_screen.dart';
 import 'package:school_lms/models/chapter_model.dart';
 import 'package:school_lms/l10n/app_localizations.dart';
@@ -81,7 +82,7 @@ class _ExamScreenState extends State<ExamScreen>
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+          padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 20.h),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -90,36 +91,36 @@ class _ExamScreenState extends State<ExamScreen>
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 14, vertical: 6),
+                    padding: EdgeInsets.symmetric(
+                        horizontal: 14.w, vertical: 6.h),
                     decoration: BoxDecoration(
                       color: Theme.of(context).secondaryHeaderColor,
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(20.r),
                     ),
                     child: Text(
                       '${_currentIndex + 1} / ${widget.chapter.questions.length}',
                       style:  TextStyle(
                           color: Theme.of(context).primaryColorLight,
-                          fontSize: 13,
+                          fontSize: 13.sp,
                           fontWeight: FontWeight.w600),
                     ),
                   ),
                 ],
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: 20.h),
 
               // ── Progress bar ───────────────────────────────────────────────
               ClipRRect(
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(8.r),
                 child: LinearProgressIndicator(
                   value: progress,
-                  minHeight: 6,
+                  minHeight: 6.h,
                   backgroundColor: const Color.fromARGB(34, 0, 47, 150),
                   valueColor:  AlwaysStoppedAnimation(
                       Theme.of(context).primaryColor),
                 ),
               ),
-              const SizedBox(height: 36),
+              SizedBox(height: 36.h),
 
               // ── Question card ──────────────────────────────────────────────
               FadeTransition(
@@ -128,10 +129,10 @@ class _ExamScreenState extends State<ExamScreen>
                   position: _slideAnim,
                   child: Container(
                     width: double.infinity,
-                    padding: const EdgeInsets.all(28),
+                    padding: EdgeInsets.all(28.r),
                     decoration: BoxDecoration(
                       color: Theme.of(context).secondaryHeaderColor,
-                      borderRadius: BorderRadius.circular(24),
+                      borderRadius: BorderRadius.circular(24.r),
                       border: Border.all(
                           color: const Color(0xFF6C63FF).withOpacity(0.2)),
                     ),
@@ -142,19 +143,19 @@ class _ExamScreenState extends State<ExamScreen>
                           '${l10n.question} ${_currentIndex + 1}',
                           style:  TextStyle(
                             color: Theme.of(context).canvasColor,
-                            fontSize: 12,
+                            fontSize: 12.sp,
                             letterSpacing: 2,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
-                        const SizedBox(height: 12),
+                        SizedBox(height: 12.h),
                         Text(
                           question.question,
                           style:  TextStyle(
                             color: Theme.of(context).primaryColorLight,
-                            fontSize: 20,
+                            fontSize: 20.sp,
                             fontWeight: FontWeight.w600,
-                            height: 1.4,
+                            height: 1.4.h,
                           ),
                         ),
                       ],
@@ -162,7 +163,7 @@ class _ExamScreenState extends State<ExamScreen>
                   ),
                 ),
               ),
-              const SizedBox(height: 28),
+              SizedBox(height: 28.h),
 
               // ── Options ────────────────────────────────────────────────────
               Expanded(
@@ -170,7 +171,7 @@ class _ExamScreenState extends State<ExamScreen>
                   opacity: _fadeAnim,
                   child: ListView.separated(
                     itemCount: question.options.length,
-                    separatorBuilder: (_, __) => const SizedBox(height: 12),
+                    separatorBuilder: (_, __) => SizedBox(height: 12.h),
                     itemBuilder: (context, i) {
                       final option = question.options[i];
                       final isSelected =
@@ -186,7 +187,7 @@ class _ExamScreenState extends State<ExamScreen>
                   ),
                 ),
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: 16.h),
 
               // ── Navigation buttons ─────────────────────────────────────────
               Row(
@@ -198,14 +199,14 @@ class _ExamScreenState extends State<ExamScreen>
                         style: OutlinedButton.styleFrom(
                           foregroundColor: Colors.black,
                           side: const BorderSide(color: Color(0xFF2E2D42)),
-                          padding: const EdgeInsets.symmetric(vertical: 16),
+                          padding: EdgeInsets.symmetric(vertical: 16.h),
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(14)),
+                              borderRadius: BorderRadius.circular(14.r)),
                         ),
                         child: Text('← ${l10n.back}',style: TextStyle(color: Theme.of(context).primaryColorLight),),
                       ),
                     ),
-                  if (_currentIndex > 0) const SizedBox(width: 12),
+                  if (_currentIndex > 0) SizedBox(width: 12.w),
                   Expanded(
                     flex: 2,
                     child: ElevatedButton(
@@ -218,9 +219,9 @@ class _ExamScreenState extends State<ExamScreen>
                             Theme.of(context).primaryColor,
                         foregroundColor: Colors.white,
                         disabledBackgroundColor: const Color(0xFF2E2D42),
-                        padding: const EdgeInsets.symmetric(vertical: 16),
+                        padding: EdgeInsets.symmetric(vertical: 16.h),
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(14)),
+                            borderRadius: BorderRadius.circular(14.r)),
                         elevation: 0,
                       ),
                       child: Text(
@@ -260,54 +261,54 @@ class _OptionTile extends StatelessWidget {
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
         padding:
-            const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+            EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
         decoration: BoxDecoration(
           color: isSelected
               ? Theme.of(context).cardColor
               : Colors.transparent,
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(16.r),
           border: Border.all(
             color: isSelected
                 ? Theme.of(context).primaryColor
                 : Colors.transparent,
-            width: isSelected ? 2 : 1,
+            width: isSelected ? 2.w : 1.w,
           ),
         ),
         child: Row(
           children: [
             AnimatedContainer(
               duration: const Duration(milliseconds: 200),
-              width: 34,
-              height: 34,
+              width: 34.w,
+              height: 34.h,
               decoration: BoxDecoration(
                 color: Theme.of(context).primaryColor,
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(10.r),
               ),
               child: Center(
                 child: Text(label,
                     style: TextStyle(
                       color: isSelected ? Colors.white : Colors.white54,
                       fontWeight: FontWeight.w700,
-                      fontSize: 13,
+                      fontSize: 13.sp,
                     )),
               ),
             ),
-            const SizedBox(width: 16),
+            SizedBox(width: 16.w),
             Expanded(
               child: Text(text,
                   style: TextStyle(
                     color: isSelected
                         ? Theme.of(context).canvasColor
                         : Theme.of(context).primaryColorLight,
-                    fontSize: 15,
+                    fontSize: 15.sp,
                     fontWeight: isSelected
                         ? FontWeight.w600
                         : FontWeight.normal,
                   )),
             ),
             if (isSelected)
-              const Icon(Icons.check_circle_rounded,
-                  color: Color.fromARGB(255, 0, 47, 150), size: 20),
+                  Icon(Icons.check_circle_rounded,
+                  color: Color.fromARGB(255, 0, 47, 150), size: 20.r),
           ],
         ),
       ),

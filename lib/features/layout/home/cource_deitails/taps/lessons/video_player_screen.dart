@@ -175,7 +175,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                                         BoxShadow(
                                           color: Theme.of(context).primaryColor
                                               .withOpacity(0.4),
-                                          blurRadius: 16,
+                                          blurRadius: 16.r,
                                         )
                                       ],
                                     ),

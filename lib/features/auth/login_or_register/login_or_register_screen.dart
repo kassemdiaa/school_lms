@@ -73,7 +73,7 @@ class LoginOrRegisterScreen extends StatelessWidget {
                     padding: EdgeInsets.symmetric(
                         horizontal: 48.w, vertical: 14.h),
                     shape: RoundedRectangleBorder(
-                      side: BorderSide(color: ColorsManger.blue, width: 1),
+                      side: BorderSide(color: ColorsManger.blue, width: 1.w),
                       borderRadius: BorderRadiusGeometry.circular(10.r),
                     ),
                   ),

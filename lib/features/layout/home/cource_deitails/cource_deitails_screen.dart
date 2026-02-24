@@ -63,7 +63,7 @@ class _CourceDeitailsScreenState extends State<CourceDeitailsScreen> {
                           color: selectedIndex == 0
                               ? ColorsManger.white
                               : Theme.of(context).canvasColor,
-                          fontSize: 16,
+                          fontSize: 16.sp,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
@@ -91,7 +91,7 @@ class _CourceDeitailsScreenState extends State<CourceDeitailsScreen> {
                           color: selectedIndex == 1
                               ? ColorsManger.white
                               : Theme.of(context).canvasColor,
-                          fontSize: 16,
+                          fontSize: 16.sp,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
@@ -117,7 +117,7 @@ class _CourceDeitailsScreenState extends State<CourceDeitailsScreen> {
                           color: selectedIndex == 2
                               ? ColorsManger.white
                               : Theme.of(context).canvasColor,
-                          fontSize: 16,
+                          fontSize: 16.sp,
                           fontWeight: FontWeight.w600,
                         ),
                       ),

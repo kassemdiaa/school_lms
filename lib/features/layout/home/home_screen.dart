@@ -101,7 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 '${l10n.welcome}, ',
                 style: GoogleFonts.plusJakartaSans(
                   color: Theme.of(context).primaryColorLight,
-                  fontSize: 20,
+                  fontSize: 20.sp,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -111,7 +111,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   _username.isEmpty ? 'User' : _username,
                   style: GoogleFonts.plusJakartaSans(
                     color: Theme.of(context).primaryColorDark,
-                    fontSize: 20,
+                    fontSize: 20.sp,
                     fontWeight: FontWeight.w600,
                   ),
                   overflow: TextOverflow.ellipsis,
@@ -299,7 +299,7 @@ class _EmptyState extends StatelessWidget {
               color: const Color.fromARGB(255, 160, 160, 160),
               fontSize: 14.sp,
               fontWeight: FontWeight.w500,
-              height: 1.5,
+              height: 1.5.h,
             ),
           ),
         ],

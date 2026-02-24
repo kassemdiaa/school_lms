@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:school_lms/models/question_model.dart';
 import 'package:school_lms/core/progress/progress_manager.dart';
 import 'package:school_lms/l10n/app_localizations.dart';
@@ -56,7 +57,7 @@ class _ResultScreenState extends State<ResultScreen> {
             Container(
               width: double.infinity,
               padding:
-                  const EdgeInsets.symmetric(vertical: 40, horizontal: 24),
+                  EdgeInsets.symmetric(vertical: 40.h, horizontal: 24.w),
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: passed
@@ -74,21 +75,21 @@ class _ResultScreenState extends State<ResultScreen> {
                       color: passed
                           ? const Color(0xFF4CAF50)
                           : const Color(0xFF2E1A1A),
-                      fontSize: 12,
+                      fontSize: 12.sp,
                       letterSpacing: 3,
                       fontWeight: FontWeight.w700,
                     ),
                   ),
-                  const SizedBox(height: 20),
+                  SizedBox(height: 20.h),
                   Stack(
                     alignment: Alignment.center,
                     children: [
                       SizedBox(
-                        width: 120,
-                        height: 120,
+                        width: 120.w,
+                        height: 120.h,
                         child: CircularProgressIndicator(
                           value: score / total,
-                          strokeWidth: 8,
+                          strokeWidth: 8.r,
                           backgroundColor: const Color(0xFF1E1D2E),
                           valueColor: AlwaysStoppedAnimation(
                             passed
@@ -102,24 +103,24 @@ class _ResultScreenState extends State<ResultScreen> {
                           Text('$percentage%',
                               style:  TextStyle(
                                   color: Theme.of(context).primaryColorLight,
-                                  fontSize: 32,
+                                  fontSize: 32.sp,
                                   fontWeight: FontWeight.w800)),
                           Text('$score / $total',
                               style:  TextStyle(
-                                  color: Theme.of(context).primaryColorLight, fontSize: 13)),
+                                  color: Theme.of(context).primaryColorLight, fontSize: 13.sp)),
                         ],
                       ),
                     ],
                   ),
-                  const SizedBox(height: 16),
+                  SizedBox(height: 16.h),
                   Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 8),
+                    padding: EdgeInsets.symmetric(
+                        horizontal: 20.w, vertical: 8.h),
                     decoration: BoxDecoration(
                       color: passed
                           ? const Color(0xFF4CAF50).withOpacity(0.15)
                           : const Color(0xFFFF5252).withOpacity(0.15),
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(20.r),
                       border: Border.all(
                         color: passed
                             ? const Color(0xFF4CAF50).withOpacity(0.4)
@@ -133,7 +134,7 @@ class _ResultScreenState extends State<ResultScreen> {
                             ? const Color(0xFF4CAF50)
                             : const Color(0xFFFF5252),
                         fontWeight: FontWeight.w700,
-                        fontSize: 15,
+                        fontSize: 15.sp,
                       ),
                     ),
                   ),
@@ -144,21 +145,21 @@ class _ResultScreenState extends State<ResultScreen> {
             // ── Answers list ───────────────────────────────────────────────
             Expanded(
               child: ListView.separated(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 20, vertical: 16),
+                padding: EdgeInsets.symmetric(
+                    horizontal: 20.w, vertical: 16.h),
                 itemCount: widget.questions.length,
-                separatorBuilder: (_, __) => const SizedBox(height: 12),
+                separatorBuilder: (_, __) => SizedBox(height: 12.h),
                 itemBuilder: (context, i) {
                   final q         = widget.questions[i];
                   final selected  = widget.selectedAnswers[i];
                   final isCorrect = selected == q.answer;
                   return Container(
-                    padding: const EdgeInsets.all(18),
+                    padding: EdgeInsets.all(18.r),
                     decoration: BoxDecoration(
                       color: const Color.fromARGB(34, 0, 47, 150),
-                      borderRadius: BorderRadius.circular(18),
+                      borderRadius: BorderRadius.circular(18.r),
                       border: Border.all(
-                        width: 2,
+                        width: 2.w,
                         color: isCorrect
                             ? const Color(0xFF4CAF50).withOpacity(0.3)
                             : const Color(0xFFFF5252).withOpacity(0.3),
@@ -170,15 +171,15 @@ class _ResultScreenState extends State<ResultScreen> {
                         Row(
                           children: [
                             Container(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 10, vertical: 4),
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 10.w, vertical: 4.h),
                               decoration: BoxDecoration(
                                 color: isCorrect
                                     ? const Color(0xFF4CAF50)
                                         .withOpacity(0.15)
                                     : const Color(0xFFFF5252)
                                         .withOpacity(0.15),
-                                borderRadius: BorderRadius.circular(8),
+                                borderRadius: BorderRadius.circular(8.r),
                               ),
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
@@ -190,16 +191,16 @@ class _ResultScreenState extends State<ResultScreen> {
                                     color: isCorrect
                                         ? const Color(0xFF4CAF50)
                                         : const Color(0xFFFF5252),
-                                    size: 14,
+                                    size: 14.r,
                                   ),
-                                  const SizedBox(width: 4),
+                                  SizedBox(width: 4.w),
                                   Text(
                                     isCorrect ? l10n.correct : l10n.wrong,
                                     style: TextStyle(
                                       color: isCorrect
                                           ? const Color(0xFF4CAF50)
                                           : const Color(0xFFFF5252),
-                                      fontSize: 11,
+                                      fontSize: 11.sp,
                                       fontWeight: FontWeight.w700,
                                     ),
                                   ),
@@ -209,23 +210,23 @@ class _ResultScreenState extends State<ResultScreen> {
                             const Spacer(),
                             Text('${l10n.q}${i + 1}',
                                 style:  TextStyle(
-                                    color: Theme.of(context).primaryColorLight, fontSize: 12)),
+                                    color: Theme.of(context).primaryColorLight, fontSize: 12.sp)),
                           ],
                         ),
-                        const SizedBox(height: 10),
+                        SizedBox(height: 10.h),
                         Text(q.question,
                             style:  TextStyle(
                                 color: Theme.of(context).primaryColorLight,
-                                fontSize: 14,
+                                fontSize: 14.sp,
                                 fontWeight: FontWeight.w600)),
-                        const SizedBox(height: 10),
+                        SizedBox(height: 10.h),
                         if (!isCorrect) ...[
                           _AnswerRow(
                             label: l10n.wrong,
                             value: selected ?? '',
                             color: const Color(0xFFFF5252),
                           ),
-                          const SizedBox(height: 6),
+                          SizedBox(height: 6.h),
                         ],
                         _AnswerRow(
                           label: l10n.correct,
@@ -241,20 +242,20 @@ class _ResultScreenState extends State<ResultScreen> {
 
             // ── Continue button ────────────────────────────────────────────
             Padding(
-              padding: const EdgeInsets.all(20),
+              padding: EdgeInsets.all(20.r),
               child: ElevatedButton(
                 onPressed: () => Navigator.pop(context),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Theme.of(context).primaryColor,
                   foregroundColor: Colors.white,
-                  minimumSize: const Size(double.infinity, 52),
+                  minimumSize: Size(double.infinity, 52.h),
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(14)),
+                      borderRadius: BorderRadius.circular(14.r)),
                   elevation: 0,
                 ),
                 child: Text(l10n.finish,
-                    style: const TextStyle(
-                        fontWeight: FontWeight.w700, fontSize: 16)),
+                    style:  TextStyle(
+                        fontWeight: FontWeight.w700, fontSize: 16.sp)),
               ),
             ),
           ],
@@ -279,12 +280,12 @@ class _AnswerRow extends StatelessWidget {
         Text('$label: ',
             style: TextStyle(
                 color: color.withOpacity(0.7),
-                fontSize: 12,
+                fontSize: 12.sp,
                 fontWeight: FontWeight.w600)),
         Expanded(
           child: Text(value,
               style: TextStyle(
-                  color: color, fontSize: 12, fontWeight: FontWeight.w700)),
+                  color: color, fontSize: 12.sp, fontWeight: FontWeight.w700)),
         ),
       ],
     );

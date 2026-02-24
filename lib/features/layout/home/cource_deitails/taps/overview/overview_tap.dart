@@ -7,11 +7,11 @@ import 'package:school_lms/models/cource_model.dart';
 
 class OverviewTap extends StatelessWidget {
   const OverviewTap({super.key, required this.cource});
- final CourceModel cource;
+  final CourceModel cource;
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20.w,vertical: 14.h),
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 14.h),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -43,7 +43,7 @@ class OverviewTap extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 18.h,),
+          SizedBox(height: 18.h),
           Text(
             cource.description,
             style: GoogleFonts.plusJakartaSans(
@@ -52,12 +52,14 @@ class OverviewTap extends StatelessWidget {
               fontWeight: FontWeight.w300,
             ),
           ),
-          SizedBox(height: 30
-          .h,),
+          SizedBox(height: 30.h),
           Container(
             margin: EdgeInsets.symmetric(horizontal: 20.w),
-            padding: EdgeInsets.symmetric(horizontal: 10.w,vertical: 20.h),
-            decoration: BoxDecoration(color: Theme.of(context).secondaryHeaderColor,borderRadius: BorderRadius.circular(20.r)),
+            padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
+            decoration: BoxDecoration(
+              color: Theme.of(context).secondaryHeaderColor,
+              borderRadius: BorderRadius.circular(20.r),
+            ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -66,8 +68,12 @@ class OverviewTap extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        Image.asset(AssetsManegar.bookIcon, width: 24.w,color: Theme.of(context).canvasColor,),
-                        SizedBox(width: 8.w,),
+                        Image.asset(
+                          AssetsManegar.bookIcon,
+                          width: 24.w,
+                          color: Theme.of(context).canvasColor,
+                        ),
+                        SizedBox(width: 8.w),
                         Text(
                           '80+ Lectures',
                           style: GoogleFonts.plusJakartaSans(
@@ -78,11 +84,15 @@ class OverviewTap extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(height: 12.h,),
+                    SizedBox(height: 12.h),
                     Row(
                       children: [
-                        Image.asset(AssetsManegar.clockIcon, width: 24.w,color: Theme.of(context).canvasColor,),
-                        SizedBox(width: 8.w,),
+                        Image.asset(
+                          AssetsManegar.clockIcon,
+                          width: 24.w,
+                          color: Theme.of(context).canvasColor,
+                        ),
+                        SizedBox(width: 8.w),
                         Text(
                           '8 Weeks',
                           style: GoogleFonts.plusJakartaSans(
@@ -101,23 +111,31 @@ class OverviewTap extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        Image.asset(AssetsManegar.certificateIcon, width: 24.w,color: Theme.of(context).canvasColor,),
-                        SizedBox(width: 8.w,),
+                        Image.asset(
+                          AssetsManegar.certificateIcon,
+                          width: 24.w,
+                          color: Theme.of(context).canvasColor,
+                        ),
+                        SizedBox(width: 8.w),
                         Text(
                           'Certificate',
                           style: GoogleFonts.plusJakartaSans(
-                            color:Theme.of(context).primaryColorLight,
+                            color: Theme.of(context).primaryColorLight,
                             fontWeight: FontWeight.w500,
                             fontSize: 12.sp,
                           ),
                         ),
                       ],
                     ),
-                    SizedBox(height: 12.h,),
+                    SizedBox(height: 12.h),
                     Row(
                       children: [
-                        Image.asset(AssetsManegar.offarIcon, width: 24.w,color: Theme.of(context).canvasColor,),
-                        SizedBox(width: 8.w,),
+                        Image.asset(
+                          AssetsManegar.offarIcon,
+                          width: 24.w,
+                          color: Theme.of(context).canvasColor,
+                        ),
+                        SizedBox(width: 8.w),
                         Text(
                           '10% Off',
                           style: GoogleFonts.plusJakartaSans(

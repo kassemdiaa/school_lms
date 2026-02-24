@@ -32,7 +32,7 @@ class _EnroledCourcesScreenState extends State<EnroledCourcesScreen> {
             l10n.contiuecources,
             style: GoogleFonts.plusJakartaSans(
               color: Theme.of(context).primaryColorLight,
-              fontSize: 20,
+              fontSize: 20.sp,
               fontWeight: FontWeight.w700,
             ),
           ),
@@ -231,7 +231,7 @@ class _EmptyState extends StatelessWidget {
               style: GoogleFonts.plusJakartaSans(
                 fontSize: 12.sp,
                 color: Colors.black38,
-                height: 1.6,
+                height: 1.6.h,
               ),
             ),
           ],

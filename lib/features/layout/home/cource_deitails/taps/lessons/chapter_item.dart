@@ -57,7 +57,7 @@ class _ChapterItemState extends State<ChapterItem> {
               decoration: BoxDecoration(
                 color: Theme.of(context).secondaryHeaderColor,
                 borderRadius: BorderRadius.circular(10.r),
-                border: Border.all(color: ColorsManger.gray, width: 1),
+                border: Border.all(color: ColorsManger.gray, width: 1.w),
               ),
               child: Row(
                 children: [
@@ -100,7 +100,7 @@ class _ChapterItemState extends State<ChapterItem> {
                       color: Theme.of(context).secondaryHeaderColor,
                       borderRadius: BorderRadius.circular(10.r),
                       border:
-                          Border.all(color: ColorsManger.gray, width: 1),
+                          Border.all(color: ColorsManger.gray, width: 1.w),
                     ),
                     child: Column(
                       children: [

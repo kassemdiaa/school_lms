@@ -152,11 +152,11 @@ class _ProfileScreenState extends State<ProfileScreen>
                         height: 120.w,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          border: Border.all(color: Colors.white, width: 3),
+                          border: Border.all(color: Colors.white, width: 3.w),
                           boxShadow: [
                             BoxShadow(
                                 color: Colors.black.withOpacity(0.12),
-                                blurRadius: 16,
+                                blurRadius: 16.r,
                                 offset: const Offset(0, 6))
                           ],
                         ),
@@ -194,7 +194,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                     boxShadow: [
                       BoxShadow(
                           color: Colors.black.withOpacity(0.06),
-                          blurRadius: 20,
+                          blurRadius: 20.r,
                           offset: const Offset(0, 4))
                     ],
                   ),
@@ -253,7 +253,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                           style: GoogleFonts.plusJakartaSans(
                             fontSize: 12.sp,
                             color: Colors.black54,
-                            height: 1.6,
+                            height: 1.6.h,
                           )),
                       SizedBox(height: 20.h),
                       Text(l10n.myskills,
@@ -296,7 +296,7 @@ class _SkillChip extends StatelessWidget {
           boxShadow: [
             BoxShadow(
                 color: Colors.black.withOpacity(0.04),
-                blurRadius: 4,
+                blurRadius: 4.r,
                 offset: const Offset(0, 2))
           ],
         ),
