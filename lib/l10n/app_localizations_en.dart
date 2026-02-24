@@ -176,4 +176,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get areyousure => 'Are you sure you want to logout?';
+
+  @override
+  String get alreadyhaveacc => 'Already have an account? ';
+
+  @override
+  String get startlearning =>
+      'Create an account to begin your Learning Journey';
 }

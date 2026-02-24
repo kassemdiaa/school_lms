@@ -176,4 +176,10 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get areyousure => 'هل أنت متأكد أنك تريد تسجيل الخروج؟';
+
+  @override
+  String get alreadyhaveacc => 'لديك حساب بالفعل؟';
+
+  @override
+  String get startlearning => 'ابدأ رحلتك التعليمية بإنشاء حساب جديد';
 }

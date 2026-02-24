@@ -50,7 +50,7 @@ class LoginOrRegisterScreen extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Theme.of(context).primaryColor,
                     padding: EdgeInsets.symmetric(
-                        horizontal: 48.w, vertical: 14.h),
+                        horizontal: 40.w, vertical: 14.h),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadiusGeometry.circular(10.r),
                     ),
@@ -71,7 +71,7 @@ class LoginOrRegisterScreen extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: ColorsManger.white,
                     padding: EdgeInsets.symmetric(
-                        horizontal: 48.w, vertical: 14.h),
+                        horizontal: 40.w, vertical: 14.h),
                     shape: RoundedRectangleBorder(
                       side: BorderSide(color: ColorsManger.blue, width: 1.w),
                       borderRadius: BorderRadiusGeometry.circular(10.r),

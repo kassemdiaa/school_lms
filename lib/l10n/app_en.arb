@@ -55,5 +55,7 @@
     "tagline":"Tag Line",
     "savechanges":"Save Changes",
     "cancel":"Cancel",
-    "areyousure":"Are you sure you want to logout?"
+    "areyousure":"Are you sure you want to logout?",
+    "alreadyhaveacc":"Already have an account? ",
+    "startlearning":"Create an account to begin your Learning Journey"
 }

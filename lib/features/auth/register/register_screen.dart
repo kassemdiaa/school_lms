@@ -68,7 +68,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             )),
                         SizedBox(height: 6.h),
                         Text(
-                          'Create an account to begin your Learning Journey',
+                          l10n.startlearning,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               color: Colors.grey, fontSize: 14.sp),
@@ -208,7 +208,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text('Already have an account? ',
+                        Text(
+                          l10n.alreadyhaveacc,
                             style: TextStyle(
                                 fontSize: 14.sp,
                                 color:
