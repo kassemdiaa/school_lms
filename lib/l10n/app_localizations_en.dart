@@ -139,4 +139,41 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get logout => 'Logout';
+
+  @override
+  String get notifications => 'Notifications';
+
+  @override
+  String get nonotificationsyet => 'No Notifications yet';
+
+  @override
+  String get notificationsnotifay =>
+      'You\'re all caught up!\nWe\'ll notify you when something arrives.';
+
+  @override
+  String get lectures => '80+ Lectures';
+
+  @override
+  String get weeks => '8 Weeks';
+
+  @override
+  String get certificate => 'Certificate';
+
+  @override
+  String get offar => '10% OFF';
+
+  @override
+  String get name => 'Name';
+
+  @override
+  String get tagline => 'Tag Line';
+
+  @override
+  String get savechanges => 'Save Changes';
+
+  @override
+  String get cancel => 'Cancel';
+
+  @override
+  String get areyousure => 'Are you sure you want to logout?';
 }

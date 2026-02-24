@@ -3,13 +3,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:school_lms/core/assets_manegar/assets_manegar.dart';
 import 'package:school_lms/core/colors/colors_manger.dart';
+import 'package:school_lms/l10n/app_localizations.dart';
 import 'package:school_lms/models/cource_model.dart';
 
 class OverviewTap extends StatelessWidget {
   const OverviewTap({super.key, required this.cource});
   final CourceModel cource;
+  
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 14.h),
       child: Column(
@@ -75,7 +78,7 @@ class OverviewTap extends StatelessWidget {
                         ),
                         SizedBox(width: 8.w),
                         Text(
-                          '80+ Lectures',
+                          l10n.lectures,
                           style: GoogleFonts.plusJakartaSans(
                             color: Theme.of(context).primaryColorLight,
                             fontWeight: FontWeight.w500,
@@ -94,7 +97,7 @@ class OverviewTap extends StatelessWidget {
                         ),
                         SizedBox(width: 8.w),
                         Text(
-                          '8 Weeks',
+                          l10n.weeks,
                           style: GoogleFonts.plusJakartaSans(
                             color: Theme.of(context).primaryColorLight,
                             fontWeight: FontWeight.w500,
@@ -118,7 +121,7 @@ class OverviewTap extends StatelessWidget {
                         ),
                         SizedBox(width: 8.w),
                         Text(
-                          'Certificate',
+                          l10n.certificate,
                           style: GoogleFonts.plusJakartaSans(
                             color: Theme.of(context).primaryColorLight,
                             fontWeight: FontWeight.w500,
@@ -137,7 +140,7 @@ class OverviewTap extends StatelessWidget {
                         ),
                         SizedBox(width: 8.w),
                         Text(
-                          '10% Off',
+                          l10n.offar,
                           style: GoogleFonts.plusJakartaSans(
                             color: Theme.of(context).primaryColorLight,
                             fontWeight: FontWeight.w500,

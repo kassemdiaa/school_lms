@@ -87,7 +87,6 @@ class _ExamScreenState extends State<ExamScreen>
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // ── Counter ────────────────────────────────────────────────────
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -109,8 +108,6 @@ class _ExamScreenState extends State<ExamScreen>
                 ],
               ),
               SizedBox(height: 20.h),
-
-              // ── Progress bar ───────────────────────────────────────────────
               ClipRRect(
                 borderRadius: BorderRadius.circular(8.r),
                 child: LinearProgressIndicator(
@@ -122,8 +119,6 @@ class _ExamScreenState extends State<ExamScreen>
                 ),
               ),
               SizedBox(height: 36.h),
-
-              // ── Question card ──────────────────────────────────────────────
               FadeTransition(
                 opacity: _fadeAnim,
                 child: SlideTransition(
@@ -165,8 +160,6 @@ class _ExamScreenState extends State<ExamScreen>
                 ),
               ),
               SizedBox(height: 28.h),
-
-              // ── Options ────────────────────────────────────────────────────
               Expanded(
                 child: FadeTransition(
                   opacity: _fadeAnim,
@@ -189,8 +182,6 @@ class _ExamScreenState extends State<ExamScreen>
                 ),
               ),
               SizedBox(height: 16.h),
-
-              // ── Navigation buttons ─────────────────────────────────────────
               Row(
                 children: [
                   if (_currentIndex > 0)

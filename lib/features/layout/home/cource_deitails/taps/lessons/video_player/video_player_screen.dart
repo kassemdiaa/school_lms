@@ -11,7 +11,7 @@ class VideoPlayerScreen extends StatefulWidget {
     required this.title,
   });
 
-  final String videoPath; // e.g. 'assets/videos/chapter1.mp4'
+  final String videoPath;
   final String title;
 
   @override
@@ -21,8 +21,8 @@ class VideoPlayerScreen extends StatefulWidget {
 class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   late VideoPlayerController _controller;
   bool _isInitialized = false;
-  bool _showControls  = true;
-  bool _isFullscreen  = false;
+  bool _showControls = true;
+  bool _isFullscreen = false;
 
   @override
   void initState() {
@@ -46,13 +46,10 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
     super.dispose();
   }
 
-  void _toggleControls() =>
-      setState(() => _showControls = !_showControls);
+  void _toggleControls() => setState(() => _showControls = !_showControls);
 
   void _togglePlay() {
-    _controller.value.isPlaying
-        ? _controller.pause()
-        : _controller.play();
+    _controller.value.isPlaying ? _controller.pause() : _controller.play();
   }
 
   void _toggleFullscreen() {
@@ -82,7 +79,6 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            // ── Video + controls ────────────────────────────────────────────
             GestureDetector(
               onTap: _toggleControls,
               child: AspectRatio(
@@ -95,11 +91,11 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                     // Video
                     _isInitialized
                         ? VideoPlayer(_controller)
-                        :  Center(
+                        : Center(
                             child: CircularProgressIndicator(
-                                color: Theme.of(context).primaryColor)),
-
-                    // Controls overlay
+                              color: Theme.of(context).primaryColor,
+                            ),
+                          ),
                     AnimatedOpacity(
                       opacity: _showControls ? 1.0 : 0.0,
                       duration: const Duration(milliseconds: 250),
@@ -118,15 +114,18 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                         ),
                         child: Column(
                           children: [
-                            // Top bar
                             Padding(
                               padding: EdgeInsets.symmetric(
-                                  horizontal: 12.w, vertical: 10.h),
+                                horizontal: 12.w,
+                                vertical: 10.h,
+                              ),
                               child: Row(
                                 children: [
                                   IconButton(
-                                    icon: const Icon(Icons.arrow_back,
-                                        color: Colors.white),
+                                    icon: const Icon(
+                                      Icons.arrow_back,
+                                      color: Colors.white,
+                                    ),
                                     onPressed: () => Navigator.pop(context),
                                   ),
                                   Expanded(
@@ -143,26 +142,26 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                                 ],
                               ),
                             ),
-
-                            // Centre play/pause
                             const Spacer(),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                // Rewind 10s
                                 IconButton(
                                   iconSize: 36.sp,
-                                  icon: const Icon(Icons.replay_10,
-                                      color: Colors.white),
+                                  icon: const Icon(
+                                    Icons.replay_10,
+                                    color: Colors.white,
+                                  ),
                                   onPressed: () {
-                                    final pos = _controller.value.position -
+                                    final pos =
+                                        _controller.value.position -
                                         const Duration(seconds: 10);
                                     _controller.seekTo(
-                                        pos < Duration.zero ? Duration.zero : pos);
+                                      pos < Duration.zero ? Duration.zero : pos,
+                                    );
                                   },
                                 ),
                                 SizedBox(width: 16.w),
-                                // Play / Pause
                                 GestureDetector(
                                   onTap: _togglePlay,
                                   child: Container(
@@ -173,10 +172,11 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                                       shape: BoxShape.circle,
                                       boxShadow: [
                                         BoxShadow(
-                                          color: Theme.of(context).primaryColor
-                                              .withOpacity(0.4),
+                                          color: Theme.of(
+                                            context,
+                                          ).primaryColor.withOpacity(0.4),
                                           blurRadius: 16.r,
-                                        )
+                                        ),
                                       ],
                                     ),
                                     child: Icon(
@@ -189,63 +189,72 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                                   ),
                                 ),
                                 SizedBox(width: 16.w),
-                                // Forward 10s
                                 IconButton(
                                   iconSize: 36.sp,
-                                  icon: const Icon(Icons.forward_10,
-                                      color: Colors.white),
+                                  icon: const Icon(
+                                    Icons.forward_10,
+                                    color: Colors.white,
+                                  ),
                                   onPressed: () {
-                                    final pos = _controller.value.position +
+                                    final pos =
+                                        _controller.value.position +
                                         const Duration(seconds: 10);
                                     final dur = _controller.value.duration;
-                                    _controller.seekTo(
-                                        pos > dur ? dur : pos);
+                                    _controller.seekTo(pos > dur ? dur : pos);
                                   },
                                 ),
                               ],
                             ),
                             const Spacer(),
-
-                            // Bottom: seek bar + time + fullscreen
                             Padding(
                               padding: EdgeInsets.symmetric(
-                                  horizontal: 12.w, vertical: 8.h),
+                                horizontal: 12.w,
+                                vertical: 8.h,
+                              ),
                               child: Column(
                                 children: [
-                                  // Seek bar
                                   _isInitialized
                                       ? SliderTheme(
                                           data: SliderTheme.of(context)
                                               .copyWith(
-                                            thumbShape: RoundSliderThumbShape(
-                                                enabledThumbRadius: 6.r),
-                                            overlayShape:
-                                                RoundSliderOverlayShape(
-                                                    overlayRadius: 12.r),
-                                            activeTrackColor:
-                                                Theme.of(context).primaryColor,
-                                            inactiveTrackColor:
-                                                Colors.white24,
-                                            thumbColor:
-                                                Theme.of(context).primaryColor,
-                                            trackHeight: 3,
-                                          ),
+                                                thumbShape:
+                                                    RoundSliderThumbShape(
+                                                      enabledThumbRadius: 6.r,
+                                                    ),
+                                                overlayShape:
+                                                    RoundSliderOverlayShape(
+                                                      overlayRadius: 12.r,
+                                                    ),
+                                                activeTrackColor: Theme.of(
+                                                  context,
+                                                ).primaryColor,
+                                                inactiveTrackColor:
+                                                    Colors.white24,
+                                                thumbColor: Theme.of(
+                                                  context,
+                                                ).primaryColor,
+                                                trackHeight: 3,
+                                              ),
                                           child: Slider(
                                             value: _controller
-                                                .value.position.inSeconds
+                                                .value
+                                                .position
+                                                .inSeconds
                                                 .toDouble(),
                                             max: _controller
-                                                .value.duration.inSeconds
+                                                .value
+                                                .duration
+                                                .inSeconds
                                                 .toDouble()
                                                 .clamp(1, double.infinity),
-                                            onChanged: (v) => _controller
-                                                .seekTo(Duration(
-                                                    seconds: v.toInt())),
+                                            onChanged: (v) =>
+                                                _controller.seekTo(
+                                                  Duration(seconds: v.toInt()),
+                                                ),
                                           ),
                                         )
                                       : const SizedBox(),
 
-                                  // Time + fullscreen
                                   Row(
                                     children: [
                                       Text(
@@ -278,15 +287,15 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                 ),
               ),
             ),
-
-            // ── Info panel (portrait only) ──────────────────────────────────
             if (!_isFullscreen)
               Expanded(
                 child: Container(
                   width: double.infinity,
                   color: Theme.of(context).scaffoldBackgroundColor,
                   padding: EdgeInsets.symmetric(
-                      horizontal: 20.w, vertical: 16.h),
+                    horizontal: 20.w,
+                    vertical: 16.h,
+                  ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

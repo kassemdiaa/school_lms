@@ -43,7 +43,6 @@ class EnrolledCourseCard extends StatelessWidget {
         ),
         child: Row(
           children: [
-            // ── Thumbnail ──────────────────────────────────────────────────
             ClipRRect(
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(16.r),
@@ -57,8 +56,6 @@ class EnrolledCourseCard extends StatelessWidget {
               ),
             ),
             SizedBox(width: 14.w),
-
-            // ── Info ───────────────────────────────────────────────────────
             Expanded(
               child: Padding(
                 padding:
@@ -99,8 +96,6 @@ class EnrolledCourseCard extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 6.h),
-
-                    // Progress text + chapters badge
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -135,8 +130,6 @@ class EnrolledCourseCard extends StatelessWidget {
               ),
             ),
             SizedBox(width: 10.w),
-
-            // ── Arrow ──────────────────────────────────────────────────────
             Icon(Icons.chevron_right_rounded,
                 color: ColorsManger.blue, size: 22.sp),
             SizedBox(width: 8.w),

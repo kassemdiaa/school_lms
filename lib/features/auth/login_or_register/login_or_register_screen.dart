@@ -26,7 +26,7 @@ class LoginOrRegisterScreen extends StatelessWidget {
             Text(
               'Join Cybex IT Group to Kick Start ',
               style: GoogleFonts.plusJakartaSans(
-                color: ColorsManger.black,
+                color: Theme.of(context).primaryColorLight,
                 fontSize: 22.sp,
                 fontWeight: FontWeight.w600,
               ),
@@ -35,7 +35,7 @@ class LoginOrRegisterScreen extends StatelessWidget {
             Text(
               'Your Lesson',
               style: GoogleFonts.plusJakartaSans(
-                color: ColorsManger.black,
+                color: Theme.of(context).primaryColorLight,
                 fontSize: 22.sp,
                 fontWeight: FontWeight.w600,
               ),

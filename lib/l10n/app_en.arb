@@ -43,5 +43,17 @@
     "signupwithgoogle":"Sign up with Google",
     "englishlang":"English",
     "arabiclang":"Arabic",
-    "logout":"Logout"
+    "logout":"Logout",
+    "notifications":"Notifications",
+    "nonotificationsyet":"No Notifications yet",
+    "notificationsnotifay":"You're all caught up!\nWe'll notify you when something arrives.",
+    "lectures":"80+ Lectures",
+    "weeks":"8 Weeks",
+    "certificate":"Certificate",
+    "offar":"10% OFF",
+    "name":"Name",
+    "tagline":"Tag Line",
+    "savechanges":"Save Changes",
+    "cancel":"Cancel",
+    "areyousure":"Are you sure you want to logout?"
 }

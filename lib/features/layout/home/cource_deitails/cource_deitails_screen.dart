@@ -36,10 +36,28 @@ class _CourceDeitailsScreenState extends State<CourceDeitailsScreen> {
         width: double.infinity,
         child: Column(
           children: [
-            SizedBox(
-              width: 390.w,
-              height: 210.h,
-              child: Image.asset(cource.coverPath, fit: BoxFit.cover),
+            Stack(
+              children: [
+                SizedBox(
+                  width: 390.w,
+                  height: 210.h,
+                  child: Image.asset(cource.coverPath, fit: BoxFit.cover),
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 6.w, vertical: 6.h),
+                    margin: EdgeInsets.only(left: 24.w,top: 24.h,right: 24.w),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Theme.of(context).hoverColor,
+                    ),
+                    child: Icon(Icons.arrow_back, color: Theme.of(context).primaryColorLight),
+                  ),
+                ),
+              ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -51,11 +69,16 @@ class _CourceDeitailsScreenState extends State<CourceDeitailsScreen> {
                     child: Container(
                       alignment: Alignment.center,
                       padding: EdgeInsets.symmetric(
-                          horizontal: 20.w, vertical: 8.h),
+                        horizontal: 20.w,
+                        vertical: 8.h,
+                      ),
                       decoration: BoxDecoration(
-                        color: selectedIndex == 0 ? Theme.of(context).primaryColor : null,
+                        color: selectedIndex == 0
+                            ? Theme.of(context).primaryColor
+                            : null,
                         borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(14.r)),
+                          bottomLeft: Radius.circular(14.r),
+                        ),
                       ),
                       child: Text(
                         l10n.overview,
@@ -77,9 +100,13 @@ class _CourceDeitailsScreenState extends State<CourceDeitailsScreen> {
                     child: Container(
                       alignment: Alignment.center,
                       padding: EdgeInsets.symmetric(
-                          horizontal: 20.w, vertical: 8.h),
+                        horizontal: 20.w,
+                        vertical: 8.h,
+                      ),
                       decoration: BoxDecoration(
-                        color: selectedIndex == 1 ? Theme.of(context).primaryColor : null,
+                        color: selectedIndex == 1
+                            ? Theme.of(context).primaryColor
+                            : null,
                         borderRadius: BorderRadius.only(
                           bottomLeft: Radius.circular(10.r),
                           bottomRight: Radius.circular(10.r),
@@ -105,11 +132,16 @@ class _CourceDeitailsScreenState extends State<CourceDeitailsScreen> {
                     child: Container(
                       alignment: Alignment.center,
                       padding: EdgeInsets.symmetric(
-                          horizontal: 20.w, vertical: 8.h),
+                        horizontal: 20.w,
+                        vertical: 8.h,
+                      ),
                       decoration: BoxDecoration(
-                        color: selectedIndex == 2 ?Theme.of(context).primaryColor : null,
+                        color: selectedIndex == 2
+                            ? Theme.of(context).primaryColor
+                            : null,
                         borderRadius: BorderRadius.only(
-                            bottomRight: Radius.circular(14.r)),
+                          bottomRight: Radius.circular(14.r),
+                        ),
                       ),
                       child: Text(
                         l10n.exams,

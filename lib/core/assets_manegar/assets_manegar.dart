@@ -13,6 +13,7 @@ abstract class AssetsManegar {
   static const String offarIcon = 'assets/icons/offoricon.png';
   static const String profileIcon = 'assets/icons/profilelogo.png';
   static const String docIcon = 'assets/icons/viewdetails.png';
+  static const String googleIcon = 'assets/images/google.png';
 
   static const String arabic = 'assets/images/arabic.jpg';
   static const String arabicCover = 'assets/images/arabiccover.jpg';

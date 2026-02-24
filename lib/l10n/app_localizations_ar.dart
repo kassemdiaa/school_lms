@@ -139,4 +139,41 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get logout => 'تسجيل الخروج';
+
+  @override
+  String get notifications => 'الإشعارات';
+
+  @override
+  String get nonotificationsyet => 'لا توجد إشعارات حتى الآن';
+
+  @override
+  String get notificationsnotifay =>
+      'أنت مطّلع على كل شيء!\nسنقوم بإشعارك عند وصول أي جديد.';
+
+  @override
+  String get lectures => '٨٠+ محاضرة';
+
+  @override
+  String get weeks => '٨ أسابيع';
+
+  @override
+  String get certificate => 'شهادة';
+
+  @override
+  String get offar => 'خصم ١٠٪';
+
+  @override
+  String get name => 'الاسم';
+
+  @override
+  String get tagline => 'شعار';
+
+  @override
+  String get savechanges => 'حفظ التغييرات';
+
+  @override
+  String get cancel => 'الغاء';
+
+  @override
+  String get areyousure => 'هل أنت متأكد أنك تريد تسجيل الخروج؟';
 }

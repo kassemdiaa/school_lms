@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:school_lms/core/assets_manegar/assets_manegar.dart';
 import 'package:school_lms/core/colors/colors_manger.dart';
 import 'package:school_lms/core/routes/routes_manger.dart';
 import 'package:school_lms/features/auth/widgets/validated_field.dart';
@@ -56,8 +57,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: 20.h),
-
-                  // ── Title ──────────────────────────────────────────────
                   Center(
                     child: Column(
                       children: [
@@ -78,8 +77,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                   ),
                   SizedBox(height: 30.h),
-
-                  // ── Username ────────────────────────────────────────────
                   FieldLabel(label: l10n.username),
                   ValidatedField(
                     controller: _usernameCtrl,
@@ -89,8 +86,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         : null,
                   ),
                   SizedBox(height: 16.h),
-
-                  // ── Email ───────────────────────────────────────────────
                   FieldLabel(label: l10n.email),
                   ValidatedField(
                     controller: _emailCtrl,
@@ -109,8 +104,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     },
                   ),
                   SizedBox(height: 16.h),
-
-                  // ── Password ────────────────────────────────────────────
                   FieldLabel(label: l10n.password),
                   ValidatedField(
                     controller: _passwordCtrl,
@@ -134,8 +127,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     },
                   ),
                   SizedBox(height: 16.h),
-
-                  // ── Confirm Password ────────────────────────────────────
                   FieldLabel(label: l10n.confirmpassword),
                   ValidatedField(
                     controller: _confirmPasswordCtrl,
@@ -160,8 +151,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     },
                   ),
                   SizedBox(height: 30.h),
-
-                  // ── Sign Up button ──────────────────────────────────────
                   SizedBox(
                     width: double.infinity,
                     height: 55.h,
@@ -182,8 +171,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                   ),
                   SizedBox(height: 25.h),
-
-                  // ── Divider ─────────────────────────────────────────────
                   Row(
                     children: [
                       const Expanded(child: Divider()),
@@ -196,8 +183,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ],
                   ),
                   SizedBox(height: 20.h),
-
-                  // ── Google button ───────────────────────────────────────
                   SizedBox(
                     width: double.infinity,
                     height: 55.h,
@@ -208,8 +193,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         side: BorderSide(color: Colors.grey.shade300),
                       ),
                       onPressed: () {},
-                      icon: Image.network(
-                          'https://cdn-icons-png.flaticon.com/512/300/300221.png',
+                      icon: Image.asset(
+                          AssetsManegar.googleIcon,
                           height: 20.h),
                       label: Text(l10n.signupwithgoogle,
                           style: TextStyle(
@@ -219,8 +204,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                   ),
                   SizedBox(height: 25.h),
-
-                  // ── Sign in link ────────────────────────────────────────
                   Center(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -253,8 +236,3 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
   }
 }
-
-// ── Field label ───────────────────────────────────────────────────────────────
-
-
-// ── Reusable validated text field ─────────────────────────────────────────────

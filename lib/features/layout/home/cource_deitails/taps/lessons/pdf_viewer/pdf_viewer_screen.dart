@@ -11,7 +11,7 @@ class PdfViewerScreen extends StatefulWidget {
     required this.title,
   });
 
-  final String pdfPath; // e.g. 'assets/docs/chapter1.pdf'
+  final String pdfPath;
   final String title;
 
   @override
@@ -64,14 +64,12 @@ class _PdfViewerScreenState extends State<PdfViewerScreen> {
           ],
         ),
         actions: [
-          // Jump to first page
           IconButton(
             icon: Icon(Icons.first_page_rounded,
                 color: Theme.of(context).canvasColor, size: 22.sp),
             tooltip: 'First page',
             onPressed: () => _pdfController.firstPage(),
           ),
-          // Jump to last page
           IconButton(
             icon: Icon(Icons.last_page_rounded,
                 color: Theme.of(context).canvasColor, size: 22.sp),
@@ -83,7 +81,6 @@ class _PdfViewerScreenState extends State<PdfViewerScreen> {
       ),
       body: Stack(
         children: [
-          // ── PDF viewer ──────────────────────────────────────────────────
           SfPdfViewer.asset(
             widget.pdfPath,
             controller: _pdfController,
@@ -114,8 +111,6 @@ class _PdfViewerScreenState extends State<PdfViewerScreen> {
             canShowScrollHead: true,
             canShowScrollStatus: true,
           ),
-
-          // ── Loading indicator ───────────────────────────────────────────
           if (_isLoading)
             Container(
               color: const Color(0xFFF2F4F8),
@@ -139,8 +134,6 @@ class _PdfViewerScreenState extends State<PdfViewerScreen> {
             ),
         ],
       ),
-
-      // ── Bottom navigation bar ─────────────────────────────────────────────
       bottomNavigationBar: _totalPages > 0
           ? Container(
               color: Theme.of(context).scaffoldBackgroundColor,
@@ -185,6 +178,4 @@ class _PdfViewerScreenState extends State<PdfViewerScreen> {
     );
   }
 }
-
-// ─── Nav button ───────────────────────────────────────────────────────────────
 

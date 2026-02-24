@@ -13,7 +13,7 @@ class ExamsTap extends StatelessWidget {
       child: ListView.separated(
         itemBuilder: (context, index) => ExamItem(
           chapter: cource.chapters[index],
-          courseId: cource.id, // ← pass the course id down
+          courseId: cource.id,
         ),
         separatorBuilder: (context, index) => SizedBox(height: 10.h),
         itemCount: cource.chapters.length,

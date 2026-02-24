@@ -19,7 +19,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController _searchCtrl = TextEditingController();
   List<CourceModel> _allCources = [];
-  List<CourceModel> _filtered   = [];
+  List<CourceModel> _filtered = [];
   String _username = '';
 
   static const _kUsername = 'logged_username';
@@ -44,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     _allCources = CourceModel.getCources(context);
-    _filtered   = _allCources;
+    _filtered = _allCources;
   }
 
   @override
@@ -60,10 +60,12 @@ class _HomeScreenState extends State<HomeScreen> {
       _filtered = query.isEmpty
           ? _allCources
           : _allCources
-              .where((c) =>
-                  c.name.toLowerCase().contains(query) ||
-                  c.instractorName.toLowerCase().contains(query))
-              .toList();
+                .where(
+                  (c) =>
+                      c.name.toLowerCase().contains(query) ||
+                      c.instractorName.toLowerCase().contains(query),
+                )
+                .toList();
     });
   }
 
@@ -72,10 +74,11 @@ class _HomeScreenState extends State<HomeScreen> {
     appLocale.value = isAr ? const Locale('en') : const Locale('ar');
     saveLocale(appLocale.value.languageCode);
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (mounted) setState(() {
-        _allCources = CourceModel.getCources(context);
-        _onSearch();
-      });
+      if (mounted)
+        setState(() {
+          _allCources = CourceModel.getCources(context);
+          _onSearch();
+        });
     });
   }
 
@@ -88,8 +91,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n   = AppLocalizations.of(context)!;
-    final isAr   = appLocale.value.languageCode == 'ar';
+    final l10n = AppLocalizations.of(context)!;
+    final isAr = appLocale.value.languageCode == 'ar';
     final isDark = appTheme.value == ThemeMode.dark;
 
     return SafeArea(
@@ -106,7 +109,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              // ── Show the typed username ────────────────────────────────
               Flexible(
                 child: Text(
                   _username.isEmpty ? 'User' : _username,
@@ -121,7 +123,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
           actions: [
-            // ── Globe: language toggle ─────────────────────────────────────
             InkWell(
               borderRadius: BorderRadius.circular(20.r),
               onTap: _toggleLocale,
@@ -130,14 +131,19 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Stack(
                   clipBehavior: Clip.none,
                   children: [
-                    Icon(CupertinoIcons.globe,
-                        color: ColorsManger.gray, size: 26.sp),
+                    Icon(
+                      CupertinoIcons.globe,
+                      color: ColorsManger.gray,
+                      size: 26.sp,
+                    ),
                     Positioned(
                       top: -4,
                       right: -6,
                       child: Container(
                         padding: EdgeInsets.symmetric(
-                            horizontal: 4.w, vertical: 1.h),
+                          horizontal: 4.w,
+                          vertical: 1.h,
+                        ),
                         decoration: BoxDecoration(
                           color: ColorsManger.blue,
                           borderRadius: BorderRadius.circular(8.r),
@@ -157,8 +163,6 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             SizedBox(width: 4.w),
-
-            // ── Sun / Moon: theme toggle ───────────────────────────────────
             InkWell(
               borderRadius: BorderRadius.circular(20.r),
               onTap: _toggleTheme,
@@ -188,17 +192,22 @@ class _HomeScreenState extends State<HomeScreen> {
             margin: EdgeInsets.symmetric(horizontal: 14.w, vertical: 10.h),
             child: Column(
               children: [
-                // ── Search bar ────────────────────────────────────────────
                 TextField(
                   controller: _searchCtrl,
                   cursorColor: const Color.fromARGB(255, 122, 122, 122),
                   decoration: InputDecoration(
-                    prefixIcon: Icon(CupertinoIcons.search,
-                        color: ColorsManger.gray, size: 26.sp),
+                    prefixIcon: Icon(
+                      CupertinoIcons.search,
+                      color: ColorsManger.gray,
+                      size: 26.sp,
+                    ),
                     suffixIcon: _searchCtrl.text.isNotEmpty
                         ? IconButton(
-                            icon: Icon(Icons.close,
-                                color: ColorsManger.gray, size: 20.sp),
+                            icon: Icon(
+                              Icons.close,
+                              color: ColorsManger.gray,
+                              size: 20.sp,
+                            ),
                             onPressed: () {
                               _searchCtrl.clear();
                               FocusScope.of(context).unfocus();
@@ -214,24 +223,27 @@ class _HomeScreenState extends State<HomeScreen> {
                     filled: true,
                     fillColor: Theme.of(context).hoverColor,
                     contentPadding: EdgeInsets.symmetric(
-                        horizontal: 7.w, vertical: 10.h),
+                      horizontal: 7.w,
+                      vertical: 10.h,
+                    ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.r),
                       borderSide: BorderSide(
-                          color: const Color.fromARGB(255, 198, 198, 198),
-                          width: 1.w),
+                        color: const Color.fromARGB(255, 198, 198, 198),
+                        width: 1.w,
+                      ),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.r),
                       borderSide: BorderSide(
-                          color: const Color.fromARGB(255, 122, 122, 122),
-                          width: 1.w),
+                        color: const Color.fromARGB(255, 122, 122, 122),
+                        width: 1.w,
+                      ),
                     ),
                   ),
                 ),
                 SizedBox(height: 14.h),
 
-                // ── Section header ────────────────────────────────────────
                 Row(
                   children: [
                     Text(
@@ -247,15 +259,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
                 SizedBox(height: 10.h),
-
-                // ── Grid or empty state ───────────────────────────────────
                 _filtered.isEmpty
                     ? EmptyState(query: _searchCtrl.text)
                     : GridView.builder(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
-                        gridDelegate:
-                            SliverGridDelegateWithFixedCrossAxisCount(
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
                           crossAxisSpacing: 11.w,
                           mainAxisSpacing: 5.h,
@@ -278,4 +287,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-

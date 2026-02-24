@@ -42,5 +42,17 @@
     "signupwithgoogle": "إنشاء حساب باستخدام جوجل",
     "englishlang": "الإنجليزية",
     "arabiclang": "العربية",
-    "logout": "تسجيل الخروج"
+    "logout": "تسجيل الخروج",
+    "notifications": "الإشعارات",
+    "nonotificationsyet": "لا توجد إشعارات حتى الآن",
+    "notificationsnotifay": "أنت مطّلع على كل شيء!\nسنقوم بإشعارك عند وصول أي جديد.",
+    "lectures": "٨٠+ محاضرة",
+    "weeks": "٨ أسابيع",
+    "certificate": "شهادة",
+    "offar": "خصم ١٠٪",
+    "name": "الاسم",
+    "tagline": "شعار",
+    "savechanges":"حفظ التغييرات",
+    "cancel":"الغاء",
+    "areyousure":"هل أنت متأكد أنك تريد تسجيل الخروج؟"
 }

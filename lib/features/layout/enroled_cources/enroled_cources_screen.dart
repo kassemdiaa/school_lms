@@ -18,8 +18,6 @@ class _EnroledCourcesScreenState extends State<EnroledCourcesScreen> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     final allCources = CourceModel.getCources(context);
-
-    // Only show courses where the student has passed at least one chapter
     final enrolled = allCources
         .where((c) => ProgressManager.passedCount(c.id) > 0)
         .toList();
@@ -56,8 +54,3 @@ class _EnroledCourcesScreenState extends State<EnroledCourcesScreen> {
     );
   }
 }
-
-// ─── Card ─────────────────────────────────────────────────────────────────────
-
-// ─── Empty state ──────────────────────────────────────────────────────────────
-

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:school_lms/core/assets_manegar/assets_manegar.dart';
 import 'package:school_lms/core/colors/colors_manger.dart';
 import 'package:school_lms/core/routes/routes_manger.dart';
 import 'package:school_lms/features/auth/widgets/validated_field.dart';
 import 'package:school_lms/l10n/app_localizations.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:school_lms/main.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -14,13 +15,11 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final _formKey              = GlobalKey<FormState>();
-  final _usernameCtrl         = TextEditingController();
-  final _passwordCtrl         = TextEditingController();
-  bool  _obscurePassword      = true;
-  bool  _submitted            = false; // show errors only after first submit
-
-  static const _kUsername = 'logged_username';
+  final _formKey         = GlobalKey<FormState>();
+  final _usernameCtrl    = TextEditingController();
+  final _passwordCtrl    = TextEditingController();
+  bool  _obscurePassword = true;
+  bool  _submitted       = false;
 
   @override
   void dispose() {
@@ -33,9 +32,15 @@ class _LoginScreenState extends State<LoginScreen> {
     setState(() => _submitted = true);
     if (!_formKey.currentState!.validate()) return;
 
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(_kUsername, _usernameCtrl.text.trim());
-    if (mounted) Navigator.pushNamed(context, RoutesManger.mainLayout);
+    await saveLogin(_usernameCtrl.text.trim());
+
+    if (mounted) {
+      Navigator.pushNamedAndRemoveUntil(
+        context,
+        RoutesManger.mainLayout,
+        (_) => false,
+      );
+    }
   }
 
   @override
@@ -57,8 +62,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: 20.h),
-
-                  // ── Title ──────────────────────────────────────────────
                   Center(
                     child: Column(
                       children: [
@@ -77,7 +80,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   SizedBox(height: 40.h),
 
-                  // ── Username ────────────────────────────────────────────
                   Text(l10n.username,
                       style: TextStyle(
                           color: Theme.of(context).primaryColorLight)),
@@ -91,7 +93,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   SizedBox(height: 20.h),
 
-                  // ── Password ────────────────────────────────────────────
                   Text(l10n.password,
                       style: TextStyle(
                           color: Theme.of(context).primaryColorLight)),
@@ -104,8 +105,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       icon: Icon(_obscurePassword
                           ? Icons.visibility_off
                           : Icons.visibility),
-                      onPressed: () =>
-                          setState(() => _obscurePassword = !_obscurePassword),
+                      onPressed: () => setState(
+                          () => _obscurePassword = !_obscurePassword),
                     ),
                     validator: (v) => (v == null || v.trim().isEmpty)
                         ? '${l10n.password} is required'
@@ -113,7 +114,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   SizedBox(height: 24.h),
 
-                  // ── Sign In button ──────────────────────────────────────
                   SizedBox(
                     width: double.infinity,
                     height: 55.h,
@@ -134,7 +134,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   SizedBox(height: 30.h),
 
-                  // ── Divider ─────────────────────────────────────────────
                   Row(
                     children: [
                       const Expanded(child: Divider()),
@@ -149,7 +148,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   SizedBox(height: 20.h),
 
-                  // ── Google button ───────────────────────────────────────
                   SizedBox(
                     width: double.infinity,
                     height: 55.h,
@@ -160,27 +158,23 @@ class _LoginScreenState extends State<LoginScreen> {
                         side: BorderSide(color: Colors.grey.shade300),
                       ),
                       onPressed: () {},
-                      icon: Image.network(
-                          'https://cdn-icons-png.flaticon.com/512/300/300221.png',
+                      icon: Image.asset(AssetsManegar.googleIcon,
                           height: 20.h),
                       label: Text(l10n.signinwithgoogle,
                           style: TextStyle(
                               fontSize: 15.sp,
-                              color:
-                                  Theme.of(context).primaryColorLight)),
+                              color: Theme.of(context).primaryColorLight)),
                     ),
                   ),
                   SizedBox(height: 25.h),
 
-                  // ── Sign up link ────────────────────────────────────────
                   Center(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text('${l10n.didnthaveaccount} ',
                             style: TextStyle(
-                                color:
-                                    Theme.of(context).primaryColorLight)),
+                                color: Theme.of(context).primaryColorLight)),
                         GestureDetector(
                           onTap: () => Navigator.pushNamed(
                               context, RoutesManger.register),
@@ -204,5 +198,3 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 }
-
-// ── Reusable validated text field ─────────────────────────────────────────────

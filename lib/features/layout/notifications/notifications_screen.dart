@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:school_lms/l10n/app_localizations.dart';
 
 class NotificationsScreen extends StatelessWidget {
   const NotificationsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-
+final l10n = AppLocalizations.of(context)!;
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
           title: Text(
-            'Notifications',
+            l10n.notifications,
             style: GoogleFonts.plusJakartaSans(
               color: Theme.of(context).primaryColorLight,
               fontSize: 20,
@@ -32,7 +33,7 @@ class NotificationsScreen extends StatelessWidget {
               ),
               SizedBox(height: 16.h),
               Text(
-                'No notifications yet',
+                l10n.nonotificationsyet,
                 style: GoogleFonts.plusJakartaSans(
                   fontSize: 16.sp,
                   fontWeight: FontWeight.w700,
@@ -41,7 +42,7 @@ class NotificationsScreen extends StatelessWidget {
               ),
               SizedBox(height: 8.h),
               Text(
-                'You\'re all caught up!\nWe\'ll notify you when something arrives.',
+                l10n.notificationsnotifay,
                 textAlign: TextAlign.center,
                 style: GoogleFonts.plusJakartaSans(
                   fontSize: 12.sp,

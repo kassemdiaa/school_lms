@@ -361,6 +361,78 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Logout'**
   String get logout;
+
+  /// No description provided for @notifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications'**
+  String get notifications;
+
+  /// No description provided for @nonotificationsyet.
+  ///
+  /// In en, this message translates to:
+  /// **'No Notifications yet'**
+  String get nonotificationsyet;
+
+  /// No description provided for @notificationsnotifay.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re all caught up!\nWe\'ll notify you when something arrives.'**
+  String get notificationsnotifay;
+
+  /// No description provided for @lectures.
+  ///
+  /// In en, this message translates to:
+  /// **'80+ Lectures'**
+  String get lectures;
+
+  /// No description provided for @weeks.
+  ///
+  /// In en, this message translates to:
+  /// **'8 Weeks'**
+  String get weeks;
+
+  /// No description provided for @certificate.
+  ///
+  /// In en, this message translates to:
+  /// **'Certificate'**
+  String get certificate;
+
+  /// No description provided for @offar.
+  ///
+  /// In en, this message translates to:
+  /// **'10% OFF'**
+  String get offar;
+
+  /// No description provided for @name.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get name;
+
+  /// No description provided for @tagline.
+  ///
+  /// In en, this message translates to:
+  /// **'Tag Line'**
+  String get tagline;
+
+  /// No description provided for @savechanges.
+  ///
+  /// In en, this message translates to:
+  /// **'Save Changes'**
+  String get savechanges;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// No description provided for @areyousure.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to logout?'**
+  String get areyousure;
 }
 
 class _AppLocalizationsDelegate

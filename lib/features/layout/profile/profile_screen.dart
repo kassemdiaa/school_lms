@@ -3,8 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:school_lms/core/routes/routes_manger.dart';
+import 'package:school_lms/features/layout/profile/edit_sheet.dart';
+import 'package:school_lms/features/layout/profile/skill_chip.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:school_lms/l10n/app_localizations.dart';
+import 'package:school_lms/main.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -52,7 +56,7 @@ class _ProfileScreenState extends State<ProfileScreen>
   Future<void> _loadProfile() async {
     final p = await SharedPreferences.getInstance();
     setState(() {
-      _name      = p.getString(_kName)    ?? _name;
+      _name      = p.getString(kUsername) ?? p.getString(_kName) ?? _name;
       _tagLine   = p.getString(_kTagLine) ?? _tagLine;
       _about     = p.getString(_kAbout)   ?? _about;
       _skills    = p.getStringList(_kSkills) ?? _skills;
@@ -71,8 +75,8 @@ class _ProfileScreenState extends State<ProfileScreen>
 
   Future<void> _pickPhoto() async {
     final picker = ImagePicker();
-    final picked =
-        await picker.pickImage(source: ImageSource.gallery, imageQuality: 85);
+    final picked = await picker.pickImage(
+        source: ImageSource.gallery, imageQuality: 85);
     if (picked != null) {
       setState(() => _photoPath = picked.path);
       _saveProfile();
@@ -90,7 +94,7 @@ class _ProfileScreenState extends State<ProfileScreen>
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
-      builder: (_) => _EditSheet(
+      builder: (_) => EditSheet(
         l10n: l10n,
         nameCtrl: nameCtrl,
         tagCtrl: tagCtrl,
@@ -110,6 +114,48 @@ class _ProfileScreenState extends State<ProfileScreen>
           _saveProfile();
           Navigator.pop(context);
         },
+      ),
+    );
+  }
+
+  void _logout(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    showDialog(
+      context: context,
+      builder: (_) => AlertDialog(
+        title: Text(l10n.logout,
+            style: GoogleFonts.plusJakartaSans(fontWeight: FontWeight.w700)),
+        content: Text(l10n.areyousure,
+            style: GoogleFonts.plusJakartaSans()),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text(l10n.cancel,
+                style: TextStyle(color: Colors.grey.shade600)),
+          ),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.red.shade400,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8.r)),
+              elevation: 0,
+            ),
+            onPressed: () async {
+              Navigator.pop(context);
+              await clearLogin();     
+              if (mounted) {
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  RoutesManger.loginOrRegister,
+                  (_) => false,
+                );
+              }
+            },
+            child: Text(l10n.logout,
+                style: GoogleFonts.plusJakartaSans(
+                    color: Colors.white, fontWeight: FontWeight.w600)),
+          ),
+        ],
       ),
     );
   }
@@ -141,7 +187,6 @@ class _ProfileScreenState extends State<ProfileScreen>
                 EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
             child: Column(
               children: [
-                // ── Avatar ────────────────────────────────────────────────
                 GestureDetector(
                   onTap: _pickPhoto,
                   child: Stack(
@@ -152,7 +197,8 @@ class _ProfileScreenState extends State<ProfileScreen>
                         height: 120.w,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          border: Border.all(color: Colors.white, width: 3.w),
+                          border:
+                              Border.all(color: Colors.white, width: 3.w),
                           boxShadow: [
                             BoxShadow(
                                 color: Colors.black.withOpacity(0.12),
@@ -184,12 +230,10 @@ class _ProfileScreenState extends State<ProfileScreen>
                   ),
                 ),
                 SizedBox(height: 16.h),
-
-                // ── Card ──────────────────────────────────────────────────
                 Container(
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    color: const Color(0xFFE8ECF5),
+                    color: Theme.of(context).cardColor,
                     borderRadius: BorderRadius.circular(20.r),
                     boxShadow: [
                       BoxShadow(
@@ -214,7 +258,8 @@ class _ProfileScreenState extends State<ProfileScreen>
                                     style: GoogleFonts.plusJakartaSans(
                                       fontSize: 20.sp,
                                       fontWeight: FontWeight.w800,
-                                      color: Colors.black87,
+                                      color:
+                                          Theme.of(context).primaryColorLight,
                                     )),
                                 SizedBox(height: 2.h),
                                 Text(_tagLine,
@@ -246,31 +291,51 @@ class _ProfileScreenState extends State<ProfileScreen>
                           style: GoogleFonts.plusJakartaSans(
                             fontSize: 15.sp,
                             fontWeight: FontWeight.w800,
-                            color: Colors.black87,
+                            color: Theme.of(context).primaryColorLight,
                           )),
                       SizedBox(height: 6.h),
                       Text(_about,
                           style: GoogleFonts.plusJakartaSans(
                             fontSize: 12.sp,
                             color: Colors.black54,
-                            height: 1.6.h,
+                            height: 1.6,
                           )),
                       SizedBox(height: 20.h),
                       Text(l10n.myskills,
                           style: GoogleFonts.plusJakartaSans(
                             fontSize: 15.sp,
                             fontWeight: FontWeight.w800,
-                            color: Colors.black87,
+                            color: Theme.of(context).primaryColorLight,
                           )),
                       SizedBox(height: 10.h),
                       Wrap(
                         spacing: 8.w,
                         runSpacing: 8.h,
                         children: _skills
-                            .map((s) => _SkillChip(label: s))
+                            .map((s) => SkillChip(label: s))
                             .toList(),
                       ),
                     ],
+                  ),
+                ),
+                SizedBox(height: 20.h),
+                SizedBox(
+                  width: double.infinity,
+                  height: 52.h,
+                  child: OutlinedButton.icon(
+                    style: OutlinedButton.styleFrom(
+                      foregroundColor: Colors.red.shade400,
+                      side: BorderSide(color: Colors.red.shade300),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12.r)),
+                    ),
+                    onPressed: () => _logout(context),
+                    icon: const Icon(Icons.logout_rounded),
+                    label: Text(l10n.logout,
+                        style: GoogleFonts.plusJakartaSans(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 14.sp,
+                        )),
                   ),
                 ),
                 SizedBox(height: 30.h),
@@ -279,171 +344,6 @@ class _ProfileScreenState extends State<ProfileScreen>
           ),
         ),
       ),
-    );
-  }
-}
-
-class _SkillChip extends StatelessWidget {
-  const _SkillChip({required this.label});
-  final String label;
-  @override
-  Widget build(BuildContext context) => Container(
-        padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 7.h),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(50.r),
-          border: Border.all(color: Colors.black12),
-          boxShadow: [
-            BoxShadow(
-                color: Colors.black.withOpacity(0.04),
-                blurRadius: 4.r,
-                offset: const Offset(0, 2))
-          ],
-        ),
-        child: Text(label,
-            style: GoogleFonts.plusJakartaSans(
-              fontSize: 11.sp,
-              fontWeight: FontWeight.w600,
-              color: Colors.black87,
-            )),
-      );
-}
-
-class _EditSheet extends StatelessWidget {
-  const _EditSheet({
-    required this.l10n,
-    required this.nameCtrl,
-    required this.tagCtrl,
-    required this.aboutCtrl,
-    required this.skillCtrl,
-    required this.onSave,
-  });
-  final AppLocalizations l10n;
-  final TextEditingController nameCtrl;
-  final TextEditingController tagCtrl;
-  final TextEditingController aboutCtrl;
-  final TextEditingController skillCtrl;
-  final VoidCallback onSave;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius:
-            BorderRadius.vertical(top: Radius.circular(24.r)),
-      ),
-      padding: EdgeInsets.only(
-        left: 24.w,
-        right: 24.w,
-        top: 20.h,
-        bottom: MediaQuery.of(context).viewInsets.bottom + 30.h,
-      ),
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Center(
-              child: Container(
-                width: 40.w,
-                height: 4.h,
-                decoration: BoxDecoration(
-                    color: Colors.black12,
-                    borderRadius: BorderRadius.circular(4.r)),
-              ),
-            ),
-            SizedBox(height: 20.h),
-            Text(l10n.profile,
-                style: GoogleFonts.plusJakartaSans(
-                  fontSize: 18.sp,
-                  fontWeight: FontWeight.w800,
-                  color: Colors.black87,
-                )),
-            SizedBox(height: 20.h),
-            _Field(ctrl: nameCtrl,  label: 'Name'),
-            SizedBox(height: 14.h),
-            _Field(ctrl: tagCtrl,   label: 'Tag Line'),
-            SizedBox(height: 14.h),
-            _Field(ctrl: aboutCtrl, label: l10n.aboutme, maxLines: 4),
-            SizedBox(height: 14.h),
-            _Field(
-              ctrl: skillCtrl,
-              label: l10n.myskills,
-              hint: 'e.g. Flutter, Dart, UI/UX',
-            ),
-            SizedBox(height: 24.h),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: onSave,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Theme.of(context).primaryColor,
-                  foregroundColor: Colors.white,
-                  padding: EdgeInsets.symmetric(vertical: 16.h),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(14.r)),
-                  elevation: 0,
-                ),
-                child: Text('Save Changes',
-                    style: GoogleFonts.plusJakartaSans(
-                        fontWeight: FontWeight.w700, fontSize: 14.sp)),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _Field extends StatelessWidget {
-  const _Field(
-      {required this.ctrl,
-      required this.label,
-      this.maxLines = 1,
-      this.hint});
-  final TextEditingController ctrl;
-  final String label;
-  final int maxLines;
-  final String? hint;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(label,
-            style: GoogleFonts.plusJakartaSans(
-                fontSize: 12.sp,
-                fontWeight: FontWeight.w700,
-                color: Colors.black54)),
-        SizedBox(height: 6.h),
-        TextField(
-          controller: ctrl,
-          maxLines: maxLines,
-          style: GoogleFonts.plusJakartaSans(
-              fontSize: 13.sp, color: Colors.black87),
-          decoration: InputDecoration(
-            hintText: hint,
-            hintStyle: GoogleFonts.plusJakartaSans(
-                fontSize: 12.sp, color: Colors.black26),
-            filled: true,
-            fillColor: const Color(0xFFF2F4F8),
-            contentPadding:
-                EdgeInsets.symmetric(horizontal: 14.w, vertical: 12.h),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12.r),
-              borderSide: BorderSide.none,
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12.r),
-              borderSide: const BorderSide(
-                  color: Color(0xFF002F96), width: 1.5),
-            ),
-          ),
-        ),
-      ],
     );
   }
 }

@@ -54,7 +54,6 @@ class _ResultScreenState extends State<ResultScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            // ── Score header ───────────────────────────────────────────────
             Container(
               width: double.infinity,
               padding:
@@ -142,8 +141,6 @@ class _ResultScreenState extends State<ResultScreen> {
                 ],
               ),
             ),
-
-            // ── Answers list ───────────────────────────────────────────────
             Expanded(
               child: ListView.separated(
                 padding: EdgeInsets.symmetric(
@@ -240,8 +237,6 @@ class _ResultScreenState extends State<ResultScreen> {
                 },
               ),
             ),
-
-            // ── Continue button ────────────────────────────────────────────
             Padding(
               padding: EdgeInsets.all(20.r),
               child: ElevatedButton(

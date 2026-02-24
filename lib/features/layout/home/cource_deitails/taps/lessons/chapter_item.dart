@@ -47,7 +47,6 @@ class _ChapterItemState extends State<ChapterItem> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // ── Header ────────────────────────────────────────────────────────
           GestureDetector(
             onTap: () => setState(() => isExpanded = !isExpanded),
             child: Container(
@@ -82,7 +81,7 @@ class _ChapterItemState extends State<ChapterItem> {
             ),
           ),
 
-          // ── Expandable ────────────────────────────────────────────────────
+          //Expandable
           ClipRect(
             child: AnimatedAlign(
               alignment: Alignment.topLeft,

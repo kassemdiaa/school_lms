@@ -7,12 +7,14 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:school_lms/l10n/app_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-final ValueNotifier<Locale> appLocale = ValueNotifier(const Locale('en'));
+final ValueNotifier<Locale>    appLocale = ValueNotifier(const Locale('en'));
+final ValueNotifier<ThemeMode> appTheme  = ValueNotifier(ThemeMode.light);
 
-final ValueNotifier<ThemeMode> appTheme = ValueNotifier(ThemeMode.light);
-
-const _kLangKey  = 'selected_language';
-const _kThemeKey = 'selected_theme';
+const _kLangKey        = 'selected_language';
+const _kThemeKey       = 'selected_theme';
+const _kSeenOnboarding = 'seen_onboarding';
+const kIsLoggedIn      = 'is_logged_in';   // ← public so logout can access it
+const kUsername        = 'logged_username'; // ← public so profile can access it
 
 Future<void> saveLocale(String languageCode) async {
   final prefs = await SharedPreferences.getInstance();
@@ -24,25 +26,53 @@ Future<void> saveTheme(ThemeMode mode) async {
   await prefs.setString(_kThemeKey, mode == ThemeMode.dark ? 'dark' : 'light');
 }
 
+Future<void> markOnboardingSeen() async {
+  final prefs = await SharedPreferences.getInstance();
+  await prefs.setBool(_kSeenOnboarding, true);
+}
+
+Future<void> saveLogin(String username) async {
+  final prefs = await SharedPreferences.getInstance();
+  await prefs.setString(kUsername, username);
+  await prefs.setBool(kIsLoggedIn, true);
+}
+
+Future<void> clearLogin() async {
+  final prefs = await SharedPreferences.getInstance();
+  await prefs.setBool(kIsLoggedIn, false);
+  await prefs.remove(kUsername);
+}
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   final prefs = await SharedPreferences.getInstance();
 
-  //locale
   final savedLang = prefs.getString(_kLangKey) ?? 'en';
   appLocale.value = Locale(savedLang);
 
-  //theme
   final savedTheme = prefs.getString(_kThemeKey) ?? 'light';
   appTheme.value = savedTheme == 'dark' ? ThemeMode.dark : ThemeMode.light;
 
+  final seenOnboarding = prefs.getBool(_kSeenOnboarding) ?? false;
+  final isLoggedIn     = prefs.getBool(kIsLoggedIn)      ?? false;
+
+  final String initialRoute;
+  if (isLoggedIn) {
+    initialRoute = RoutesManger.mainLayout;
+  } else if (seenOnboarding) {
+    initialRoute = RoutesManger.loginOrRegister;
+  } else {
+    initialRoute = RoutesManger.onbourdingOne;
+  }
+
   await ProgressManager.init();
-  runApp(const SchoolLms());
+  runApp(SchoolLms(initialRoute: initialRoute));
 }
 
 class SchoolLms extends StatelessWidget {
-  const SchoolLms({super.key});
+  const SchoolLms({super.key, required this.initialRoute});
+  final String initialRoute;
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +87,7 @@ class SchoolLms extends StatelessWidget {
           builder: (context, themeMode, _) => MaterialApp(
             debugShowCheckedModeBanner: false,
             onGenerateRoute: RoutesManger.getRoute,
-            initialRoute: RoutesManger.onbourdingOne,
+            initialRoute: initialRoute,
             locale: locale,
             theme: ThemeManger.light,
             darkTheme: ThemeManger.dark,
