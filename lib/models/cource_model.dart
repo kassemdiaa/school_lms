@@ -23,7 +23,6 @@ class CourceModel {
     required this.chapters,
   });
 
-  // ── Shared chapters template (same questions for all courses) ──────────────
   static List<ChapterModel> _buildChapters() => [
         ChapterModel(
           id: 0, name: 'Chapter Name', videoPath: AssetsManegar.mathVid, docPath: AssetsManegar.mathdoc,
@@ -91,7 +90,6 @@ class CourceModel {
         ),
       ];
 
-  // ── Localized list — call this instead of the old static `cources` field ──
   static List<CourceModel> getCources(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     return [

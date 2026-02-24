@@ -7,23 +7,18 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:school_lms/l10n/app_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-// ── Global locale notifier ─────────────────────────────────────────────────────
 final ValueNotifier<Locale> appLocale = ValueNotifier(const Locale('en'));
 
-// ── Global theme notifier ──────────────────────────────────────────────────────
 final ValueNotifier<ThemeMode> appTheme = ValueNotifier(ThemeMode.light);
 
-// ── Persistence keys ───────────────────────────────────────────────────────────
 const _kLangKey  = 'selected_language';
 const _kThemeKey = 'selected_theme';
 
-// ── Save locale ────────────────────────────────────────────────────────────────
 Future<void> saveLocale(String languageCode) async {
   final prefs = await SharedPreferences.getInstance();
   await prefs.setString(_kLangKey, languageCode);
 }
 
-// ── Save theme ─────────────────────────────────────────────────────────────────
 Future<void> saveTheme(ThemeMode mode) async {
   final prefs = await SharedPreferences.getInstance();
   await prefs.setString(_kThemeKey, mode == ThemeMode.dark ? 'dark' : 'light');
@@ -34,11 +29,11 @@ void main() async {
 
   final prefs = await SharedPreferences.getInstance();
 
-  // Restore locale
+  //locale
   final savedLang = prefs.getString(_kLangKey) ?? 'en';
   appLocale.value = Locale(savedLang);
 
-  // Restore theme
+  //theme
   final savedTheme = prefs.getString(_kThemeKey) ?? 'light';
   appTheme.value = savedTheme == 'dark' ? ThemeMode.dark : ThemeMode.light;
 
@@ -66,7 +61,7 @@ class SchoolLms extends StatelessWidget {
             locale: locale,
             theme: ThemeManger.light,
             darkTheme: ThemeManger.dark,
-            themeMode: themeMode,           // ← driven by notifier
+            themeMode: themeMode,
             localizationsDelegates: const [
               AppLocalizations.delegate,
               GlobalMaterialLocalizations.delegate,

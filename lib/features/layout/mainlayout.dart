@@ -29,7 +29,6 @@ class _MainlayoutState extends State<Mainlayout> {
     return Scaffold(
       body: taps[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
-        // use the theme's background color (defaults to bottomNavigationBarTheme)
         backgroundColor:
             Theme.of(context).bottomNavigationBarTheme.backgroundColor,
         type: BottomNavigationBarType.fixed,
@@ -37,11 +36,9 @@ class _MainlayoutState extends State<Mainlayout> {
         showUnselectedLabels: false,
         currentIndex: currentIndex,
         onTap: (index) => setState(() => currentIndex = index),
-        // let the bar manage icon/text colors via selected/unselectedItemColor
         selectedItemColor: Theme.of(context).primaryColor,
         unselectedItemColor: ColorsManger.gray,
         items: [
-          // ── Home ──────────────────────────────────────────────────────────
           BottomNavigationBarItem(
             label: 'Home',
             icon: ImageIcon(
@@ -50,7 +47,6 @@ class _MainlayoutState extends State<Mainlayout> {
             ),
           ),
 
-          // ── Enrolled Courses ──────────────────────────────────────────────
           BottomNavigationBarItem(
             label: 'Courses',
             icon: ImageIcon(
@@ -59,7 +55,6 @@ class _MainlayoutState extends State<Mainlayout> {
             ),
           ),
 
-          // ── Notifications ─────────────────────────────────────────────────
           BottomNavigationBarItem(
             label: 'Notifications',
             icon: Icon(
@@ -70,7 +65,6 @@ class _MainlayoutState extends State<Mainlayout> {
             ),
           ),
 
-          // ── Profile ───────────────────────────────────────────────────────
           BottomNavigationBarItem(
             label: 'Profile',
             icon: ImageIcon(
